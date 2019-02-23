@@ -1,12 +1,13 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
-    author: `Kyle Mathews`,
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    title: `Psychoterapia Rzeszów`,
+    author: `Sławomir Zawistowski`,
+    description: `Uzyskaj pomoc psychologa. Poradnia psychologiczna - Rzeszów i okolice. Konsultacje oraz psychoterapia indywidualna, par, małżeństw.`,
+    siteUrl: `https://psychoterapia.netlify.com/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: ``,
     },
+    authorSite: 'https://taurusx.netlify.com',
   },
   plugins: [
     {
@@ -57,11 +58,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Psychoterapeuta Rzeszów`,
+        short_name: `Psychoterapia`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#663399`,
+        theme_color: `#113377`,
         display: `minimal-ui`,
         icon: `content/assets/gatsby-icon.png`,
       },
