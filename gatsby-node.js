@@ -78,9 +78,9 @@ exports.createPages = ({ graphql, actions }) => {
     articles.forEach(post => {
       const { previous } = post
       const { next } = post
-      const slugFull = `${post.node.postType}/${post.node.slug}`
-      if (previous) previous.slugFull = `${previous.postType}/${previous.slug}`
-      if (next) next.slugFull = `${next.postType}/${next.slug}`
+      const slugFull = `/${post.node.postType}/${post.node.slug}`
+      if (previous) previous.slugFull = `/${previous.postType}/${previous.slug}`
+      if (next) next.slugFull = `/${next.postType}/${next.slug}`
 
       createPage({
         path: slugFull,

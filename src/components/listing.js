@@ -49,7 +49,7 @@ class Listing extends React.Component {
                         }}
                       >
                         <Link style={{ boxShadow: `none` }}
-                          to={`${node.postType}/${node.slug}`}>
+                          to={`/${node.postType}/${node.slug}`}>
                           {title}
                         </Link>
                       </h3>
