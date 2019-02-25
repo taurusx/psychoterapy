@@ -43,6 +43,11 @@ export const pageQuery = graphql`
           subtitle
           date (formatString: "DD MMMM, YYYY", locale: "pl-PL" )
           author
+          image {
+            fluid {
+              ...GatsbyContentfulFluid
+            }
+          }
           slug
           postType
         }

@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import Img from 'gatsby-image'
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -18,6 +19,7 @@ class ArticlePostContentfulTemplate extends React.Component {
           title={post.title}
           description={post.subtitle}
         />
+        <Img fluid={post.image.fluid} />
         <h1>{post.title}</h1>
         <p
           style={{
@@ -88,6 +90,11 @@ export const pageQuery = graphql`
       subtitle
       date (formatString: "DD MMMM, YYYY", locale: "pl-PL" )
       author
+      image {
+        fluid {
+          ...GatsbyContentfulFluid
+        }
+      }
       content {
         childContentfulRichText {
           html
