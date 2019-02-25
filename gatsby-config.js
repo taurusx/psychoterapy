@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Psychoterapia Rzeszów`,
@@ -67,6 +71,14 @@ module.exports = {
         icon: `content/assets/gatsby-icon.png`,
       },
     },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `sazfiq61gz9l`,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
+    `@contentful/gatsby-transformer-contentful-richtext`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
