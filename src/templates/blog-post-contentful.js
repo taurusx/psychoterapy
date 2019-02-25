@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Bio from "../components/bio"
 import { rhythm, scale } from "../utils/typography"
 
 class ArticlePostContentfulTemplate extends React.Component {
@@ -41,6 +42,7 @@ class ArticlePostContentfulTemplate extends React.Component {
             marginBottom: rhythm(1),
           }}
         />
+        <Bio author={post.author} />
         <ul
           style={{
             display: `flex`,

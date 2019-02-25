@@ -1,0 +1,33 @@
+{
+  "authors": [
+    {
+      "name": "Agnieszka Wojnar-Jadczyszyn",
+      "avatar_string": "Wojnar",
+      "email": "a.wojnar.jadczyszyn@gmail.com",
+      "phone": "665-400-815",
+      "descr_short": "Psycholog, psychoterapeuta poznawczo‑behawioralny.",
+      "descr_bio": ", psycholog i psychoterapeutka poznawczo-behawioralna",
+      "descr_full": "Jestem psychologiem i psychoterapeutą poznawczo-behawioralnym w trakcie certyfikacji. Ukończyłam Wydział Psychologii Uniwersytetu Marii Curie-Skłodowskiej w Lublinie, specjalność: psychologia kliniczna i neuropsychologia. Obecnie jestem w trakcie 4‑letniego szkolenia w zakresie psychoterapii poznawczo – behawioralnej w Centrum CBT w Warszawie akredytowanego przez Polskie Towarzystwo Terapii Poznawczej i Behawioralnej, pogłębiając swoją wiedzę uczestniczę również w szkoleniach z Terapii Schematu, która integruje różne podejścia terapeutyczne i jest skuteczna m.in. w leczeniu zaburzeń osobowości.\n\n    Doświadczenie kliniczne zdobywałam w Poradni Zdrowia Psychicznego dla Dorosłych SZPZLO Warszawa-Ochota, Klinice Vertimed w Warszawie na Oddziale Dziennym Zaburzeń Nerwicowych, Klinice Psychiatrii Akademii Medycznej w Lublinie i Lubelskim Stowarzyszeniu Zdrowia Psychicznego \"Serce\". Obecnie pracuję w Poradni Zdrowia Psychicznego dla Dorosłych przy Szpitalu Nowowiejskim.\n\nProwadzę terapię osób dorosłych i młodzieży zmagających się z:\n * zaburzeniami nastroju (depresja, obniżony nastrój),\n * zaburzeniami lękowymi (ataki paniki, lęk o zdrowie, fobie, zaburzenia obsesyjno- kompulsywne),\n * trudnościami w relacjach z innymi ludźmi,\n * zaburzeniami osobowości,\n * dolegliwościami psychosomatycznymi,\n * trudnościami adaptacyjnymi,\n * stresem pourazowym,\n * kryzysem życiowym,\n * niską samooceną.\nSwoją pracę poddaję regularnej superwizji.",
+      "social": {
+        "twitter": "",
+        "facebook": "",
+        "instagram": ""
+      }
+    },
+    
+    {
+      "name": "info",
+      "avatar_string": "",
+      "email": "a.wojnar.jadczyszyn@gmail.com",
+      "phone": "665-400-815",
+      "descr_short": "Poradnia psychologiczna i psychoterapia.",
+      "descr_bio": "",
+      "descr_full": "",
+      "social": {
+        "twitter": "",
+        "facebook": "",
+        "instagram": ""
+      }
+    }
+  ]
+}
