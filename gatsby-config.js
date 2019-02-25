@@ -5,12 +5,13 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `Psychoterapia Rzeszów`,
-    author: `Sławomir Zawistowski`,
+    owner: `Poradnia Psychologiczna Agnieszka Wojnar-Jadczyszyn`,
     description: `Uzyskaj pomoc psychologa. Poradnia psychologiczna - Rzeszów i okolice. Konsultacje oraz psychoterapia indywidualna, par, małżeństw.`,
     siteUrl: `https://psychoterapia.netlify.com/`,
     social: {
       twitter: ``,
     },
+    author: `Zawistowski`,
     authorSite: 'https://taurusx.netlify.com',
   },
   plugins: [
@@ -68,7 +69,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#113377`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/logo-psychoterapia.png`,
       },
     },
     {

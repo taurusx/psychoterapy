@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql, StaticQuery } from "gatsby"
 
 import { rhythm, scale } from "../utils/typography"
 
@@ -52,24 +52,54 @@ class Layout extends React.Component {
       )
     }
     return (
-      <div
-        style={{
-          marginLeft: `auto`,
-          marginRight: `auto`,
-          maxWidth: rhythm(24),
-          padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
+      <StaticQuery
+        query={layoutQuery}
+        render={data => {
+          const owner = data.site.siteMetadata.owner
+          const author = data.site.siteMetadata.author
+          const authorSite = data.site.siteMetadata.authorSite
+          return (
+            <div
+              style={{
+                marginLeft: `auto`,
+                marginRight: `auto`,
+                maxWidth: rhythm(32),
+                minHeight: '100vh',
+                display: 'flex',
+                flexDirection: 'column',
+                padding: `${rhythm(1.5)} ${rhythm(5 / 4)} ${rhythm(1 / 4)}`,
+              }}
+            >
+              <header>{header}</header>
+              <main style={{
+                flex: 'auto 1 0',
+              }}>{children}</main>
+              <footer style={{
+                fontSize: '80%',
+                textAlign: 'center',
+              }}>
+                {owner}&nbsp;©&nbsp;{new Date().getFullYear()}, 
+                Created&nbsp;by&nbsp;
+                <a href={authorSite}>{author}</a>
+              </footer>
+            </div>
+          )
         }}
-      >
-        <header>{header}</header>
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
+      />
     )
   }
 }
 
 export default Layout
+
+export const layoutQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        owner
+        author
+        authorSite
+      }
+    }
+  }
+`
