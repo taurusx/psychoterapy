@@ -37,21 +37,7 @@ export const pageQuery = graphql`
       sort: { fields: [date], order: DESC }
       limit: 3
     ) {
-      edges {
-        node {
-          title
-          subtitle
-          date (formatString: "DD MMMM, YYYY", locale: "pl-PL" )
-          author
-          image {
-            fluid {
-              ...GatsbyContentfulFluid
-            }
-          }
-          slug
-          postType
-        }
-      }
+      ...AllContentfulArticlePosts
     }
   }
 `

@@ -79,3 +79,23 @@ export const listingQuery = graphql`
     }
   }
 `
+
+export const allArticlesQuery = graphql`
+  fragment AllContentfulArticlePosts on ContentfulArticlePostConnection {
+    edges {
+      node {
+        title
+        subtitle
+        date (formatString: "DD MMMM, YYYY", locale: "pl-PL" )
+        author
+        image {
+          fluid {
+            ...GatsbyContentfulFluid
+          }
+        }
+        slug
+        postType
+      }
+    }
+  }
+`
