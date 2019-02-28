@@ -1,56 +1,21 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { Link, graphql, StaticQuery } from "gatsby"
 
 import { rhythm, scale } from "../utils/typography"
+import Header from "../components/header"
 
 class Layout extends React.Component {
   render() {
     const { location, title, children } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
-    let header
+    let headerColor, fontColor
 
     if (location.pathname === rootPath) {
-      header = (
-        <h1
-          style={{
-            ...scale(1.5),
-            marginBottom: rhythm(1.5),
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h1>
-      )
-    } else {
-      header = (
-        <h3
-          style={{
-            fontFamily: `Montserrat, sans-serif`,
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h3>
-      )
-    }
+      // TODO: add to Header props and pass deeper, add hover colors
+      headerColor = "transparent" 
+      fontColor = "white" 
+    } 
     return (
       <StaticQuery
         query={layoutQuery}
@@ -63,24 +28,32 @@ class Layout extends React.Component {
               style={{
                 marginLeft: `auto`,
                 marginRight: `auto`,
-                maxWidth: rhythm(32),
-                minHeight: '100vh',
+                height: '100vh',
                 display: 'flex',
                 flexDirection: 'column',
-                padding: `${rhythm(1.5)} ${rhythm(5 / 4)} ${rhythm(1 / 4)}`,
-              }}
-            >
-              <header>{header}</header>
+            }}>
+              <Header siteTitle={title} />
               <main style={{
-                flex: 'auto 1 0',
+                flex: '1 0 auto',
+                marginLeft: `auto`,
+                marginRight: `auto`,
+                maxWidth: rhythm(32),
+                padding: `${rhythm(1.5)} ${rhythm(5 / 4)} ${rhythm(1 / 4)}`,
               }}>{children}</main>
               <footer style={{
+                flex: '0 1 auto',
                 fontSize: '80%',
                 textAlign: 'center',
               }}>
                 {owner}&nbsp;©&nbsp;{new Date().getFullYear()}, 
                 Created&nbsp;by&nbsp;
-                <a href={authorSite}>{author}</a>
+                <a href={authorSite}
+                  style={{
+                    boxShadow: `none`,
+                    textDecoration: `none`,
+                    color: `inherit`,
+                    fontWeight: 'bold',
+                  }}>{author}</a>
               </footer>
             </div>
           )
@@ -88,6 +61,16 @@ class Layout extends React.Component {
       />
     )
   }
+}
+
+Layout.propTypes = {
+  title: PropTypes.string,
+  location: PropTypes.object,
+}
+
+Layout.defaultProps = {
+  title: ``,
+  location: {},
 }
 
 export default Layout
