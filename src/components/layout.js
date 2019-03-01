@@ -4,18 +4,55 @@ import { Link, graphql, StaticQuery } from "gatsby"
 
 import { rhythm, scale } from "../utils/typography"
 import Header from "../components/header"
+import HeroHeader from "../components/heroHeader"
 
 class Layout extends React.Component {
   render() {
     const { location, title, children } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
-    let headerColor, fontColor
+    let header
+    let fontColor
 
     if (location.pathname === rootPath) {
-      // TODO: add to Header props and pass deeper, add hover colors
-      headerColor = "transparent" 
       fontColor = "white" 
-    } 
+      header = (
+        <HeroHeader siteTitle={title} location={location} fontColor={fontColor}>
+          {/* TODO: replace HeroText below with correct one, 
+            add mobile media */}
+          <h1 style={{
+            ...scale(1.8),
+            marginTop: rhythm(0),
+            marginBottom: rhythm(-2),
+          }}>
+            <span style={{ float: 'left', fontSize: '80%',
+              marginTop: rhythm(0), }}>NAWET</span>
+            <span style={{ float: 'left', textShadow: '3px 5px 5px #0741ad',
+              marginTop: rhythm(-0.5),}}>NAJDŁUŻSZA</span>
+            <span style={{ float: 'right', fontSize: '80%',
+              marginTop: rhythm(-0.5), }}>PODRÓŻ</span></h1>
+          <h1 style={{ textAlign: 'center', width: '76%', alignSelf: 'center'}}><span>ZACZYNA SIĘ OD PIERWSZEGO KROKU</span></h1>
+          <button style={{
+            ...scale(1.0),
+            alignSelf: 'center',
+            width: `auto`,
+            background: 'transparent',
+            color: `${fontColor}`,
+            border: `6px solid ${fontColor}`,
+            fontFamily: 'Montserrat, sans-serif',
+            fontWeight: 'bold',
+            padding: `${rhythm(0.5)} ${rhythm(1.5)}`,
+            borderRadius: rhythm(0.5),
+          }}><Link to="/kontakt/" style={{
+              boxShadow: 'none',
+              textDecoration: 'none',
+              color: `${fontColor}`,
+            
+          }}>WIZYTA</Link></button>
+        </HeroHeader>
+      )
+    } else {
+      header = <Header siteTitle={title} location={location} />
+    }
     return (
       <StaticQuery
         query={layoutQuery}
@@ -32,7 +69,7 @@ class Layout extends React.Component {
                 display: 'flex',
                 flexDirection: 'column',
             }}>
-              <Header siteTitle={title} />
+              {header}
               <main style={{
                 flex: '1 0 auto',
                 marginLeft: `auto`,
