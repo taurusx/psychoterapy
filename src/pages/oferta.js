@@ -1,11 +1,17 @@
 import React from "react"
-import Layout from "../components/layout"
 import { graphql } from "gatsby"
+
+import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 const ServicesPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   return (
     <Layout location={location} title={siteTitle}>
+      <SEO
+        title="Oferta"
+        keywords={[`terapia małżeństw`, `psychoterapia`, `nerwica`, `depresja`, `poradnia`]}
+      />
       <h1>Oferta</h1>
     </Layout>
   )
