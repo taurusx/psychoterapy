@@ -74,7 +74,7 @@ const FormField = styled.div`
   }
 `
 
-const FormAcceptance = () => (
+const FormAcceptance = ({ checked, onChange }) => (
   <StaticQuery
     query={formAcceptanceQuery}
     render={data => (
@@ -85,7 +85,10 @@ const FormAcceptance = () => (
         <label htmlFor="acceptance-marketing">
           <input type="checkbox" id="acceptance-marketing"
             name="acceptance-marketing"
-            required />
+            checked={checked}
+            required
+            onChange={onChange}
+          />
           <span className="checkmark"></span>
           Wyrażam zgodę</label>
       </FormField>
