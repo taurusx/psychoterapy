@@ -12,7 +12,7 @@ class BlogIndex extends React.Component {
     const posts = data.allContentfulArticlePost.edges
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={this.props.location} title={siteTitle} fullWidth>
         <SEO
           title="Strona Główna"
           keywords={[`psychoterapia`, `Rzeszów`, `depresja`, `poradnia`]}

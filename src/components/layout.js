@@ -1,14 +1,29 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Link, graphql, StaticQuery } from "gatsby"
+import styled from "styled-components"
 
 import { rhythm, scale } from "../utils/typography"
 import Header from "../components/header"
 import HeroHeader from "../components/heroHeader"
 
+const Main = styled.main`
+  flex: 1 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: ${rhythm(32)};
+  padding: ${rhythm(1.5)} ${rhythm(5 / 4)} ${rhythm(1 / 4)};
+`
+
+const MainFull = styled(Main)`
+  max-width: initial;
+  margin: 0;
+  padding: 0;
+`
+
 class Layout extends React.Component {
   render() {
-    const { location, title, children } = this.props
+    const { location, title, children, fullWidth } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
     let header
     let fontColor
@@ -70,13 +85,15 @@ class Layout extends React.Component {
                 flexDirection: 'column',
             }}>
               {header}
-              <main style={{
-                flex: '1 0 auto',
-                marginLeft: `auto`,
-                marginRight: `auto`,
-                maxWidth: rhythm(32),
-                padding: `${rhythm(1.5)} ${rhythm(5 / 4)} ${rhythm(1 / 4)}`,
-              }}>{children}</main>
+              {fullWidth ? (
+                <MainFull>
+                  {children}
+                </MainFull>
+                ) : (
+                <Main>
+                  {children}
+                </Main>
+              )}
               <footer style={{
                 flex: '0 1 auto',
                 fontSize: '80%',

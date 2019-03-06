@@ -12,7 +12,7 @@ class ArticlesIndex extends React.Component {
     const posts = data.allContentfulArticlePost.edges
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={this.props.location} title={siteTitle} fullWidth>
         <SEO
           title="Artykuły"
           keywords={[`psychoterapia`, `nerwica`, `depresja`, `poradnia`]}
