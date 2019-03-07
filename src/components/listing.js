@@ -1,24 +1,23 @@
 import React from "react"
-import { Link, graphql, StaticQuery } from "gatsby"
-import Img from "gatsby-image"
+import { graphql } from "gatsby"
 import styled from "styled-components"
 
-import { rhythm } from "../utils/typography"
+import ArticleTile from './articleTile';
 
-const Post = styled.div`
-  display: flex;
-`
+const GridLayout = styled.div`
+  display: grid;
+  grid-template-columns: repeat( auto-fill, minmax(350px, 1fr) );
+  grid-gap: 3rem;
+  justify-items: center;
+  align-content: center;
+  width: 100%;
+  padding: 2rem;
 
-const PostImage = styled.div`
-  flex: 25%;
-  margin-right: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`
-
-const PostText = styled.div`
-  flex: 50%;
+  @media (max-width: 480px) {
+    padding: 0 0 1rem;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr;
+  }
 `
 
 class Listing extends React.Component {
@@ -26,59 +25,18 @@ class Listing extends React.Component {
     const { posts } = this.props
 
     return (
-      <StaticQuery
-        query={listingQuery}
-        render={data => {
-          const siteTitle = data.site.siteMetadata.title
+      <GridLayout>
+        {posts.map(({ node }) => {
           return (
-            <div>
-              {posts.map(({ node }) => {
-                const title = node.title || node.slug
-                return (
-                  <Post key={node.slug} style={{
-                    marginBottom: rhythm(5 / 4),
-                  }}>
-                    <PostImage>
-                      <Img fluid={node.image.fluid} />
-                    </PostImage>  
-                    <PostText>
-                      <h3
-                        style={{
-                          marginTop: rhythm(2),
-                          marginBottom: rhythm(1 / 4),
-                        }}
-                      >
-                        <Link style={{ boxShadow: `none` }}
-                          to={`/${node.postType}/${node.slug}`}>
-                          {title}
-                        </Link>
-                      </h3>
-                      <small>{node.date}{` | `}
-                        {node.author === 'info' ? siteTitle : node.author}</small>
-                      <p>{node.subtitle}</p>
-                    </PostText>
-                  </Post>
-                )
-              })}
-            </div>
+            <ArticleTile key={node.slug} article={node} />
           )
-        }}
-      />
+        })}
+      </GridLayout>
     )
   }
 }
 
 export default Listing
-
-export const listingQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`
 
 export const allArticlesQuery = graphql`
   fragment AllContentfulArticlePosts on ContentfulArticlePostConnection {
@@ -89,7 +47,7 @@ export const allArticlesQuery = graphql`
         date (formatString: "DD MMMM, YYYY", locale: "pl-PL" )
         author
         image {
-          fluid {
+          fluid(maxWidth: 600) {
             ...GatsbyContentfulFluid
           }
         }
