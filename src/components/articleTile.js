@@ -154,7 +154,7 @@ const ArticleTile = ({ article: node }) => (
           <TileImage postType={node.postType}>
             <Img fluid={node.image.fluid} />
             <TileImageType>
-              {node.postType === 'articles' ? 'ARTYKUŁ' : 'NEWS'}
+              {node.postType === 'artykuly' ? 'ARTYKUŁ' : 'NEWS'}
             </TileImageType>
             <TileImageDate>
               <div className="day">{date.getDate()}</div>
