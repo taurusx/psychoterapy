@@ -81,6 +81,7 @@ module.exports = {
            */
           renderNode: {
             [BLOCKS.EMBEDDED_ASSET]: node => {
+              if (!node.data.target.fields.file) return ""
               return `<div class='contentful-image-container'><picture>
                 <source
                   srcset="${node.data.target.fields.file['pl-PL'].url}?q=50&w=450"
