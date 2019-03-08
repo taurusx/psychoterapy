@@ -1,7 +1,9 @@
-import { Link } from "gatsby"
 import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
+import { startsWith } from "../utils/utils"
+
+import Link from "./link"
 
 const NavMenu = styled.nav`
   position: relative;
@@ -102,7 +104,7 @@ const StyledLink = styled(Link)`
   color: ${props => props.headerStyles.fontColor};
 
   &:hover,
-  &.current-location {
+  &.active {
     font-weight: bold;
     color: ${props => props.headerStyles.fontColorHover};
   }
@@ -113,14 +115,21 @@ const StyledLink = styled(Link)`
 `
 
 const ListLink = props => {
-  const { location, to, headerStyles } = props
+  const { location, to, headerStyles, ...restProps } = props
   const linkClass = !location ? "" :
-    (to !== location.pathname) ? "" :
-    (to === "/") ? "link-hidden" : "current-location"
+    (to === location.pathname) && (to === "/") ? "link-hidden" :
+    // Simulate Reach Router Link's (https://reach.tech/router) 
+    // retrieving getProps({isPartiallyCurrent})
+    (to !== "/") && startsWith(location.pathname, to) ? "active" : ""
   
   return (
-    <StyledLink to={to} className={linkClass} headerStyles={headerStyles}>
-      <StyledListItem data-text={props.dataText} headerStyles={headerStyles}>
+    <StyledLink to={to}
+      activeClassName={"active"}
+      className={linkClass}
+      headerStyles={headerStyles}
+      {...restProps}>
+      <StyledListItem data-text={props.dataText} headerStyles={headerStyles}
+        {...restProps}>
         {props.children}
       </StyledListItem>
     </StyledLink>
