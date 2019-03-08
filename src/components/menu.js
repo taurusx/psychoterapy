@@ -51,6 +51,7 @@ const NavMenu = styled.nav`
     &.menu-active {
       transform: none;
       box-shadow: -3px 0 3px 1px rgba(0,0,0,0.4);
+      color: ${props => props.headerStyles.fontColorHeaderHover};
 
       div.toggle {
         right: 1rem;
