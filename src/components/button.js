@@ -37,6 +37,16 @@ const grayTheme = {
   boxShadowColor: 'transparent',
 }
 
+const whiteTheme = {
+  fontColor: lightestColor,
+  fontColorHover: darkestColor,
+  backgroundColor: 'transparent',
+  backgroundColorHover: lightestColor,
+  borderColor: lightestColor,
+  borderColorHover: 'transparent',
+  boxShadowColor: 'transparent',
+}
+
 const moveArrow = keyframes`
   0%   { right: 1.5em; opacity: 0; }
   20%  { opacity: 1; }
@@ -123,6 +133,8 @@ const Button = props => {
     currentTheme = lightTheme
   } else if (props.grayTheme) {
     currentTheme = grayTheme
+  } else if (props.whiteTheme) {
+    currentTheme = whiteTheme
   } else {
     currentTheme = darkTheme
   }
