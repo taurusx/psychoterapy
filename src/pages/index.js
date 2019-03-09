@@ -4,6 +4,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Listing from "../components/listing"
+import ButtonLink from './../components/buttonLink';
 
 class BlogIndex extends React.Component {
   render() {
@@ -17,7 +18,11 @@ class BlogIndex extends React.Component {
           title="Strona Główna"
           keywords={[`psychoterapia`, `Rzeszów`, `depresja`, `poradnia`]}
         />
-        <Listing posts={posts} />
+        <div>
+          <h2>Ostatnie wpisy</h2>
+          <Listing posts={posts} />
+          <ButtonLink to="/artykuly/" lightTheme arrow alignRight>Zobacz wszystkie</ButtonLink>
+        </div>
       </Layout>
     )
   }
