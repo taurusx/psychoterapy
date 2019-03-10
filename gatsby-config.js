@@ -8,7 +8,7 @@ module.exports = {
     title: `Psychoterapia Rzeszów`,
     owner: `Poradnia Psychologiczna Agnieszka Wojnar-Jadczyszyn`,
     description: `Uzyskaj pomoc psychologa. Poradnia psychologiczna - Rzeszów i okolice. Konsultacje oraz psychoterapia indywidualna, par, małżeństw.`,
-    siteUrl: `https://psychoterapia.netlify.com/`,
+    siteUrl: `https://psychoterapia.netlify.com`,
     social: {
       twitter: ``,
     },
