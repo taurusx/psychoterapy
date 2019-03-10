@@ -27,11 +27,6 @@ const NavMenu = styled.nav`
     color: inherit;
   }
 
-  div.toggle {
-    right: calc(100% + 1rem);
-    transition: right ${props => props.headerStyles.menuTransitions};
-  }
-
   @media (max-width: ${props => props.headerStyles.menuTreshold}) {
     position: fixed;
     height: 100vh;
@@ -53,10 +48,6 @@ const NavMenu = styled.nav`
       transform: none;
       box-shadow: -3px 0 3px 1px rgba(0,0,0,0.4);
       color: ${props => props.headerStyles.fontColorHeaderHover};
-
-      div.toggle {
-        right: 1rem;
-      }
     }
   }
 `

@@ -5,10 +5,11 @@ const ToggleWrapper = styled.div`
   display: none;
   position: absolute;
   top: 1rem;
-  right: 1rem;
+  right: calc(100% + 1rem);
   min-height: 36px;
   min-width: 36px;
   cursor: pointer;
+  transition: right ${props => props.headerStyles.menuTransitions};
 
   &:hover span {
     background: ${props => props.headerStyles.fontColorHover};
@@ -59,6 +60,10 @@ const ToggleWrapper = styled.div`
 
   @media (max-width: ${props => props.headerStyles.menuTreshold}) {
     display: block;
+
+    &.toggle--active {
+      right: 1rem;
+    }
   }
 `
 
