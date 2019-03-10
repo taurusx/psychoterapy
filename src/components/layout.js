@@ -1,12 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { graphql, StaticQuery } from "gatsby"
 import styled from "styled-components"
 
 import { rhythm } from "../utils/typography"
 import Header from "../components/header"
 import HeroHeader from "../components/heroHeader"
 import HeroText from "./heroText";
+import Footer from "./footer";
 
 const Main = styled.main`
   flex: 1 0 auto;
@@ -40,50 +40,26 @@ class Layout extends React.Component {
       header = <Header siteTitle={title} location={location} />
     }
     return (
-      <StaticQuery
-        query={layoutQuery}
-        render={data => {
-          const owner = data.site.siteMetadata.owner
-          const author = data.site.siteMetadata.author
-          const authorSite = data.site.siteMetadata.authorSite
-          return (
-            <div
-              style={{
-                marginLeft: `auto`,
-                marginRight: `auto`,
-                height: '100vh',
-                display: 'flex',
-                flexDirection: 'column',
-            }}>
-              {header}
-              {fullWidth ? (
-                <MainFull>
-                  {children}
-                </MainFull>
-                ) : (
-                <Main>
-                  {children}
-                </Main>
-              )}
-              <footer style={{
-                flex: '0 1 auto',
-                fontSize: '80%',
-                textAlign: 'center',
-              }}>
-                {owner}&nbsp;©&nbsp;{new Date().getFullYear()}, 
-                Created&nbsp;by&nbsp;
-                <a href={authorSite}
-                  style={{
-                    boxShadow: `none`,
-                    textDecoration: `none`,
-                    color: `inherit`,
-                    fontWeight: 'bold',
-                  }}>{author}</a>
-              </footer>
-            </div>
-          )
-        }}
-      />
+      <div
+        style={{
+          marginLeft: `auto`,
+          marginRight: `auto`,
+          height: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+      }}>
+        {header}
+        {fullWidth ? (
+          <MainFull>
+            {children}
+          </MainFull>
+          ) : (
+          <Main>
+            {children}
+          </Main>
+        )}
+        <Footer/>
+      </div>
     )
   }
 }
@@ -99,15 +75,3 @@ Layout.defaultProps = {
 }
 
 export default Layout
-
-export const layoutQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        owner
-        author
-        authorSite
-      }
-    }
-  }
-`
