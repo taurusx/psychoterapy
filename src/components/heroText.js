@@ -38,7 +38,7 @@ const HeroText = () => {
       <SubHeading style={{ textAlign: 'center', width: '76%', alignSelf: 'center' }}>
         <span>ZACZYNA SIĘ OD PIERWSZEGO KROKU</span>
       </SubHeading>
-      <ButtonLink to="/kontakt/" whiteTheme>
+      <ButtonLink to="/kontakt/" whiteTheme changeSize>
         UMÓW SIĘ NA WIZYTĘ
       </ButtonLink>
     </HeroTextWrapper>

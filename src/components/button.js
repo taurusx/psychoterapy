@@ -85,6 +85,12 @@ const StyledButton = styled.button`
     margin-left: 0;
   `}
 
+  ${props => props.changeSize && css`
+    font-size: ${props => props.changeSize.size || '120%'};
+    border-width: ${props => props.changeSize.borderWidth || '4px'};
+    padding: ${props => props.changeSize.paddingTopBottom || '0.6em'} ${props => props.changeSize.paddingLeftRight || '1.5em'};
+  `}
+
   ${props => props.alignLeft && css`
     display: block;
     margin-right: auto;
