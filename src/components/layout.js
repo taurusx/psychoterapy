@@ -22,46 +22,45 @@ const MainFull = styled(Main)`
   padding: 0;
 `
 
-class Layout extends React.Component {
-  render() {
-    const { location, title, children, fullWidth } = this.props
-    const rootPath = `${__PATH_PREFIX__}/`
-    let header
-    let fontColor
+const Layout = (props) => {
+  const { location, title, children, fullWidth } = props
+  const rootPath = `${__PATH_PREFIX__}/`
+  let header
+  let fontColor
 
-    if (location.pathname === rootPath) {
-      fontColor = "white" 
-      header = (
-        <HeroHeader siteTitle={title} location={location} fontColor={fontColor}>
-          <HeroText />
-        </HeroHeader>
-      )
-    } else {
-      header = <Header siteTitle={title} location={location} />
-    }
-    return (
-      <div
-        style={{
-          marginLeft: `auto`,
-          marginRight: `auto`,
-          height: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-      }}>
-        {header}
-        {fullWidth ? (
-          <MainFull>
-            {children}
-          </MainFull>
-          ) : (
-          <Main>
-            {children}
-          </Main>
-        )}
-        <Footer/>
-      </div>
+  if (location.pathname === rootPath) {
+    fontColor = "white" 
+    header = (
+      <HeroHeader siteTitle={title} location={location} fontColor={fontColor}>
+        <HeroText />
+      </HeroHeader>
     )
+  } else {
+    header = <Header siteTitle={title} location={location} />
   }
+  
+  return (
+    <div
+      style={{
+        marginLeft: `auto`,
+        marginRight: `auto`,
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+    }}>
+      {header}
+      {fullWidth ? (
+        <MainFull>
+          {children}
+        </MainFull>
+        ) : (
+        <Main>
+          {children}
+        </Main>
+      )}
+      <Footer/>
+    </div>
+  )
 }
 
 Layout.propTypes = {
