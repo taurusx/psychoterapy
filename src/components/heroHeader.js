@@ -1,9 +1,8 @@
 import React from "react"
-import { StaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
 import styled from "styled-components"
 
 import Header from "./header"
+import HeroSlider from "./heroSlider"
 
 const HeroLayout = styled.div`
   position: relative;
@@ -23,12 +22,11 @@ const HeroLayout = styled.div`
   .gatsby-image-wrapper {
     z-index: -2;
     position: absolute;
+    display: block;
     top: 0;
     left: 0;
     right: 0;
-    max-height: 100%;
-    max-width: 100%;
-    height: 100%;
+    height: 100vh;
     user-select: none;
   }
 
@@ -60,33 +58,16 @@ const customHeaderStyles = {
 }
 
 const HeroHeader = ({ siteTitle, location, fontColor = "white", children }) => (
-  <StaticQuery
-    query={HEADER_IMAGE_QUERY}
-    render={data => (
-      <HeroLayout>
-        <Img fluid={data.headerImage.childImageSharp.fluid} />
-        <Header siteTitle={siteTitle} location={location}
-          headerStyles={{ ...customHeaderStyles }}
-          noPlaceholder
-        />
-        <ChildrenWrapper fontColor={fontColor}>
-          {children}
-        </ChildrenWrapper>
-      </HeroLayout>
-    )}
-  />
+  <HeroLayout>
+    <HeroSlider />
+    <Header siteTitle={siteTitle} location={location}
+      headerStyles={{ ...customHeaderStyles }}
+      noPlaceholder
+    />
+    <ChildrenWrapper fontColor={fontColor}>
+      {children}
+    </ChildrenWrapper>
+  </HeroLayout>
 )
 
 export default HeroHeader
-
-const HEADER_IMAGE_QUERY = graphql`
-  query {
-    headerImage: file(relativePath: { regex: "/hero-header/" }) {
-      childImageSharp {
-        fluid(maxWidth: 1280) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-`
