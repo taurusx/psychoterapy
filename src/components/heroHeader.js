@@ -1,5 +1,6 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
+import { InView } from "react-intersection-observer"
 
 import Header from "./header"
 import HeroSlider from "./heroSlider"
@@ -52,22 +53,40 @@ const ChildrenWrapper = styled.div`
   padding: 2rem 1rem;
 `
 
-const customHeaderStyles = {
-  headerColor: "transparent",
-  fontColor: "white",
-}
+const HeroHeader = ({ siteTitle, location, fontColor = "white", children }) => {
+  async function loadPolyfills() {
+    if (typeof window !== 'undefined' && typeof window.IntersectionObserver === 'undefined') {
+      await import('intersection-observer')
+    }
+  }
 
-const HeroHeader = ({ siteTitle, location, fontColor = "white", children }) => (
-  <HeroLayout>
-    <HeroSlider />
-    <Header siteTitle={siteTitle} location={location}
-      headerStyles={{ ...customHeaderStyles }}
-      noPlaceholder
-    />
-    <ChildrenWrapper fontColor={fontColor}>
-      {children}
-    </ChildrenWrapper>
-  </HeroLayout>
-)
+  useEffect(() => {
+    loadPolyfills()
+  })
+
+  return (
+    <InView threshold={0.97} rootMargin={"50px 0px 0px 0px"}>
+      {({ inView: heroInView, ref: heroRef }) => {
+        let heroHeaderStyles = {
+          headerColor: `${heroInView ? "transparent" : "rgba(0, 0, 0, 0.8)" }`,
+          fontColor: "white",
+        }
+
+        return (
+          <HeroLayout ref={heroRef}>
+            <HeroSlider />
+            <Header siteTitle={siteTitle} location={location}
+              headerStyles={heroHeaderStyles}
+              isHeroInView={heroInView}
+              noPlaceholder
+            />
+            <ChildrenWrapper fontColor={fontColor}>
+              {children}
+            </ChildrenWrapper>
+          </HeroLayout>  
+        )
+      }}
+    </InView>
+)}
 
 export default HeroHeader
