@@ -8,7 +8,7 @@ import { rhythm } from "../utils/typography"
 
 const colorAccent = "#0741AD"
 
-const Tile = styled.div`
+const Card = styled.div`
   position: relative;
   z-index: 1;
   min-width: 300px;
@@ -39,7 +39,7 @@ const Tile = styled.div`
   }
 `
 
-const TileImage = styled.div`
+const CardImage = styled.div`
   position: relative;
   flex: 220px 0 0;
   width: 100%;
@@ -60,7 +60,7 @@ const TileImage = styled.div`
     }
 `
 
-const TileImageDate = styled.div`
+const CardImageDate = styled.div`
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -86,7 +86,7 @@ const TileImageDate = styled.div`
   }
 `
 
-const TileImageType = styled.div`
+const CardImageType = styled.div`
   position: absolute;
   background: ${colorAccent};
   color: white;
@@ -95,7 +95,7 @@ const TileImageType = styled.div`
   padding: 0.4em 0.9em;
 `
 
-const TileText = styled.div`
+const CardText = styled.div`
   flex: 50%;
   margin: ${rhythm(1)};
   overflow: hidden;
@@ -119,7 +119,7 @@ const TileText = styled.div`
   }
 `
 
-const TileButton = styled(Link)`
+const CardButton = styled(Link)`
   box-shadow: none;
   border: 2px solid transparent;
   background: ${colorAccent};
@@ -142,26 +142,26 @@ const TileButton = styled(Link)`
   }
 `
 
-const ArticleTile = ({ article: node }) => (
+const ArticleCard = ({ article: node }) => (
   <StaticQuery
-    query={articleTileQuery}
+    query={articleCardQuery}
     render={data => {
       const siteTitle = data.site.siteMetadata.title
       const date = new Date(node.date);
       const month = date.toLocaleString('pl-PL', { month: 'short' });
       return (
-        <Tile>
-          <TileImage postType={node.postType}>
+        <Card>
+          <CardImage postType={node.postType}>
             <Img fluid={node.image.fluid} />
-            <TileImageType>
+            <CardImageType>
               {node.postType === 'artykuly' ? 'ARTYKUŁ' : 'NEWS'}
-            </TileImageType>
-            <TileImageDate>
+            </CardImageType>
+            <CardImageDate>
               <div className="day">{date.getDate()}</div>
               <div className="month">{month}</div>
-            </TileImageDate>
-          </TileImage>  
-          <TileText>
+            </CardImageDate>
+          </CardImage>  
+          <CardText>
             <h3>
               <Link style={{ boxShadow: `none` }}
                 to={`/${node.postType}/${node.slug}`}>
@@ -171,23 +171,23 @@ const ArticleTile = ({ article: node }) => (
             <small>{node.date}{` | `}
               {node.author === 'info' ? siteTitle : node.author}</small>
             <p>{node.subtitle}</p>
-          </TileText>
-          <TileButton to={`/${node.postType}/${node.slug}`}>
+          </CardText>
+          <CardButton to={`/${node.postType}/${node.slug}`}>
                 Czytaj więcej
-          </TileButton>
-        </Tile>
+          </CardButton>
+        </Card>
       )
     }}
   />
 )
 
-ArticleTile.propTypes = {
+ArticleCard.propTypes = {
   article: PropTypes.object.isRequired,
 }
 
-export default ArticleTile
+export default ArticleCard
 
-export const articleTileQuery = graphql`
+export const articleCardQuery = graphql`
   query {
     site {
       siteMetadata {

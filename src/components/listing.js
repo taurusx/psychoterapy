@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import styled from "styled-components"
 
-import ArticleTile from './articleTile';
+import ArticleCard from './articleCard';
 
 const GridLayout = styled.div`
   display: grid;
@@ -28,7 +28,7 @@ class Listing extends React.Component {
       <GridLayout>
         {posts.map(({ node }) => {
           return (
-            <ArticleTile key={node.slug} article={node} />
+            <ArticleCard key={node.slug} article={node} />
           )
         })}
       </GridLayout>
