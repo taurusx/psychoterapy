@@ -109,7 +109,8 @@ const HeroSlider = () => {
         return (
           <StyledSlider {...settings}>
             {images.map(image => (
-              <Img fluid={image.node.childImageSharp.fluid}/>
+              <Img key={image.node.childImageSharp.id}
+                fluid={image.node.childImageSharp.fluid} />
             ))}
           </StyledSlider>
         )
@@ -129,6 +130,7 @@ const HERO_SLIDER_IMAGES_QUERY = graphql`
       edges {
         node {
           childImageSharp {
+            id
             fluid(maxWidth: 1280) {
               ...GatsbyImageSharpFluid
             }
