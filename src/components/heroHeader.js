@@ -63,7 +63,7 @@ const HeroHeader = ({ siteTitle, location, fontColor = "white", children }) => {
 
   useEffect(() => {
     loadPolyfills()
-  })
+  }, [])
 
   return (
     <InView threshold={0.97} rootMargin={"50px 0px 0px 0px"}>
