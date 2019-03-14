@@ -7,49 +7,77 @@ import Img from "gatsby-image"
 import './../utils/slick/slick.css'
 import './../utils/slick/slick-theme.css'
 
+const ARROW_SIZE = "2.5rem"
+const DOTS_SIZE = "1.5rem"
+
 const StyledSlider = styled(Slider)`
   height: 100%;
 
   .slick-arrow {
     z-index: 5;
+    width: ${ARROW_SIZE};
+    height: ${ARROW_SIZE};
 
     &::before {
-      font-size: 2.0rem;
+      font-size: ${ARROW_SIZE};
+    }
+
+    &.slick-prev {
+      left: 2rem;
+    }
+
+    &.slick-next {
+      right: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      &,
+      &::before {  
+        display: none;
+        height: 0;
+        width: 0;
+      }
+    }
+
+    @media (max-width: 960px) {
+      top: initial;
+      bottom: 1rem;
     }
   }
 
-  .slick-prev {
-    left: 2rem;
-  }
-  
-  .slick-next {
-    right: calc(2rem + 12px);
-  }
-
   .slick-dots {
-    bottom: 1rem;
+    z-index: 5;
+    bottom: 0;
+    padding-bottom: 1rem;
 
     li {
-      padding: 1rem;
+      width: ${DOTS_SIZE};
+      height: ${DOTS_SIZE};
+      margin: 0 0.5rem;
 
-      button::before{
-        color: white;
-        font-size: 1.5rem;
+      button {
+        width: ${DOTS_SIZE};
+        height: ${DOTS_SIZE};
+        padding: 0;
+
+        &::before{
+          font-size: ${DOTS_SIZE};
+          line-height: ${DOTS_SIZE};  
+          width: ${DOTS_SIZE};
+          height: ${DOTS_SIZE};
+          color: white;
+        }
       }
 
-      &.slick-active button::before {
+      &.slick-active button::before{
         color: white;
       }
     }
   }
 
   @media(max-width: 480px) {
-    .slick-prev {
-      left: 1rem;
-    }
-    
-    .slick-next {
-      right: calc(1rem + 12px);
+    & > .slick-arrow,
+    .slick-arrow::before {
     }
 
     .slick-dots {
