@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { InView } from "react-intersection-observer"
 
@@ -65,13 +65,16 @@ const HeroHeader = ({ siteTitle, location, fontColor = "white", children }) => {
     loadPolyfills()
   }, [])
 
+  const [headerColor, setHeaderColor] = useState('transparent')
+  let heroHeaderStyles = {
+    headerColor: `${headerColor}`,
+    fontColor: "white",
+  }
+
   return (
     <InView threshold={0.97} rootMargin={"50px 0px 0px 0px"}>
       {({ inView: heroInView, ref: heroRef }) => {
-        let heroHeaderStyles = {
-          headerColor: `${heroInView ? "transparent" : "rgba(0, 0, 0, 0.8)" }`,
-          fontColor: "white",
-        }
+        heroInView ? setHeaderColor("transparent") : setHeaderColor("rgba(0, 0, 0, 0.8)")
 
         return (
           <HeroLayout ref={heroRef}>
