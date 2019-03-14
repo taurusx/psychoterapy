@@ -48,6 +48,7 @@ const ChildrenWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-content: center;
+  align-items: center;
   justify-content: center;
   text-align: center;
   padding: 2rem 1rem;

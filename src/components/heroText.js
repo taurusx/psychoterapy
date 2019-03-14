@@ -7,6 +7,7 @@ import ButtonLink from './buttonLink';
 const HeroTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `
 
 const Heading = styled.h2`

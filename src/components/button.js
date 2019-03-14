@@ -91,16 +91,6 @@ const StyledButton = styled.button`
     padding: ${props => props.changeSize.paddingTopBottom || '0.6em'} ${props => props.changeSize.paddingLeftRight || '1.5em'};
   `}
 
-  ${props => props.alignLeft && css`
-    display: block;
-    margin-right: auto;
-  `}
-
-  ${props => props.alignRight && css`
-    display: block;
-    margin-left: auto;
-  `}
-
   ${props => props.transparent && css`
     background-color: transparent;
   `}
