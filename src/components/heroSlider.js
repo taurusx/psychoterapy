@@ -3,6 +3,8 @@ import Slider from 'react-slick'
 import styled from 'styled-components'
 import { graphql, StaticQuery } from 'gatsby'
 import Img from "gatsby-image"
+
+import HeroContent from './heroContent'
  
 import './../utils/slick/slick.css'
 import './../utils/slick/slick-theme.css'
@@ -86,6 +88,31 @@ const StyledSlider = styled(Slider)`
   }
 `
 
+const SliderText = styled.div`
+  color: white;
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 7rem;
+
+  @media (max-width: 720px) {
+    padding: 4rem 4rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 4rem 1rem;
+  }
+`
+
 const HeroSlider = () => {
   const settings = {
     dots: true,
@@ -96,6 +123,7 @@ const HeroSlider = () => {
     pauseOnHover: false,
     pauseOnDotsHover: true,
     pauseOnFocus: true,
+    draggable: false,
     fade: true,
     slidesToShow: 1,
     slidesToScroll: 1
@@ -108,9 +136,14 @@ const HeroSlider = () => {
         const images = data.headerImages.edges
         return (
           <StyledSlider {...settings}>
-            {images.map(image => (
-              <Img key={image.node.childImageSharp.id}
-                fluid={image.node.childImageSharp.fluid} />
+            {images.map((image, index) => (
+              <div key={`slide-${image.node.childImageSharp.id}`}>
+                <Img key={image.node.childImageSharp.id}
+                  fluid={image.node.childImageSharp.fluid} />
+                <SliderText>
+                  <HeroContent index={index}/>
+                </SliderText>
+              </div>
             ))}
           </StyledSlider>
         )

@@ -5,7 +5,6 @@ import styled from "styled-components"
 import { rhythm } from "../utils/typography"
 import Header from "../components/header"
 import HeroHeader from "../components/heroHeader"
-import HeroText from "./heroText";
 import Footer from "./footer";
 
 const Main = styled.main`
@@ -31,9 +30,7 @@ const Layout = (props) => {
   if (location.pathname === rootPath) {
     fontColor = "white" 
     header = (
-      <HeroHeader siteTitle={title} location={location} fontColor={fontColor}>
-        <HeroText />
-      </HeroHeader>
+      <HeroHeader siteTitle={title} location={location} fontColor={fontColor}/>
     )
   } else {
     header = <Header siteTitle={title} location={location} />

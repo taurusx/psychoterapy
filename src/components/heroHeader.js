@@ -36,24 +36,6 @@ const HeroLayout = styled.div`
   }
 `
 
-const ChildrenWrapper = styled.div`
-  color: ${props => props.fontColor};
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  max-width: 100%;
-  max-height: 100%;
-  overflow: hidden;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem 1rem;
-`
-
 const HeroHeader = ({ siteTitle, location, fontColor = "white", children }) => {
   async function loadPolyfills() {
     if (typeof window !== 'undefined' && typeof window.IntersectionObserver === 'undefined') {
@@ -84,9 +66,6 @@ const HeroHeader = ({ siteTitle, location, fontColor = "white", children }) => {
               isHeroInView={heroInView}
               noPlaceholder
             />
-            <ChildrenWrapper fontColor={fontColor}>
-              {children}
-            </ChildrenWrapper>
           </HeroLayout>  
         )
       }}
