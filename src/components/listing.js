@@ -11,7 +11,7 @@ const GridLayout = styled.div`
   justify-items: center;
   align-content: center;
   width: 100%;
-  padding: 2rem;
+  padding: 2rem 0;
 
   @media (max-width: 480px) {
     padding: 0 0 1rem;

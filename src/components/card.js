@@ -4,9 +4,9 @@ import styled from 'styled-components'
 const CardWrapper = styled.div`
   position: relative;
   z-index: 1;
-  min-width: 300px;
+  min-width: 290px;
   max-width: 450px;
-  height: 500px;
+  min-height: 500px;
   display: flex;
   flex-direction: column;
   background: #fff;

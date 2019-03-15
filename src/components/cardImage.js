@@ -16,6 +16,7 @@ const CardImageWrapper = styled.div`
 
   .gatsby-image-wrapper {
     height: 100%;
+    position: static !important;
   }
 
   img {

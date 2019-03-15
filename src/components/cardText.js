@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link, graphql, StaticQuery } from 'gatsby'
+import { graphql, StaticQuery } from 'gatsby'
 import styled from 'styled-components'
 
 import { rhythm } from '../utils/typography'
+import Link from './link'
 
 const colorAccent = "#0741AD"
 
@@ -11,23 +12,39 @@ const CardTextWrapper = styled.div`
   flex: 50%;
   margin: ${rhythm(1)};
   overflow: hidden;
+`
 
-  h3 {    
-    margin-top: 0;
-    margin-bottom: ${rhythm(1 / 4)};
-  }
+const Title = styled.h3`
+  margin-top: 0;
+  margin-bottom: ${rhythm(1 / 4)};
 
   a {
+    box-shadow: none;
     color: ${colorAccent};
   }
+`
 
-  p {
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;  
+const DateAuthor = styled.small`
+  display: block;
+  margin-bottom: ${rhythm(1 / 4)};
+  opacity: 0.8;
+`
+
+const Subtitle = styled.p`
+  margin: 0;
+  max-height: 84px;
+  line-height: 28px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; 
+
+  @media (max-width: 480px) {
+    line-height: 25px;
+    max-height: 100px;
+    font-size: 90%;
+    -webkit-line-clamp: 4;
   }
 `
 
@@ -44,15 +61,14 @@ const CardText = ({ node }) => (
     
       return (
         <CardTextWrapper>
-          <h3>
-            <Link style={{ boxShadow: `none` }}
-              to={`/${node.postType}/${node.slug}`}>
+          <Title>
+            <Link to={`/${node.postType}/${node.slug}`}>
               {node.title}
             </Link>
-          </h3>
-          <small>{`${dayMonthFormatted}, ${yearFormatted}`}{` | `}
-            {node.author === 'info' ? siteTitle : node.author}</small>
-          <p>{node.subtitle}</p>
+          </Title>
+          <DateAuthor>{`${dayMonthFormatted}, ${yearFormatted}`}{` | `}
+            {node.author === 'info' ? siteTitle : node.author}</DateAuthor>
+          <Subtitle>{node.subtitle}</Subtitle>
         </CardTextWrapper>
       )
     }}
