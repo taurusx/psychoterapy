@@ -44,7 +44,7 @@ export const allArticlesQuery = graphql`
       node {
         title
         subtitle
-        date (formatString: "DD MMMM, YYYY", locale: "pl-PL" )
+        date
         author
         image {
           fluid(maxWidth: 600) {

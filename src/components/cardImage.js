@@ -62,8 +62,9 @@ const CardImageType = styled.div`
 `
 
 const CardImage = ({ postType, node }) => {
-  const date = new Date(node.date);
-  const month = date.toLocaleString('pl-PL', { month: 'short' });
+  const date = new Date(node.date)
+  const month = date.toLocaleString('pl-PL', { month: 'short' })
+  const day = date.getDate()
 
   return (
   <CardImageWrapper>
@@ -72,7 +73,7 @@ const CardImage = ({ postType, node }) => {
       {postType === 'artykuly' ? 'ARTYKUŁ' : 'NEWS'}
     </CardImageType>
     <CardImageDate>
-      <div className="day">{date.getDate()}</div>
+      <div className="day">{day}</div>
       <div className="month">{month}</div>
     </CardImageDate>
   </CardImageWrapper> 

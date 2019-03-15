@@ -36,6 +36,12 @@ const CardText = ({ node }) => (
     query={cardTextQuery}
     render={data => {
       const siteTitle = data.site.siteMetadata.title
+      const date = new Date(node.date);
+      const dayMonthFormatted = date.toLocaleDateString('pl-PL',
+        { day: '2-digit', month: 'long' })
+      const yearFormatted = date.toLocaleDateString('pl-PL',
+        { year: 'numeric' })
+    
       return (
         <CardTextWrapper>
           <h3>
@@ -44,7 +50,7 @@ const CardText = ({ node }) => (
               {node.title}
             </Link>
           </h3>
-          <small>{node.date}{` | `}
+          <small>{`${dayMonthFormatted}, ${yearFormatted}`}{` | `}
             {node.author === 'info' ? siteTitle : node.author}</small>
           <p>{node.subtitle}</p>
         </CardTextWrapper>
