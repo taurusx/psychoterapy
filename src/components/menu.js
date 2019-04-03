@@ -202,6 +202,7 @@ class Menu extends React.Component {
         <ToggleButton
           onClick={this.toggleClickHandler}
           isOpen={this.state.isOpen}
+          pageTop={this.props.pageTop}
         />
       </NavMenu>
     )

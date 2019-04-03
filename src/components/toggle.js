@@ -9,7 +9,11 @@ const ToggleWrapper = styled.div`
   min-height: 36px;
   min-width: 36px;
   cursor: pointer;
-  transition: right ${props => props.theme.menuTransitions};
+  transition: all ${props => props.theme.menuTransitions};
+
+  &.page-top {
+    top: 1.3rem;
+  }
 
   &:hover span {
     background: ${props => props.theme.fontColorHover};
@@ -64,10 +68,12 @@ const ToggleWrapper = styled.div`
   }
 `
 
-const ToggleButton = ({ isOpen, onClick }) => {
+const ToggleButton = ({ isOpen, pageTop, onClick }) => {
   return (
     <ToggleWrapper
-      className={`toggle ${isOpen ? ' toggle--active' : ''}`}
+      className={`toggle ${isOpen ? 'toggle--active' : ''} ${
+        pageTop ? 'page-top' : ''
+      }`}
       onClick={onClick}
     >
       <span />

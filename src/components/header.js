@@ -117,7 +117,7 @@ const Header = ({ siteTitle, location, headerStyles, noPlaceholder }) => {
           <StyledLink to="/">
             <Logo siteTitle={siteTitle} className={classPageTop} />
           </StyledLink>
-          <Menu location={location} />
+          <Menu location={location} pageTop={isAtPageTop} />
         </HeaderWrapper>
       </>
     </ThemeProvider>
