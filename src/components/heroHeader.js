@@ -36,7 +36,7 @@ const HeroLayout = styled.div`
   }
 `
 
-const HeroHeader = ({ siteTitle, location, fontColor = 'white', children }) => {
+const HeroHeader = ({ siteTitle, location }) => {
   async function loadPolyfills() {
     if (
       typeof window !== 'undefined' &&
@@ -57,7 +57,7 @@ const HeroHeader = ({ siteTitle, location, fontColor = 'white', children }) => {
   }
 
   return (
-    <InView threshold={0.97} rootMargin={'50px 0px 0px 0px'}>
+    <InView threshold={0.97} rootMargin={'0px 0px 0px 0px'}>
       {({ inView: heroInView, ref: heroRef }) => {
         heroInView
           ? setHeaderColor('transparent')

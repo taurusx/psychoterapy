@@ -8,13 +8,13 @@ import ToggleButton from './toggle'
 
 const NavMenu = styled.nav`
   position: relative;
-  color: ${props => props.headerStyles.fontColor};
-  transition: transform ${props => props.headerStyles.menuTransitions},
-    box-shadow ${props => props.headerStyles.menuTransitions};
+  color: ${props => props.theme.fontColor};
+  transition: transform ${props => props.theme.menuTransitions},
+    box-shadow ${props => props.theme.menuTransitions};
   outline: none;
 
   &:hover {
-    color: ${props => props.headerStyles.fontColorHeaderHover};
+    color: ${props => props.theme.fontColorHeaderHover};
   }
 
   ul {
@@ -27,10 +27,10 @@ const NavMenu = styled.nav`
     color: inherit;
   }
 
-  @media (max-width: ${props => props.headerStyles.menuTreshold}) {
+  @media (max-width: ${props => props.theme.menuTreshold}) {
     position: fixed;
     height: 100vh;
-    background: ${props => props.headerStyles.sideBackgroundColor};
+    background: ${props => props.theme.sideBackgroundColor};
     top: 0;
     right: 0;
     padding: 5rem 1rem 1rem;
@@ -47,7 +47,7 @@ const NavMenu = styled.nav`
     &.menu-active {
       transform: none;
       box-shadow: -3px 0 3px 1px rgba(0, 0, 0, 0.4);
-      color: ${props => props.headerStyles.fontColorHeaderHover};
+      color: ${props => props.theme.fontColorHeaderHover};
     }
   }
 `
@@ -60,14 +60,14 @@ const StyledListItem = styled.li`
   text-align: right;
   text-transform: uppercase;
 
-  @media (max-width: ${props => props.headerStyles.menuTreshold}) {
+  @media (max-width: ${props => props.theme.menuTreshold}) {
     margin: 0.5rem 1rem;
   }
 
   &::before {
     content: '';
     height: 1px;
-    background-color: ${props => props.headerStyles.fontColorHover};
+    background-color: ${props => props.theme.fontColorHover};
     width: 0%;
     position: absolute;
     bottom: -5px;
@@ -94,12 +94,12 @@ const StyledListItem = styled.li`
 const StyledLink = styled(Link)`
   text-decoration: none;
   box-shadow: none;
-  color: ${props => props.headerStyles.fontColor};
+  color: ${props => props.theme.fontColor};
 
   &:hover,
   &.active {
     font-weight: bold;
-    color: ${props => props.headerStyles.fontColorHover};
+    color: ${props => props.theme.fontColorHover};
   }
 
   &.link-hidden {
@@ -108,7 +108,7 @@ const StyledLink = styled(Link)`
 `
 
 const ListLink = props => {
-  const { location, to, headerStyles, ...restProps } = props
+  const { location, to, children, ...restProps } = props
   const linkClass = !location
     ? ''
     : to === location.pathname && to === '/'
@@ -124,15 +124,10 @@ const ListLink = props => {
       to={to}
       activeClassName={'active'}
       className={linkClass}
-      headerStyles={headerStyles}
       {...restProps}
     >
-      <StyledListItem
-        data-text={props.dataText}
-        headerStyles={headerStyles}
-        {...restProps}
-      >
-        {props.children}
+      <StyledListItem data-text={props.dataText} {...restProps}>
+        {children}
       </StyledListItem>
     </StyledLink>
   )
@@ -174,7 +169,7 @@ class Menu extends React.Component {
       menuClassName += ' menu-active'
     }
 
-    let { location, headerStyles } = this.props
+    let { location } = this.props
 
     return (
       <NavMenu
@@ -183,61 +178,29 @@ class Menu extends React.Component {
         ref={this.navMenu}
         onBlur={this.onBlur}
         onFocus={this.onFocus}
-        headerStyles={headerStyles}
       >
         <ul>
-          <ListLink
-            to="/"
-            dataText="Główna"
-            headerStyles={headerStyles}
-            location={location}
-          >
+          <ListLink to="/" dataText="Główna" location={location}>
             Główna
           </ListLink>
-          <ListLink
-            to="/oferta/"
-            dataText="Oferta"
-            headerStyles={headerStyles}
-            location={location}
-          >
+          <ListLink to="/oferta/" dataText="Oferta" location={location}>
             Oferta
           </ListLink>
-          <ListLink
-            to="/o-mnie/"
-            dataText="O mnie"
-            headerStyles={headerStyles}
-            location={location}
-          >
+          <ListLink to="/o-mnie/" dataText="O mnie" location={location}>
             O&nbsp;mnie
           </ListLink>
-          <ListLink
-            to="/artykuly/"
-            dataText="Artykuły"
-            headerStyles={headerStyles}
-            location={location}
-          >
+          <ListLink to="/artykuly/" dataText="Artykuły" location={location}>
             Artykuły
           </ListLink>
-          <ListLink
-            to="/cennik/"
-            dataText="Cennik"
-            headerStyles={headerStyles}
-            location={location}
-          >
+          <ListLink to="/cennik/" dataText="Cennik" location={location}>
             Cennik
           </ListLink>
-          <ListLink
-            to="/kontakt/"
-            dataText="Kontakt"
-            headerStyles={headerStyles}
-            location={location}
-          >
+          <ListLink to="/kontakt/" dataText="Kontakt" location={location}>
             Kontakt
           </ListLink>
         </ul>
         <ToggleButton
           onClick={this.toggleClickHandler}
-          headerStyles={headerStyles}
           isOpen={this.state.isOpen}
         />
       </NavMenu>
@@ -247,14 +210,6 @@ class Menu extends React.Component {
 
 Menu.propTypes = {
   location: PropTypes.object,
-  headerStyles: PropTypes.shape({
-    menuTreshold: PropTypes.string,
-    fontColor: PropTypes.string,
-    fontColorHeaderHover: PropTypes.string,
-    fontColorHover: PropTypes.string,
-    sideBackgroundColor: PropTypes.string,
-    menuTransitions: PropTypes.string,
-  }),
 }
 
 Menu.defaultProps = {

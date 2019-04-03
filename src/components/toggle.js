@@ -9,10 +9,10 @@ const ToggleWrapper = styled.div`
   min-height: 36px;
   min-width: 36px;
   cursor: pointer;
-  transition: right ${props => props.headerStyles.menuTransitions};
+  transition: right ${props => props.theme.menuTransitions};
 
   &:hover span {
-    background: ${props => props.headerStyles.fontColorHover};
+    background: ${props => props.theme.fontColorHover};
   }
 
   span {
@@ -22,13 +22,12 @@ const ToggleWrapper = styled.div`
     margin: 6px auto 6px;
     position: relative;
 
-    background: ${props => props.headerStyles.fontColor};
+    background: ${props => props.theme.fontColor};
     border-radius: 3px;
 
     z-index: 1;
 
-    transition: all ${props => props.headerStyles.menuTransitions},
-      opacity 0.4s ease;
+    transition: all ${props => props.theme.menuTransitions}, opacity 0.4s ease;
   }
 
   span:first-child {
@@ -42,7 +41,7 @@ const ToggleWrapper = styled.div`
   &.toggle--active span {
     opacity: 1;
     transform: rotate(-45deg);
-    background: ${props => props.headerStyles.fontColorHover};
+    background: ${props => props.theme.fontColorHover};
     width: 100%;
 
     &:nth-child(2) {
@@ -56,7 +55,7 @@ const ToggleWrapper = styled.div`
     }
   }
 
-  @media (max-width: ${props => props.headerStyles.menuTreshold}) {
+  @media (max-width: ${props => props.theme.menuTreshold}) {
     display: block;
 
     &.toggle--active {
@@ -65,12 +64,11 @@ const ToggleWrapper = styled.div`
   }
 `
 
-const ToggleButton = ({ isOpen, onClick, headerStyles }) => {
+const ToggleButton = ({ isOpen, onClick }) => {
   return (
     <ToggleWrapper
       className={`toggle ${isOpen ? ' toggle--active' : ''}`}
       onClick={onClick}
-      headerStyles={headerStyles}
     >
       <span />
       <span />

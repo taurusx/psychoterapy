@@ -1,20 +1,32 @@
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 
 import Menu from './menu'
 import Logo from './logo'
 import logoBlue from '../../content/assets/logo/logo-psychoterapia-blue.webp'
+
+const headerTheme = {
+  mobileTreshold: '480px',
+  menuTreshold: '60rem',
+  headerColor: 'white',
+  headerColorHover: 'white',
+  fontColor: '#555',
+  fontColorHeaderHover: '#555',
+  fontColorHover: '#0741AD',
+  sideBackgroundColor: 'white',
+  menuTransitions: '0.5s cubic-bezier(0.7,0.2,0.1,1.0)',
+}
 
 const HeaderWrapper = styled.header`
   position: fixed;
   top: 0;
   z-index: 10;
   width: 100%;
-  background: ${props => props.headerStyles.headerColor};
+  background: ${props => props.theme.headerColor};
   box-shadow: ${props =>
-    props.headerStyles.headerColor === 'transparent'
+    props.theme.headerColor === 'transparent'
       ? 'none'
       : '0px 3px 3px 0px rgba(0, 0, 0, 0.4)'};
   margin: 0 auto;
@@ -22,8 +34,8 @@ const HeaderWrapper = styled.header`
   height: 64px;
   flex-shrink: 0;
   overflow: hidden;
-  color: ${props => props.headerStyles.fontColor};
-  transition: all ${props => props.headerStyles.menuTransitions};
+  color: ${props => props.theme.fontColor};
+  transition: all ${props => props.theme.menuTransitions};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,8 +46,8 @@ const HeaderWrapper = styled.header`
   }
 
   &:hover {
-    color: ${props => props.headerStyles.fontColorHeaderHover};
-    background: ${props => props.headerStyles.headerColorHover};
+    color: ${props => props.theme.fontColorHeaderHover};
+    background: ${props => props.theme.headerColorHover};
     box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.4);
 
     div.Logo__img {
@@ -45,12 +57,12 @@ const HeaderWrapper = styled.header`
 
     .Logo__img + h1 :not(:hover),
     .menu a :not(:hover) {
-      color: ${props => props.headerStyles.fontColorHeaderHover};
+      color: ${props => props.theme.fontColorHeaderHover};
     }
 
     .toggle:not(:hover) {
       span {
-        background: ${props => props.headerStyles.fontColorHeaderHover};
+        background: ${props => props.theme.fontColorHeaderHover};
       }
     }
   }
@@ -61,7 +73,7 @@ const HeaderPlaceholder = styled.div`
   width: 100%;
   height: 64px;
   flex: 0 0 64px;
-  transition: all ${props => props.headerStyles.menuTransitions};
+  transition: all ${props => props.theme.menuTransitions};
 
   &.page-top {
     height: 80px;
@@ -72,16 +84,16 @@ const HeaderPlaceholder = styled.div`
 const StyledLink = styled(Link)`
   text-decoration: none;
   box-shadow: none;
-  color: ${props => props.headerStyles.fontColor};
+  color: ${props => props.theme.fontColor};
 
   &:hover {
     font-weight: bold;
-    color: ${props => props.headerStyles.fontColorHover};
+    color: ${props => props.theme.fontColorHover};
   }
 `
 
 const Header = ({ siteTitle, location, headerStyles, noPlaceholder }) => {
-  headerStyles = { ...Header.defaultProps.headerStyles, ...headerStyles }
+  const headerThemes = { ...headerTheme, ...headerStyles }
 
   const [windowY, setWindowY] = useState(0)
   useEffect(() => {
@@ -98,57 +110,26 @@ const Header = ({ siteTitle, location, headerStyles, noPlaceholder }) => {
   const classPageTop = isAtPageTop ? 'page-top' : ''
 
   return (
-    <>
-      {noPlaceholder ? (
-        ''
-      ) : (
-        <HeaderPlaceholder
-          headerStyles={headerStyles}
-          className={classPageTop}
-        />
-      )}
-      <HeaderWrapper headerStyles={headerStyles} className={classPageTop}>
-        <StyledLink to="/" headerStyles={headerStyles}>
-          <Logo
-            siteTitle={siteTitle}
-            headerStyles={headerStyles}
-            className={classPageTop}
-          />
-        </StyledLink>
-        <Menu location={location} headerStyles={headerStyles} />
-      </HeaderWrapper>
-    </>
+    <ThemeProvider theme={headerThemes}>
+      <>
+        {noPlaceholder ? '' : <HeaderPlaceholder className={classPageTop} />}
+        <HeaderWrapper className={classPageTop}>
+          <StyledLink to="/">
+            <Logo siteTitle={siteTitle} className={classPageTop} />
+          </StyledLink>
+          <Menu location={location} />
+        </HeaderWrapper>
+      </>
+    </ThemeProvider>
   )
 }
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
-  headerStyles: PropTypes.shape({
-    mobileTreshold: PropTypes.string,
-    menuTreshold: PropTypes.string,
-    headerColor: PropTypes.string,
-    headerColorHover: PropTypes.string,
-    fontColor: PropTypes.string,
-    fontColorHeaderHover: PropTypes.string,
-    fontColorHover: PropTypes.string,
-    sideBackgroundColor: PropTypes.string,
-    menuTransitions: PropTypes.string,
-  }),
 }
 
 Header.defaultProps = {
   siteTitle: ``,
-  headerStyles: {
-    mobileTreshold: '480px',
-    menuTreshold: '60rem',
-    headerColor: 'white',
-    headerColorHover: 'white',
-    fontColor: '#555',
-    fontColorHeaderHover: '#555',
-    fontColorHover: '#0741AD',
-    sideBackgroundColor: 'white',
-    menuTransitions: '0.5s cubic-bezier(0.7,0.2,0.1,1.0)',
-  },
 }
 
 export default Header
