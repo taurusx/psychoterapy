@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 
+import { themes } from './../styles/themes'
 import { rhythm } from '../utils/typography'
 import Header from '../components/header'
 import HeroHeader from '../components/heroHeader'
@@ -37,19 +38,21 @@ const Layout = props => {
   }
 
   return (
-    <div
-      style={{
-        marginLeft: `auto`,
-        marginRight: `auto`,
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-    >
-      {header}
-      {fullWidth ? <MainFull>{children}</MainFull> : <Main>{children}</Main>}
-      <Footer />
-    </div>
+    <ThemeProvider theme={themes.light}>
+      <div
+        style={{
+          marginLeft: `auto`,
+          marginRight: `auto`,
+          height: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        {header}
+        {fullWidth ? <MainFull>{children}</MainFull> : <Main>{children}</Main>}
+        <Footer />
+      </div>
+    </ThemeProvider>
   )
 }
 
