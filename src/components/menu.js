@@ -203,12 +203,12 @@ class Menu extends React.Component {
             Oferta
           </ListLink>
           <ListLink
-            to="/o-nas/"
-            dataText="O nas"
+            to="/o-mnie/"
+            dataText="O mnie"
             headerStyles={headerStyles}
             location={location}
           >
-            O&nbsp;nas
+            O&nbsp;mnie
           </ListLink>
           <ListLink
             to="/artykuly/"

@@ -170,11 +170,10 @@ class Form extends React.Component {
       typeof window !== 'undefined' && window.innerWidth <= 370
     return (
       <FormLayout role="form">
-        <h3>Napisz do nas</h3>
+        <h3>Napisz do mnie</h3>
         <p>
-          Jeśli chcesz się umówić na wizytę lub chcesz, żebyśmy skontaktowali
-          się z Tobą, prosimy o przesłanie wiadomości poprzez poniższy
-          formularz.
+          Jeśli chcesz się umówić na wizytę lub chcesz, żebym skontaktowała się
+          z Tobą, proszę o przesłanie wiadomości poprzez poniższy formularz.
         </p>
         <form
           name="contact-form"

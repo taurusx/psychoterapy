@@ -23,8 +23,8 @@ const HeroContent = ({ index }) => {
 
   const slide = slidesContent[index]
   const { heading, subheading, button } = slide
-  let to = '/o-nas/'
-  let text = 'Poznaj nas'
+  let to = '/o-mnie/'
+  let text = 'Poznaj mnie'
   if (typeof button === 'object') {
     to = button.to
     text = button.text

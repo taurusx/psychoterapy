@@ -9,7 +9,7 @@ const AboutPage = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <SEO
-        title="O nas"
+        title="O mnie"
         keywords={[
           `Agnieszka Wojnar-Jadczyszyn`,
           `psychoterapeuta`,
@@ -17,7 +17,7 @@ const AboutPage = ({ data, location }) => {
           `poradnia`,
         ]}
       />
-      <h1>O nas</h1>
+      <h1>O mnie</h1>
     </Layout>
   )
 }
