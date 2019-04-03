@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const ToggleWrapper = styled.div`
   display: none;
   position: absolute;
-  top: 1rem;
+  top: 0.8rem;
   right: calc(100% + 1rem);
   min-height: 36px;
   min-width: 36px;
@@ -27,10 +27,8 @@ const ToggleWrapper = styled.div`
     
     z-index: 1;
     
-    transition: transform ${props => props.headerStyles.menuTransitions},
-                background ${props => props.headerStyles.menuTransitions},
-                opacity 0.4s ease,
-                width ${props => props.headerStyles.menuTransitions};
+    transition: all ${props => props.headerStyles.menuTransitions},
+                opacity 0.4s ease;
   }
 
   span:first-child {

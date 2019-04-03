@@ -11,15 +11,20 @@ const LogoWrapper = styled.div`
 `
 
 const LogoImage = styled.div`
-  height: 48px;
-  width: 48px;
+  height: 40px;
+  width: 40px;
   margin-right: 0.8rem;
   flex: 0 0 auto;
   background: url(${logoWhite}) no-repeat;
   background-size: contain;
-  transition: background 0.6s ease-in-out;
+  transition: all ${props => props.headerStyles.menuTransitions};
 
-  @media (max-width: ${props => props.mobileTreshold}) {
+  ${LogoWrapper}.page-top & {
+    height: 48px;
+    width: 48px;
+  }
+
+  @media (max-width: ${props => props.headerStyles.mobileTreshold}) {
     height: 32px;
     width: 32px;
   }
@@ -28,19 +33,23 @@ const LogoImage = styled.div`
 const LogoTitle = styled.h1`
   margin: 0;
   flex: 0 1 auto;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  transition: all ${props => props.headerStyles.menuTransitions};
+
+  ${LogoWrapper}.page-top & {
+    font-size: 1.5rem;
+  }
   
-  @media (max-width: ${props => props.mobileTreshold}) {
+  @media (max-width: ${props => props.headerStyles.mobileTreshold}) {
     font-size: 1.2rem;
   }
 `
 
-const Logo = ({ siteTitle, headerStyles }) => {
-  const { mobileTreshold } = headerStyles
+const Logo = ({ className, siteTitle, headerStyles }) => {
   return (
-  <LogoWrapper>
-    <LogoImage className="Logo__img" mobileTreshold={mobileTreshold} />
-    <LogoTitle mobileTreshold={mobileTreshold} >
+  <LogoWrapper className={className}>
+    <LogoImage className="Logo__img" headerStyles={headerStyles} />
+    <LogoTitle headerStyles={headerStyles} >
       {siteTitle}
     </LogoTitle>
   </LogoWrapper>

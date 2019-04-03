@@ -1,6 +1,6 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 
 import Menu from "./menu"
@@ -20,10 +20,15 @@ const HeaderWrapper = styled.header`
   flex-shrink: 0;
   overflow: hidden;
   color: ${props => props.headerStyles.fontColor};
-  transition: background 0.6s ease-in-out, color 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
+  transition: all ${props => props.headerStyles.menuTransitions};
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  &.page-top {
+    height: 80px;
+    flex: 0 0 80px;
+  }
 
   &:hover {
     color: ${props => props.headerStyles.fontColorHeaderHover};
@@ -53,6 +58,12 @@ const HeaderPlaceholder = styled.div`
   width: 100%;
   height: 64px;
   flex: 0 0 64px;
+  transition: all ${props => props.headerStyles.menuTransitions};
+
+  &.page-top {
+    height: 80px;
+    flex: 0 0 80px;
+  }
 `
 
 const StyledLink = styled(Link)`
@@ -69,11 +80,30 @@ const StyledLink = styled(Link)`
 const Header = ({ siteTitle, location, headerStyles, noPlaceholder }) => {
   headerStyles = { ...Header.defaultProps.headerStyles, ...headerStyles }
 
+  const [windowY, setWindowY] = useState(0)
+  useEffect(() => {
+    function handleScroll() {
+      setWindowY(Math.round(window.scrollY))
+    }
+    if (window !== 'undefined')
+      window.addEventListener('scroll', handleScroll)
+    return () => {
+      if (window !== 'undefined')
+        window.removeEventListener('scroll', handleScroll)
+    }
+  }, []);
+  const isAtPageTop = windowY < 50
+  const classPageTop = isAtPageTop ? "page-top" : "" 
+
   return (<>
-    {noPlaceholder ? "" : <HeaderPlaceholder/>}
-    <HeaderWrapper headerStyles={headerStyles} >
+    {noPlaceholder ? "" :
+      <HeaderPlaceholder headerStyles={headerStyles} className={classPageTop} />
+    }
+    <HeaderWrapper headerStyles={headerStyles}
+      className={classPageTop} >
       <StyledLink to="/" headerStyles={headerStyles} >
-        <Logo siteTitle={siteTitle} headerStyles={headerStyles} />
+        <Logo siteTitle={siteTitle} headerStyles={headerStyles}
+          className={classPageTop} />
       </StyledLink>
       <Menu location={location} headerStyles={headerStyles} />
     </HeaderWrapper>
