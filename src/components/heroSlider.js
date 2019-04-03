@@ -2,15 +2,15 @@ import React from 'react'
 import Slider from 'react-slick'
 import styled from 'styled-components'
 import { graphql, StaticQuery } from 'gatsby'
-import Img from "gatsby-image"
+import Img from 'gatsby-image'
 
 import HeroContent from './heroContent'
- 
+
 import './../utils/slick/slick.css'
 import './../utils/slick/slick-theme.css'
 
-const ARROW_SIZE = "2.5rem"
-const DOTS_SIZE = "1.5rem"
+const ARROW_SIZE = '2.5rem'
+const DOTS_SIZE = '1.5rem'
 
 const StyledSlider = styled(Slider)`
   height: 100%;
@@ -34,7 +34,7 @@ const StyledSlider = styled(Slider)`
 
     @media (max-width: 480px) {
       &,
-      &::before {  
+      &::before {
         display: none;
         height: 0;
         width: 0;
@@ -62,22 +62,22 @@ const StyledSlider = styled(Slider)`
         height: ${DOTS_SIZE};
         padding: 0;
 
-        &::before{
+        &::before {
           font-size: ${DOTS_SIZE};
-          line-height: ${DOTS_SIZE};  
+          line-height: ${DOTS_SIZE};
           width: ${DOTS_SIZE};
           height: ${DOTS_SIZE};
           color: white;
         }
       }
 
-      &.slick-active button::before{
+      &.slick-active button::before {
         color: white;
       }
     }
   }
 
-  @media(max-width: 480px) {
+  @media (max-width: 480px) {
     & > .slick-arrow,
     .slick-arrow::before {
     }
@@ -126,9 +126,9 @@ const HeroSlider = () => {
     draggable: false,
     fade: true,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
   }
-  
+
   return (
     <StaticQuery
       query={HERO_SLIDER_IMAGES_QUERY}
@@ -138,10 +138,12 @@ const HeroSlider = () => {
           <StyledSlider {...settings}>
             {images.map((image, index) => (
               <div key={`slide-${image.node.childImageSharp.id}`}>
-                <Img key={image.node.childImageSharp.id}
-                  fluid={image.node.childImageSharp.fluid} />
+                <Img
+                  key={image.node.childImageSharp.id}
+                  fluid={image.node.childImageSharp.fluid}
+                />
                 <SliderText>
-                  <HeroContent index={index}/>
+                  <HeroContent index={index} />
                 </SliderText>
               </div>
             ))}
@@ -157,8 +159,8 @@ export default HeroSlider
 const HERO_SLIDER_IMAGES_QUERY = graphql`
   query {
     headerImages: allFile(
-        filter: { relativePath: { regex: "/hero-header/" }}
-        sort: { fields: [name], order: ASC }
+      filter: { relativePath: { regex: "/hero-header/" } }
+      sort: { fields: [name], order: ASC }
     ) {
       edges {
         node {

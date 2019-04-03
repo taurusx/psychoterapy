@@ -1,8 +1,8 @@
-import React from "react"
-import { graphql, Link } from "gatsby"
+import React from 'react'
+import { graphql, Link } from 'gatsby'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 
 class NotFoundPage extends React.Component {
   render() {
@@ -14,7 +14,9 @@ class NotFoundPage extends React.Component {
         <SEO title="404: Nie znaleziono strony" />
         <h1>Nie znaleziono strony</h1>
         <p>Niestety strona o podanym adresie nie istnieje.</p>
-        <p>Zapraszamy na <Link to="/">STRONĘ GŁÓWNĄ</Link></p>
+        <p>
+          Zapraszamy na <Link to="/">STRONĘ GŁÓWNĄ</Link>
+        </p>
       </Layout>
     )
   }

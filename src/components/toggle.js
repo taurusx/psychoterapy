@@ -21,14 +21,14 @@ const ToggleWrapper = styled.div`
     height: 4px;
     margin: 6px auto 6px;
     position: relative;
-    
+
     background: ${props => props.headerStyles.fontColor};
     border-radius: 3px;
-    
+
     z-index: 1;
-    
+
     transition: all ${props => props.headerStyles.menuTransitions},
-                opacity 0.4s ease;
+      opacity 0.4s ease;
   }
 
   span:first-child {
@@ -66,15 +66,15 @@ const ToggleWrapper = styled.div`
 `
 
 const ToggleButton = ({ isOpen, onClick, headerStyles }) => {
-  return(
+  return (
     <ToggleWrapper
       className={`toggle ${isOpen ? ' toggle--active' : ''}`}
       onClick={onClick}
       headerStyles={headerStyles}
     >
-      <span></span>
-      <span></span>
-      <span></span>
+      <span />
+      <span />
+      <span />
     </ToggleWrapper>
   )
 }

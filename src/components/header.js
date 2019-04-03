@@ -1,11 +1,11 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React, { useState, useEffect } from "react"
-import styled from "styled-components"
+import { Link } from 'gatsby'
+import PropTypes from 'prop-types'
+import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
 
-import Menu from "./menu"
-import Logo from "./logo"
-import logoBlue from "../../content/assets/logo/logo-psychoterapia-blue.webp"
+import Menu from './menu'
+import Logo from './logo'
+import logoBlue from '../../content/assets/logo/logo-psychoterapia-blue.webp'
 
 const HeaderWrapper = styled.header`
   position: fixed;
@@ -13,7 +13,10 @@ const HeaderWrapper = styled.header`
   z-index: 10;
   width: 100%;
   background: ${props => props.headerStyles.headerColor};
-  box-shadow: ${props => props.headerStyles.headerColor === "transparent" ? "none" : "0px 3px 3px 0px rgba(0, 0, 0, 0.4)"};
+  box-shadow: ${props =>
+    props.headerStyles.headerColor === 'transparent'
+      ? 'none'
+      : '0px 3px 3px 0px rgba(0, 0, 0, 0.4)'};
   margin: 0 auto;
   padding: 0.6rem 1rem;
   height: 64px;
@@ -40,7 +43,7 @@ const HeaderWrapper = styled.header`
       background-size: contain;
     }
 
-    .Logo__img + h1 :not(:hover), 
+    .Logo__img + h1 :not(:hover),
     .menu a :not(:hover) {
       color: ${props => props.headerStyles.fontColorHeaderHover};
     }
@@ -85,29 +88,37 @@ const Header = ({ siteTitle, location, headerStyles, noPlaceholder }) => {
     function handleScroll() {
       setWindowY(Math.round(window.scrollY))
     }
-    if (window !== 'undefined')
-      window.addEventListener('scroll', handleScroll)
+    if (window !== 'undefined') window.addEventListener('scroll', handleScroll)
     return () => {
       if (window !== 'undefined')
         window.removeEventListener('scroll', handleScroll)
     }
-  }, []);
+  }, [])
   const isAtPageTop = windowY < 50
-  const classPageTop = isAtPageTop ? "page-top" : "" 
+  const classPageTop = isAtPageTop ? 'page-top' : ''
 
-  return (<>
-    {noPlaceholder ? "" :
-      <HeaderPlaceholder headerStyles={headerStyles} className={classPageTop} />
-    }
-    <HeaderWrapper headerStyles={headerStyles}
-      className={classPageTop} >
-      <StyledLink to="/" headerStyles={headerStyles} >
-        <Logo siteTitle={siteTitle} headerStyles={headerStyles}
-          className={classPageTop} />
-      </StyledLink>
-      <Menu location={location} headerStyles={headerStyles} />
-    </HeaderWrapper>
-  </>)
+  return (
+    <>
+      {noPlaceholder ? (
+        ''
+      ) : (
+        <HeaderPlaceholder
+          headerStyles={headerStyles}
+          className={classPageTop}
+        />
+      )}
+      <HeaderWrapper headerStyles={headerStyles} className={classPageTop}>
+        <StyledLink to="/" headerStyles={headerStyles}>
+          <Logo
+            siteTitle={siteTitle}
+            headerStyles={headerStyles}
+            className={classPageTop}
+          />
+        </StyledLink>
+        <Menu location={location} headerStyles={headerStyles} />
+      </HeaderWrapper>
+    </>
+  )
 }
 
 Header.propTypes = {
@@ -128,15 +139,15 @@ Header.propTypes = {
 Header.defaultProps = {
   siteTitle: ``,
   headerStyles: {
-    mobileTreshold: "480px",
-    menuTreshold: "60rem",
-    headerColor: "white",
-    headerColorHover: "white",
-    fontColor: "#555",
-    fontColorHeaderHover: "#555",
-    fontColorHover: "#0741AD",
-    sideBackgroundColor: "white",
-    menuTransitions: "0.5s cubic-bezier(0.7,0.2,0.1,1.0)",
+    mobileTreshold: '480px',
+    menuTreshold: '60rem',
+    headerColor: 'white',
+    headerColorHover: 'white',
+    fontColor: '#555',
+    fontColorHeaderHover: '#555',
+    fontColorHover: '#0741AD',
+    sideBackgroundColor: 'white',
+    menuTransitions: '0.5s cubic-bezier(0.7,0.2,0.1,1.0)',
   },
 }
 

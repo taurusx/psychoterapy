@@ -39,7 +39,7 @@ const LogoTitle = styled.h1`
   ${LogoWrapper}.page-top & {
     font-size: 1.5rem;
   }
-  
+
   @media (max-width: ${props => props.headerStyles.mobileTreshold}) {
     font-size: 1.2rem;
   }
@@ -47,12 +47,11 @@ const LogoTitle = styled.h1`
 
 const Logo = ({ className, siteTitle, headerStyles }) => {
   return (
-  <LogoWrapper className={className}>
-    <LogoImage className="Logo__img" headerStyles={headerStyles} />
-    <LogoTitle headerStyles={headerStyles} >
-      {siteTitle}
-    </LogoTitle>
-  </LogoWrapper>
-)}
+    <LogoWrapper className={className}>
+      <LogoImage className="Logo__img" headerStyles={headerStyles} />
+      <LogoTitle headerStyles={headerStyles}>{siteTitle}</LogoTitle>
+    </LogoWrapper>
+  )
+}
 
 export default Logo

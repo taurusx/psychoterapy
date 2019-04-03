@@ -1,8 +1,8 @@
-import React from "react"
-import { graphql, Link } from "gatsby"
+import React from 'react'
+import { graphql, Link } from 'gatsby'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 
 class ThanksPage extends React.Component {
   render() {
@@ -14,7 +14,9 @@ class ThanksPage extends React.Component {
         <SEO title="Dziękujemy" />
         <h1>Dziękujemy</h1>
         <p>Formularz został przyjęty.</p>
-        <p>Powrót do <Link to="/kontakt/">STRONY KONTAKTOWEJ</Link></p>
+        <p>
+          Powrót do <Link to="/kontakt/">STRONY KONTAKTOWEJ</Link>
+        </p>
       </Layout>
     )
   }

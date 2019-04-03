@@ -1,9 +1,9 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import Listing from "../components/listing"
+import Layout from '../components/layout'
+import SEO from '../components/seo'
+import Listing from '../components/listing'
 
 class ArticlesIndex extends React.Component {
   render() {
@@ -32,7 +32,7 @@ export const articlesPageQuery = graphql`
         title
       }
     }
-    allContentfulArticlePost (
+    allContentfulArticlePost(
       filter: { node_locale: { eq: "pl-PL" } }
       sort: { fields: [date], order: DESC }
     ) {

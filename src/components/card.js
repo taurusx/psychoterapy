@@ -32,10 +32,6 @@ const CardWrapper = styled.div`
   }
 `
 
-const Card = ({ children }) => (
-  <CardWrapper>
-    {children}
-  </CardWrapper>
-)
+const Card = ({ children }) => <CardWrapper>{children}</CardWrapper>
 
 export default Card

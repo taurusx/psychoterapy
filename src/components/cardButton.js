@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import Link from './link'
 
-const colorAccent = "#0741AD"
+const colorAccent = '#0741AD'
 
 const StyledCardButton = styled(Link)`
   box-shadow: none;
@@ -30,9 +30,7 @@ const StyledCardButton = styled(Link)`
 `
 
 const CardButton = ({ to, children }) => (
-  <StyledCardButton to={to}>
-    {children}
-  </StyledCardButton>
+  <StyledCardButton to={to}>{children}</StyledCardButton>
 )
 
 CardButton.propTypes = {

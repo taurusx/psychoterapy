@@ -1,11 +1,11 @@
-import React from "react"
-import PropTypes from "prop-types"
-import styled from "styled-components"
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import { rhythm } from "../utils/typography"
-import Header from "../components/header"
-import HeroHeader from "../components/heroHeader"
-import Footer from "./footer";
+import { rhythm } from '../utils/typography'
+import Header from '../components/header'
+import HeroHeader from '../components/heroHeader'
+import Footer from './footer'
 
 const Main = styled.main`
   flex: 1 0 auto;
@@ -21,21 +21,21 @@ const MainFull = styled(Main)`
   padding: 0;
 `
 
-const Layout = (props) => {
+const Layout = props => {
   const { location, title, children, fullWidth } = props
   const rootPath = `${__PATH_PREFIX__}/`
   let header
   let fontColor
 
   if (location.pathname === rootPath) {
-    fontColor = "white" 
+    fontColor = 'white'
     header = (
-      <HeroHeader siteTitle={title} location={location} fontColor={fontColor}/>
+      <HeroHeader siteTitle={title} location={location} fontColor={fontColor} />
     )
   } else {
     header = <Header siteTitle={title} location={location} />
   }
-  
+
   return (
     <div
       style={{
@@ -44,18 +44,11 @@ const Layout = (props) => {
         height: '100vh',
         display: 'flex',
         flexDirection: 'column',
-    }}>
+      }}
+    >
       {header}
-      {fullWidth ? (
-        <MainFull>
-          {children}
-        </MainFull>
-        ) : (
-        <Main>
-          {children}
-        </Main>
-      )}
-      <Footer/>
+      {fullWidth ? <MainFull>{children}</MainFull> : <Main>{children}</Main>}
+      <Footer />
     </div>
   )
 }

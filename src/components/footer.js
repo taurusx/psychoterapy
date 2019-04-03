@@ -23,18 +23,15 @@ const Footer = () => {
         const owner = data.site.siteMetadata.owner
         const author = data.site.siteMetadata.author
         const authorSite = data.site.siteMetadata.authorSite
-        
+
         return (
           <FooterWrapper>
-            {owner}&nbsp;©&nbsp;{new Date().getFullYear()}, 
+            {owner}&nbsp;©&nbsp;{new Date().getFullYear()},
             Created&nbsp;by&nbsp;
-            <AuthorLink href={authorSite}>
-              {author}
-            </AuthorLink>
+            <AuthorLink href={authorSite}>{author}</AuthorLink>
           </FooterWrapper>
         )
-        }
-      }
+      }}
     />
   )
 }

@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { rhythm } from '../utils/typography'
 import Link from './link'
 
-const colorAccent = "#0741AD"
+const colorAccent = '#0741AD'
 
 const CardTextWrapper = styled.div`
   flex: 50%;
@@ -38,7 +38,7 @@ const Subtitle = styled.p`
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical; 
+  -webkit-box-orient: vertical;
 
   @media (max-width: 480px) {
     line-height: 25px;
@@ -53,21 +53,25 @@ const CardText = ({ node }) => (
     query={cardTextQuery}
     render={data => {
       const siteTitle = data.site.siteMetadata.title
-      const date = new Date(node.date);
-      const dayMonthFormatted = date.toLocaleDateString('pl-PL',
-        { day: '2-digit', month: 'long' })
-      const yearFormatted = date.toLocaleDateString('pl-PL',
-        { year: 'numeric' })
-    
+      const date = new Date(node.date)
+      const dayMonthFormatted = date.toLocaleDateString('pl-PL', {
+        day: '2-digit',
+        month: 'long',
+      })
+      const yearFormatted = date.toLocaleDateString('pl-PL', {
+        year: 'numeric',
+      })
+
       return (
         <CardTextWrapper>
           <Title>
-            <Link to={`/${node.postType}/${node.slug}`}>
-              {node.title}
-            </Link>
+            <Link to={`/${node.postType}/${node.slug}`}>{node.title}</Link>
           </Title>
-          <DateAuthor>{`${dayMonthFormatted}, ${yearFormatted}`}{` | `}
-            {node.author === 'info' ? siteTitle : node.author}</DateAuthor>
+          <DateAuthor>
+            {`${dayMonthFormatted}, ${yearFormatted}`}
+            {` | `}
+            {node.author === 'info' ? siteTitle : node.author}
+          </DateAuthor>
           <Subtitle>{node.subtitle}</Subtitle>
         </CardTextWrapper>
       )

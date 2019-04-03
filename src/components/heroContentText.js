@@ -15,7 +15,7 @@ const StyledHeading = styled.h2`
 `
 
 const StyledSubHeading = styled.h3`
-  ${{...scale(1.0)}}
+  ${{ ...scale(1.0) }}
   margin-top: ${rhythm(0)};
   margin-bottom: ${rhythm(1)};
   line-height: 1.1;
@@ -25,74 +25,62 @@ const StyledSubHeading = styled.h3`
   }
 `
 
-const Heading = ({ children }) => (
-  <StyledHeading>
-    {children}
-  </StyledHeading>
-)
+const Heading = ({ children }) => <StyledHeading>{children}</StyledHeading>
 
 const SubHeading = ({ children }) => (
-  <StyledSubHeading>
-    {children}
-  </StyledSubHeading>
+  <StyledSubHeading>{children}</StyledSubHeading>
 )
-
-
 
 const slides = [
   {
     heading: `"Najważniejszy w każdym działaniu jest początek" - Platon`,
-    subheading: "Szukasz wsparcia?",
+    subheading: 'Szukasz wsparcia?',
     button: {
-      to: "/kontakt/",
-      text: "Umów się na wizytę",
-    }
+      to: '/kontakt/',
+      text: 'Umów się na wizytę',
+    },
   },
   {
     heading: `Chcesz rozpocząć terapię indywidualną?`,
     button: {
-      to: "/oferta/",
-      text: "Dowiedz się więcej",
-    }
+      to: '/oferta/',
+      text: 'Dowiedz się więcej',
+    },
   },
   {
     heading: `Twoje nastoletnie dziecko potrzebuje wsparcia?`,
     button: {
-      to: "/oferta/",
-      text: "Poznaj szczegóły",
-    }
+      to: '/oferta/',
+      text: 'Poznaj szczegóły',
+    },
   },
   {
     heading: `Potrzebujesz konsultacji w sprawie dziecka? `,
     button: {
-      to: "/kontakt/",
-      text: "Zarezerwuj wizytę",
-    }
+      to: '/kontakt/',
+      text: 'Zarezerwuj wizytę',
+    },
   },
   {
     heading: `"Wszystko rozpoczyna się od myśli. Myśli prowadzą do uczuć, uczucia prowadzą do działań,
     działania prowadzą do rezultatów"`,
-    subheading: "- J. Beck",
+    subheading: '- J. Beck',
   },
   {
-    heading: "Nawet najdłuższa podróż zaczyna się od pierwszego kroku",
-  }
+    heading: 'Nawet najdłuższa podróż zaczyna się od pierwszego kroku',
+  },
 ]
 
 const slidesContent = slides.map(slide => {
   let content = {}
-  content.heading = (slide.heading ?
-    (<Heading>
-      {slide.heading}
-    </Heading>) : ""
-  )
-  content.subheading = (slide.subheading ?
-    (<SubHeading>
-      {slide.subheading}
-    </SubHeading>) : ""
+  content.heading = slide.heading ? <Heading>{slide.heading}</Heading> : ''
+  content.subheading = slide.subheading ? (
+    <SubHeading>{slide.subheading}</SubHeading>
+  ) : (
+    ''
   )
   if (slide.button) {
-    content.button = {...slide.button}
+    content.button = { ...slide.button }
   }
   return content
 })

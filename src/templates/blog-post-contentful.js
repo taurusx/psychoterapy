@@ -1,12 +1,12 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
-import Img from "gatsby-image"
-import styled from "styled-components"
+import React from 'react'
+import { Link, graphql } from 'gatsby'
+import Img from 'gatsby-image'
+import styled from 'styled-components'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import Bio from "../components/bio"
-import { rhythm, scale } from "../utils/typography"
+import Layout from '../components/layout'
+import SEO from '../components/seo'
+import Bio from '../components/bio'
+import { rhythm, scale } from '../utils/typography'
 
 const ContentfulPostText = styled.div`
   .contentful-image-container {
@@ -26,7 +26,7 @@ const ContentfulPostText = styled.div`
     position: relative;
 
     &::after {
-      content: "PRZECZYTAJ";
+      content: 'PRZECZYTAJ';
       position: absolute;
       font-family: sans-serif;
       font-style: bold;
@@ -76,7 +76,7 @@ const ContentfulPostText = styled.div`
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;  
+      -webkit-box-orient: vertical;
     }
 
     @media (max-width: 650px) {
@@ -106,10 +106,7 @@ class ArticlePostContentfulTemplate extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO
-          title={post.title}
-          description={post.subtitle}
-        />
+        <SEO title={post.title} description={post.subtitle} />
         <Img fluid={post.image.fluid} />
         <h1>{post.title}</h1>
         <p
@@ -120,16 +117,23 @@ class ArticlePostContentfulTemplate extends React.Component {
             marginTop: rhythm(-1),
           }}
         >
-          {post.date}{` | `}
+          {post.date}
+          {` | `}
           {post.author === 'info' ? siteTitle : post.author}
         </p>
-        <p style={{
-          fontWeight: 'bold',
-          fontStyle: 'italic',
-        }}>{post.subtitle}</p>
-        <ContentfulPostText dangerouslySetInnerHTML={{
-          __html: post.content.childContentfulRichText.html
-        }} />
+        <p
+          style={{
+            fontWeight: 'bold',
+            fontStyle: 'italic',
+          }}
+        >
+          {post.subtitle}
+        </p>
+        <ContentfulPostText
+          dangerouslySetInnerHTML={{
+            __html: post.content.childContentfulRichText.html,
+          }}
+        />
         <hr
           style={{
             marginBottom: rhythm(1),
@@ -174,12 +178,10 @@ export const pageQuery = graphql`
         title
       }
     }
-    contentfulArticlePost( 
-      slug: { eq: $slug }
-    ) {
+    contentfulArticlePost(slug: { eq: $slug }) {
       title
       subtitle
-      date (formatString: "DD MMMM, YYYY", locale: "pl-PL" )
+      date(formatString: "DD MMMM, YYYY", locale: "pl-PL")
       author
       image {
         fluid {

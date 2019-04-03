@@ -62,8 +62,8 @@ const StyledButton = styled.button`
   border-radius: 0.4em;
   text-transform: ${props => (props.lowercase ? 'none' : 'uppercase')};
   font-weight: bold;
-  display: ${props => props.block ? 'block' : 'initial'};
-  margin: ${props => props.block ? '0.5em auto' : '0.5em'};
+  display: ${props => (props.block ? 'block' : 'initial')};
+  margin: ${props => (props.block ? '0.5em auto' : '0.5em')};
   padding: 0.8em 1.5em;
   min-width: 12em;
   width: ${props => (props.fullWidth ? '100%' : 'auto')};
@@ -77,50 +77,59 @@ const StyledButton = styled.button`
     box-shadow: 0 1px 20px 0 ${props => props.currentTheme.boxShadowColor};
   }
 
-  ${props => props.fullWidth && css`
-    width: 100%;
-    max-width: 100%;
-    border-radius: 0;
-    margin-right: 0;
-    margin-left: 0;
-  `}
+  ${props =>
+    props.fullWidth &&
+    css`
+      width: 100%;
+      max-width: 100%;
+      border-radius: 0;
+      margin-right: 0;
+      margin-left: 0;
+    `}
 
-  ${props => props.changeSize && css`
-    font-size: ${props => props.changeSize.size || '120%'};
-    border-width: ${props => props.changeSize.borderWidth || '4px'};
-    padding: ${props => props.changeSize.paddingTopBottom || '0.6em'} ${props => props.changeSize.paddingLeftRight || '1.5em'};
-  `}
+  ${props =>
+    props.changeSize &&
+    css`
+      font-size: ${props => props.changeSize.size || '120%'};
+      border-width: ${props => props.changeSize.borderWidth || '4px'};
+      padding: ${props => props.changeSize.paddingTopBottom || '0.6em'}
+        ${props => props.changeSize.paddingLeftRight || '1.5em'};
+    `}
 
-  ${props => props.transparent && css`
-    background-color: transparent;
-  `}
+  ${props =>
+    props.transparent &&
+    css`
+      background-color: transparent;
+    `}
   
-  ${props => props.arrow && css`
-    &:hover {
-      padding-right: 5em;
-    }
+  ${props =>
+    props.arrow &&
+    css`
+      &:hover {
+        padding-right: 5em;
+      }
 
-    &::after {
-      display: none;
-      content: "→";
-      position: absolute;
-      font-size: 1.5em;
-      width: 1em;
-      right: 1.5em;
-      top: 50%;
-      transform: translateY(-55%);
-      color: ${props => props.currentTheme.fontColor};
-      opacity: 0;
-    }
+      &::after {
+        display: none;
+        content: '→';
+        position: absolute;
+        font-size: 1.5em;
+        width: 1em;
+        right: 1.5em;
+        top: 50%;
+        transform: translateY(-55%);
+        color: ${props => props.currentTheme.fontColor};
+        opacity: 0;
+      }
 
-    &:hover::after {
-      display: block;
-      opacity: 1;
-      right: 0.7em;
-      color: ${props => props.currentTheme.fontColorHover};
-      animation: ${moveArrow} 1.2s infinite;
-    }
-  `}
+      &:hover::after {
+        display: block;
+        opacity: 1;
+        right: 0.7em;
+        color: ${props => props.currentTheme.fontColorHover};
+        animation: ${moveArrow} 1.2s infinite;
+      }
+    `}
 `
 
 const Button = props => {
@@ -134,9 +143,7 @@ const Button = props => {
   } else {
     currentTheme = darkTheme
   }
-  return (
-    <StyledButton currentTheme={currentTheme} {...props} />
-  )
+  return <StyledButton currentTheme={currentTheme} {...props} />
 }
 
 export default Button

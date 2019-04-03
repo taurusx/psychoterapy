@@ -1,12 +1,12 @@
-import React from "react"
-import { graphql } from "gatsby"
-import styled from "styled-components"
+import React from 'react'
+import { graphql } from 'gatsby'
+import styled from 'styled-components'
 
-import ArticleCard from './articleCard';
+import ArticleCard from './articleCard'
 
 const GridLayout = styled.div`
   display: grid;
-  grid-template-columns: repeat( auto-fill, minmax(350px, 1fr) );
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-gap: 3rem;
   justify-items: center;
   align-content: center;
@@ -27,9 +27,7 @@ class Listing extends React.Component {
     return (
       <GridLayout>
         {posts.map(({ node }) => {
-          return (
-            <ArticleCard key={node.slug} article={node} />
-          )
+          return <ArticleCard key={node.slug} article={node} />
         })}
       </GridLayout>
     )

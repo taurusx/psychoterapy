@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
 
-const colorAccent = "#0741AD"
+const colorAccent = '#0741AD'
 
 const CardImageWrapper = styled.div`
   position: relative;
@@ -20,11 +20,11 @@ const CardImageWrapper = styled.div`
   }
 
   img {
-      margin: 0;
-      object-fit: cover;
-      height: 100%;
-      min-width: 100%;
-    }
+    margin: 0;
+    object-fit: cover;
+    height: 100%;
+    min-width: 100%;
+  }
 `
 
 const CardImageDate = styled.div`
@@ -68,17 +68,18 @@ const CardImage = ({ postType, node }) => {
   const day = date.getDate()
 
   return (
-  <CardImageWrapper>
-    <Img fluid={node.image.fluid} />
-    <CardImageType>
-      {postType === 'artykuly' ? 'ARTYKUŁ' : 'NEWS'}
-    </CardImageType>
-    <CardImageDate>
-      <div className="day">{day}</div>
-      <div className="month">{month}</div>
-    </CardImageDate>
-  </CardImageWrapper> 
-)}
+    <CardImageWrapper>
+      <Img fluid={node.image.fluid} />
+      <CardImageType>
+        {postType === 'artykuly' ? 'ARTYKUŁ' : 'NEWS'}
+      </CardImageType>
+      <CardImageDate>
+        <div className="day">{day}</div>
+        <div className="month">{month}</div>
+      </CardImageDate>
+    </CardImageWrapper>
+  )
+}
 
 CardImage.propTypes = {
   node: PropTypes.object.isRequired,
