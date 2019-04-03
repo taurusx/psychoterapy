@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { ThemeProvider } from 'styled-components'
 
+import { GlobalStyles } from './../styles/global-styles'
 import { themes } from './../styles/themes'
 import { rhythm } from '../utils/typography'
 import Header from '../components/header'
@@ -48,6 +49,7 @@ const Layout = props => {
           flexDirection: 'column',
         }}
       >
+        <GlobalStyles />
         {header}
         {fullWidth ? <MainFull>{children}</MainFull> : <Main>{children}</Main>}
         <Footer />
