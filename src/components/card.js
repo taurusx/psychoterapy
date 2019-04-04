@@ -5,6 +5,7 @@ const CardWrapper = styled.div`
   position: relative;
   z-index: 1;
   min-width: 290px;
+  width: 100%;
   max-width: 450px;
   min-height: 500px;
   display: flex;
