@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import logoWhite from '../../content/assets/logo/logo-psychoterapia-white.webp'
+import logoBlue from '../../content/assets/logo/logo-psychoterapia-blue.webp'
 
 const LogoWrapper = styled.div`
   display: flex;
@@ -24,6 +25,11 @@ const LogoImage = styled.div`
     width: 48px;
   }
 
+  .headerHovered & {
+    background: url(${logoBlue}) no-repeat;
+    background-size: contain;
+  }
+
   @media (max-width: ${props => props.theme.mobileTreshold}) {
     height: 32px;
     width: 32px;
@@ -40,6 +46,10 @@ const LogoTitle = styled.h1`
     font-size: 1.5rem;
   }
 
+  .headerHovered &:not(:hover) {
+    color: ${props => props.theme.fontColorHeaderHover};
+  }
+
   @media (max-width: ${props => props.theme.mobileTreshold}) {
     font-size: 1.2rem;
   }
@@ -48,7 +58,7 @@ const LogoTitle = styled.h1`
 const Logo = ({ className, siteTitle }) => {
   return (
     <LogoWrapper className={className}>
-      <LogoImage className="Logo__img" />
+      <LogoImage />
       <LogoTitle>{siteTitle}</LogoTitle>
     </LogoWrapper>
   )

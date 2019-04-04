@@ -5,7 +5,6 @@ import styled, { ThemeProvider } from 'styled-components'
 
 import Menu from './menu'
 import Logo from './logo'
-import logoBlue from '../../content/assets/logo/logo-psychoterapia-blue.webp'
 
 const headerTheme = {
   mobileTreshold: '480px',
@@ -50,12 +49,6 @@ const HeaderWrapper = styled.header`
     background: ${props => props.theme.headerColorHover};
     box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.4);
 
-    div.Logo__img {
-      background: url(${logoBlue}) no-repeat;
-      background-size: contain;
-    }
-
-    .Logo__img + h1 :not(:hover),
     .menu a :not(:hover) {
       color: ${props => props.theme.fontColorHeaderHover};
     }
@@ -108,14 +101,22 @@ const Header = ({ siteTitle, location, headerStyles, noPlaceholder }) => {
   }, [])
   const isAtPageTop = windowY < 50
   const classPageTop = isAtPageTop ? 'page-top' : ''
+  const [classHeaderHovered, setClassHeaderHovered] = useState('')
 
   return (
     <ThemeProvider theme={headerThemes}>
       <>
         {noPlaceholder ? '' : <HeaderPlaceholder className={classPageTop} />}
-        <HeaderWrapper className={classPageTop}>
+        <HeaderWrapper
+          className={classPageTop}
+          onMouseOver={() => setClassHeaderHovered('headerHovered')}
+          onMouseLeave={() => setClassHeaderHovered('')}
+        >
           <StyledLink to="/">
-            <Logo siteTitle={siteTitle} className={classPageTop} />
+            <Logo
+              siteTitle={siteTitle}
+              className={[classPageTop, classHeaderHovered].join(' ')}
+            />
           </StyledLink>
           <Menu location={location} pageTop={isAtPageTop} />
         </HeaderWrapper>
