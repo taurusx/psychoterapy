@@ -1,10 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { startsWith } from '../utils/utils'
 
-import Link from './link'
 import ToggleButton from './toggle'
+import MenuLink from './menuLink'
 
 const NavMenu = styled.nav`
   position: relative;
@@ -52,87 +51,6 @@ const NavMenu = styled.nav`
   }
 `
 
-const StyledListItem = styled.li`
-  position: relative;
-  display: inline-block;
-  margin-right: 1rem;
-  margin-bottom: 0;
-  text-align: right;
-  text-transform: uppercase;
-
-  @media (max-width: ${props => props.theme.menuTreshold}) {
-    margin: 0.5rem 1rem;
-  }
-
-  &::before {
-    content: '';
-    height: 1px;
-    background-color: ${props => props.theme.fontColorHover};
-    width: 0%;
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    transition: 0.2s width ease-in-out;
-  }
-
-  &:hover::before {
-    width: 100%;
-  }
-
-  &::after {
-    display: block;
-    content: attr(data-text);
-    text-transform: uppercase;
-    font-weight: bold;
-    height: 0;
-    margin-top: -8px;
-    overflow: hidden;
-    visibility: hidden;
-  }
-`
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  box-shadow: none;
-  color: ${props => props.theme.fontColor};
-
-  &:hover,
-  &.active {
-    font-weight: bold;
-    color: ${props => props.theme.fontColorHover};
-  }
-
-  &.link-hidden {
-    display: none;
-  }
-`
-
-const ListLink = props => {
-  const { location, to, children, ...restProps } = props
-  const linkClass = !location
-    ? ''
-    : to === location.pathname && to === '/'
-    ? 'link-hidden'
-    : // Simulate Reach Router Link's (https://reach.tech/router)
-    // retrieving getProps({isPartiallyCurrent})
-    to !== '/' && startsWith(location.pathname, to)
-    ? 'active'
-    : ''
-
-  return (
-    <StyledLink
-      to={to}
-      activeClassName={'active'}
-      className={linkClass}
-      {...restProps}
-    >
-      <StyledListItem data-text={props.dataText} {...restProps}>
-        {children}
-      </StyledListItem>
-    </StyledLink>
-  )
-}
-
 class Menu extends React.Component {
   timeoutId
 
@@ -171,6 +89,15 @@ class Menu extends React.Component {
 
     let { location } = this.props
 
+    let menuLinks = [
+      { to: '/', linkTitle: 'Główna' },
+      { to: '/oferta/', linkTitle: 'Oferta' },
+      { to: '/o-mnie/', linkTitle: 'O\u00A0mnie' },
+      { to: '/artykuly/', linkTitle: 'Artykuły' },
+      { to: '/cennik/', linkTitle: 'Cennik' },
+      { to: '/kontakt/', linkTitle: 'Kontakt' },
+    ]
+
     return (
       <NavMenu
         className={menuClassName}
@@ -180,24 +107,15 @@ class Menu extends React.Component {
         onFocus={this.onFocus}
       >
         <ul>
-          <ListLink to="/" dataText="Główna" location={location}>
-            Główna
-          </ListLink>
-          <ListLink to="/oferta/" dataText="Oferta" location={location}>
-            Oferta
-          </ListLink>
-          <ListLink to="/o-mnie/" dataText="O mnie" location={location}>
-            O&nbsp;mnie
-          </ListLink>
-          <ListLink to="/artykuly/" dataText="Artykuły" location={location}>
-            Artykuły
-          </ListLink>
-          <ListLink to="/cennik/" dataText="Cennik" location={location}>
-            Cennik
-          </ListLink>
-          <ListLink to="/kontakt/" dataText="Kontakt" location={location}>
-            Kontakt
-          </ListLink>
+          {menuLinks.map(menuLink => (
+            <MenuLink
+              to={menuLink.to}
+              dataText={menuLink.linkTitle}
+              location={location}
+            >
+              {menuLink.linkTitle}
+            </MenuLink>
+          ))}
         </ul>
         <ToggleButton
           onClick={this.toggleClickHandler}
