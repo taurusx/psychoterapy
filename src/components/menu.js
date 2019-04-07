@@ -109,6 +109,7 @@ class Menu extends React.Component {
         <ul>
           {menuLinks.map(menuLink => (
             <MenuLink
+              key={menuLink.linkTitle}
               to={menuLink.to}
               dataText={menuLink.linkTitle}
               location={location}
