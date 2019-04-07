@@ -2,31 +2,28 @@ import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
 import Img from 'gatsby-image'
 
-export const MottoImage = props => (
+const withImageData = WrappedComponent => props => (
   <StaticQuery
     query={query}
-    render={data => {
-      return (
-        <Img fluid={data.mottoImage.childImageSharp.fluid} alt="" {...props} />
-      )
-    }}
+    render={data => <WrappedComponent {...props} imageData={data} />}
   />
 )
 
-export const AgnieszkaImage = props => (
-  <StaticQuery
-    query={query}
-    render={data => {
-      return (
-        <Img
-          fluid={data.agnieszkaImage.childImageSharp.fluid}
-          alt="Agnieszka Wojnar-Jadczyszyn"
-          {...props}
-        />
-      )
-    }}
+export const MottoImage = withImageData(props => (
+  <Img
+    fluid={props.imageData.mottoImage.childImageSharp.fluid}
+    alt=""
+    {...props}
   />
-)
+))
+
+export const AgnieszkaImage = withImageData(props => (
+  <Img
+    fluid={props.imageData.agnieszkaImage.childImageSharp.fluid}
+    alt="Agnieszka Wojnar-Jadczyszyn"
+    {...props}
+  />
+))
 
 export const query = graphql`
   query SiteImagesQuery {

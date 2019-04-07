@@ -28,7 +28,7 @@ class BlogIndex extends React.Component {
           title="W czym pomagamy?"
           maxWidth={CONTENT_WIDTH}
         >
-          <ButtonLink to="/o-mnie/" lightTheme arrow alignRight>
+          <ButtonLink to="/oferta/" lightTheme arrow alignRight>
             Poznaj pełną ofertę
           </ButtonLink>
         </Section>
