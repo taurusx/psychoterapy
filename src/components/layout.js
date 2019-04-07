@@ -44,7 +44,7 @@ const Layout = props => {
         style={{
           marginLeft: `auto`,
           marginRight: `auto`,
-          height: '100vh',
+          minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
         }}
