@@ -4,7 +4,9 @@ import styled, { css } from 'styled-components'
 import Button from './button'
 import Link from './link'
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(({ alignLeft, alignRight, ...props }) => (
+  <Link {...props} />
+))`
   box-shadow: none;
   text-decoration: none;
 
@@ -33,17 +35,43 @@ const ButtonLink = ({
   activeClassName,
   alignLeft,
   alignRight,
+  darkTheme,
+  lightTheme,
+  grayTheme,
+  whiteTheme,
+  lowercase,
+  block,
+  fullWidth,
+  changeSize,
+  transparent,
+  arrow,
   ...restProps
-}) => (
-  <StyledLink
-    to={to}
-    activeClassName={activeClassName}
-    alignLeft={alignLeft}
-    alignRight={alignRight}
-    {...restProps}
-  >
-    <Button {...restProps}>{children}</Button>
-  </StyledLink>
-)
+}) => {
+  const buttonProps = {
+    darkTheme,
+    lightTheme,
+    grayTheme,
+    whiteTheme,
+    lowercase,
+    block,
+    fullWidth,
+    changeSize,
+    transparent,
+    arrow,
+  }
+  return (
+    <StyledLink
+      to={to}
+      activeClassName={activeClassName}
+      alignLeft={alignLeft}
+      alignRight={alignRight}
+      {...restProps}
+    >
+      <Button {...buttonProps} {...restProps}>
+        {children}
+      </Button>
+    </StyledLink>
+  )
+}
 
 export default ButtonLink
