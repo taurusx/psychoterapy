@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Listing from '../components/listing'
+import Section from '../components/section'
 
 class ArticlesIndex extends React.Component {
   render() {
@@ -17,7 +18,9 @@ class ArticlesIndex extends React.Component {
           title="Artykuły"
           keywords={[`psychoterapia`, `nerwica`, `depresja`, `poradnia`]}
         />
-        <Listing posts={posts} />
+        <Section maxWidth="80%">
+          <Listing posts={posts} />
+        </Section>
       </Layout>
     )
   }
