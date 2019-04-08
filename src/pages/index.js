@@ -37,18 +37,19 @@ class BlogIndex extends React.Component {
           id="section-2"
           minHeight="400px"
           backgroundImg={<MottoImage />}
-          overlay="#111"
+          overlay="#11111166"
         >
           <h4
             css={{
               alignSelf: 'center',
               textAlign: 'center',
-              fontSize: '200%',
+              fontSize: '160%',
               color: '#fff',
               maxWidth: '800px',
             }}
           >
-            Nawet najdłuższa podróż zaczyna się od pierwszego kroku
+            „To ciekawy paradoks, że dopiero kiedy akceptuję siebie takiego,
+            jakim jestem, mogę się zmienić.”<small> -&nbsp;Carl Rogers</small>
           </h4>
         </Section>
         {/* About */}

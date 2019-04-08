@@ -28,7 +28,7 @@ export const AgnieszkaImage = withImageData(props => (
 export const query = graphql`
   query SiteImagesQuery {
     mottoImage: file(
-      relativePath: { regex: "/krok-laka-dziewczyna-biala-sukienka.jpg/" }
+      relativePath: { regex: "/dziewczyna-w-kapeluszu-usmiechnieta.jpg/" }
     ) {
       childImageSharp {
         fluid(maxWidth: 1280, maxHeight: 500) {
