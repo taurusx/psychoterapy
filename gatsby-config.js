@@ -5,9 +5,9 @@ const { BLOCKS, INLINES } = require('@contentful/rich-text-types')
 
 module.exports = {
   siteMetadata: {
-    title: `Psychoterapia Rzeszów`,
-    owner: `Poradnia Psychologiczna Agnieszka Wojnar-Jadczyszyn`,
-    description: `Uzyskaj pomoc psychologa. Poradnia psychologiczna - Rzeszów i okolice. Konsultacje oraz psychoterapia indywidualna, par, małżeństw.`,
+    title: `Emocja`,
+    owner: `Poradnia Psychologiczna Emocja - Agnieszka Wojnar-Jadczyszyn`,
+    description: `Uzyskaj pomoc psychologa. Poradnia psychologiczna - Warszawa, Rzeszów i okolice. Konsultacje oraz psychoterapia indywidualna, dziecka, par, małżeństw.`,
     siteUrl: `https://psychoterapia.netlify.com`,
     social: {
       twitter: ``,
@@ -56,8 +56,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Psychoterapeuta Rzeszów`,
-        short_name: `Psychoterapia`,
+        name: `Psychoterapia Emocja`,
+        short_name: `Emocja`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#113377`,

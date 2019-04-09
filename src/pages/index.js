@@ -21,7 +21,13 @@ class BlogIndex extends React.Component {
       <Layout location={this.props.location} title={siteTitle} fullWidth>
         <SEO
           title="Strona Główna"
-          keywords={[`psychoterapia`, `Rzeszów`, `depresja`, `poradnia`]}
+          keywords={[
+            `psychoterapia`,
+            `Warszawa`,
+            `Rzeszów`,
+            `psycholog`,
+            `poradnia`,
+          ]}
         />
         {/* Offer */}
         <Section

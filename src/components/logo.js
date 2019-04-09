@@ -39,11 +39,12 @@ const LogoImage = styled.div`
 const LogoTitle = styled.h1`
   margin: 0;
   flex: 0 1 auto;
-  font-size: 1.3rem;
+  font-size: 1.8rem;
+  font-weight: 700;
   transition: all ${props => props.theme.menuTransitions};
 
   ${LogoWrapper}.page-top & {
-    font-size: 1.5rem;
+    font-size: 2.2rem;
   }
 
   .headerHovered &:not(:hover) {
