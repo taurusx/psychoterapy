@@ -66,7 +66,7 @@ const bioQuery = graphql`
         }
       }
     }
-    avatar: file(absolutePath: { regex: "/logo-psychoterapia-blue.webp/" }) {
+    avatar: file(absolutePath: { regex: "/logo-blue.png/" }) {
       childImageSharp {
         fixed(width: 50, height: 50, cropFocus: CENTER) {
           ...GatsbyImageSharpFixed
