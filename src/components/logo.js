@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import logoWhite from '../../content/assets/logo/logo-psychoterapia-white.webp'
-import logoBlue from '../../content/assets/logo/logo-psychoterapia-blue.webp'
+import logoWhite from '../../content/assets/logo/logo-white.png'
+import logoBlue from '../../content/assets/logo/logo-blue.png'
 
 const LogoWrapper = styled.div`
   display: flex;
