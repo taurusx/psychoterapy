@@ -7,7 +7,7 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(
     `
       {
-        allContentfulArticlePost (
+        allContentfulArticlePost(
           filter: { node_locale: { eq: "pl-PL" } }
           sort: { fields: [date], order: DESC }
         ) {
@@ -39,7 +39,7 @@ exports.createPages = ({ graphql, actions }) => {
 
     // Create contentful articles pages.
     const articles = result.data.allContentfulArticlePost.edges
-    
+
     articles.forEach(post => {
       const { previous } = post
       const { next } = post

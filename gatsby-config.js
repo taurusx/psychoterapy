@@ -1,4 +1,4 @@
-require("dotenv").config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 const { BLOCKS, INLINES } = require('@contentful/rich-text-types')
@@ -81,28 +81,37 @@ module.exports = {
            */
           renderNode: {
             [BLOCKS.EMBEDDED_ASSET]: node => {
-              if (!node.data.target.fields.file) return ""
+              if (!node.data.target.fields.file) return ''
               return `<div class='contentful-image-container'><picture>
                 <source
-                  srcset="${node.data.target.fields.file['pl-PL'].url}?q=50&w=450"
+                  srcset="${
+                    node.data.target.fields.file['pl-PL'].url
+                  }?q=50&w=450"
                   media="(max-width: 480px)">
                 <source
-                  srcset="${node.data.target.fields.file['pl-PL'].url}?q=50&w=750"
+                  srcset="${
+                    node.data.target.fields.file['pl-PL'].url
+                  }?q=50&w=750"
                   media="(max-width: 800px)">
                 <img  
                   src="${node.data.target.fields.file['pl-PL'].url}?q=50"
-                  alt="${node.data.target.fields.description ? node.data.target.fields.description['pl-PL'] : ""}"
+                  alt="${
+                    node.data.target.fields.description
+                      ? node.data.target.fields.description['pl-PL']
+                      : ''
+                  }"
               /></picture></div>`
             },
             [BLOCKS.EMBEDDED_ENTRY]: node => {
-              const href = `/${
-                node.data.target.fields.postType['pl-PL']
-              }/${
+              const href = `/${node.data.target.fields.postType['pl-PL']}/${
                 node.data.target.fields.slug['pl-PL']
               }`
               return `<div class='contentful-post-link-container' />
                 <div class='image-container'>
-                  <img src="${node.data.target.fields.image['pl-PL'].fields.file['pl-PL'].url}?fit=thumb&w=400&q=50" />
+                  <img src="${
+                    node.data.target.fields.image['pl-PL'].fields.file['pl-PL']
+                      .url
+                  }?fit=thumb&w=400&q=50" />
                 </div>
                 <div class='text-container'>
                   <a href='${href}' target='_blank' rel='noopener noreferrer'>
@@ -112,9 +121,7 @@ module.exports = {
                 </div>`
             },
             [INLINES.EMBEDDED_ENTRY]: node => {
-              const href = `/${
-                node.data.target.fields.postType['pl-PL']
-              }/${
+              const href = `/${node.data.target.fields.postType['pl-PL']}/${
                 node.data.target.fields.slug['pl-PL']
               }`
               return `<span class='contentful-post-link-span'/>
