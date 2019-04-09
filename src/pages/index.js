@@ -6,7 +6,8 @@ import SEO from '../components/seo'
 import Section from '../components/section'
 import Listing from '../components/listing'
 import ButtonLink from './../components/buttonLink'
-import { MottoImage, AgnieszkaImage } from './../components/siteImages'
+import { MottoImage } from './../components/siteImages'
+import AboutWithPic from '../components/aboutWithPic'
 import TestimonialsSlider from '../components/testimonials/testimonialsSlider'
 
 const CONTENT_WIDTH = '80%'
@@ -61,26 +62,22 @@ class BlogIndex extends React.Component {
         </Section>
         {/* About */}
         <Section id="section-3" title="O mnie" maxWidth={CONTENT_WIDTH}>
-          <div
-            css={{
-              display: 'flex',
-              justifyContent: 'center',
-              margin: '1rem 0',
-              flexFlow: 'wrap',
-            }}
-          >
-            <p css={{ marginRight: '2rem', flex: '1 1 auto' }}>
-              Poradnia jest prowadzona przez Agnieszkę Wojnar-Jadczyszyn.
+          <AboutWithPic>
+            <p>
+              Nazywam się <strong>Agnieszka Wojnar-Jadczyszyn</strong> i jestem
+              psychologiem i psychoterapeutą poznawczo-behawioralnym.
             </p>
-            <AgnieszkaImage
-              css={{
-                width: '300px',
-                height: '100%',
-                borderRadius: '1rem',
-                boxShadow: '0 1px 4px 0 #00000033',
-              }}
-            />
-          </div>
+            <p>
+              Prowadzę terapię osób dorosłych i młodzieży oraz konsultacje dla
+              rodziców pomagając rozwijać kompetencje wychowawcze. W swojej
+              pracy wykorzystuję metody terapii poznawczo-behawioralnej, terapii
+              schematu oraz akceptacji i zaangażowania. Swoją pracę poddaje
+              regularnej superwizji. Traktuję pracę terapeutyczną jako drogę do
+              poprawy jakości życia. Stosuję przede wszystkim życzliwe i pełne
+              szacunku podejście wobec każdej osoby, pomagając pacjentowi w
+              procesie zmiany.
+            </p>
+          </AboutWithPic>
           <ButtonLink to="/o-mnie/" lightTheme transparent arrow alignRight>
             Poznaj mnie
           </ButtonLink>

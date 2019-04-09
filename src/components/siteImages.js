@@ -25,6 +25,14 @@ export const AgnieszkaImage = withImageData(props => (
   />
 ))
 
+export const LibraryImage = withImageData(props => (
+  <Img
+    fluid={props.imageData.libraryImage.childImageSharp.fluid}
+    alt="Books on shelves in a library"
+    {...props}
+  />
+))
+
 export const query = graphql`
   query SiteImagesQuery {
     mottoImage: file(
@@ -32,7 +40,7 @@ export const query = graphql`
     ) {
       childImageSharp {
         fluid(maxWidth: 1280, maxHeight: 500) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }
@@ -40,6 +48,15 @@ export const query = graphql`
       childImageSharp {
         fluid(maxWidth: 400, maxHeight: 500) {
           ...GatsbyImageSharpFluid_withWebp_tracedSVG
+        }
+      }
+    }
+    libraryImage: file(
+      relativePath: { regex: "/biblioteka-ksiazki-edukacja.jpg/" }
+    ) {
+      childImageSharp {
+        fluid(maxWidth: 1920, maxHeight: 1000) {
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }
