@@ -7,6 +7,7 @@ import Section from '../components/section'
 import Listing from '../components/listing'
 import ButtonLink from './../components/buttonLink'
 import { MottoImage, AgnieszkaImage } from './../components/siteImages'
+import TestimonialsSlider from '../components/testimonials/testimonialsSlider'
 
 const CONTENT_WIDTH = '80%'
 
@@ -53,12 +54,7 @@ class BlogIndex extends React.Component {
           </h4>
         </Section>
         {/* About */}
-        <Section
-          id="section-3"
-          title="O mnie"
-          backgroundColor="#fafafa"
-          maxWidth={CONTENT_WIDTH}
-        >
+        <Section id="section-3" title="O mnie" maxWidth={CONTENT_WIDTH}>
           <div
             css={{
               display: 'flex',
@@ -83,8 +79,12 @@ class BlogIndex extends React.Component {
             Poznaj mnie
           </ButtonLink>
         </Section>
+        {/* Testimonials */}
+        <Section id="section-4" backgroundColor="#555">
+          <TestimonialsSlider />
+        </Section>
         {/* Articles */}
-        <Section id="section-4" title="Ostatnie wpisy" maxWidth={CONTENT_WIDTH}>
+        <Section id="section-5" title="Ostatnie wpisy" maxWidth={CONTENT_WIDTH}>
           <Listing posts={posts} />
           <ButtonLink to="/artykuly/" lightTheme arrow alignRight>
             Zobacz wszystkie
