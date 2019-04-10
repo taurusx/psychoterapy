@@ -15,7 +15,7 @@ function Bio({ author }) {
       query={bioQuery}
       render={data => {
         const authorName =
-          postAuthor.name === 'info' ? 'Emocja' : postAuthor.name
+          postAuthor.name === 'info' ? 'eMocJa' : postAuthor.name
         const authorSocial = postAuthor.social
         const avatarString = `avatar${postAuthor.avatar_string}`
         const authorAvatar = data[avatarString]
