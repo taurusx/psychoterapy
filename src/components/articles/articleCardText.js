@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
 import styled from 'styled-components'
 
-import { rhythm } from '../utils/typography'
-import Link from './link'
+import { rhythm } from '../../utils/typography'
+import Link from '../link'
 
 const colorAccent = '#0741AD'
 
@@ -48,7 +48,7 @@ const Subtitle = styled.p`
   }
 `
 
-const CardText = ({ node }) => (
+const ArticleCardText = ({ node }) => (
   <StaticQuery
     query={cardTextQuery}
     render={data => {
@@ -79,11 +79,11 @@ const CardText = ({ node }) => (
   />
 )
 
-CardText.propTypes = {
+ArticleCardText.propTypes = {
   node: PropTypes.object.isRequired,
 }
 
-export default CardText
+export default ArticleCardText
 
 export const cardTextQuery = graphql`
   query {

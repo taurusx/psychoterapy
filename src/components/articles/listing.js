@@ -20,7 +20,7 @@ const GridLayout = styled.div`
   }
 `
 
-class Listing extends React.Component {
+class ArticlesListing extends React.Component {
   render() {
     const { posts } = this.props
 
@@ -34,7 +34,7 @@ class Listing extends React.Component {
   }
 }
 
-export default Listing
+export default ArticlesListing
 
 export const allArticlesQuery = graphql`
   fragment AllContentfulArticlePosts on ContentfulArticlePostConnection {

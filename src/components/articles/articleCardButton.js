@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import Link from './link'
+import Link from '../link'
 
 const colorAccent = '#0741AD'
 
@@ -29,12 +29,12 @@ const StyledCardButton = styled(Link)`
   }
 `
 
-const CardButton = ({ to, children }) => (
+const ArticleCardButton = ({ to, children }) => (
   <StyledCardButton to={to}>{children}</StyledCardButton>
 )
 
-CardButton.propTypes = {
+ArticleCardButton.propTypes = {
   to: PropTypes.string.isRequired,
 }
 
-export default CardButton
+export default ArticleCardButton

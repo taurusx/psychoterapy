@@ -62,7 +62,7 @@ const CardImageType = styled.div`
   padding: 0.4em 0.9em;
 `
 
-const CardImage = ({ postType, node }) => {
+const ArticleCardImage = ({ postType, node }) => {
   const date = new Date(node.date)
   const month = date.toLocaleString('pl-PL', { month: 'short' })
   const day = date.getDate()
@@ -81,8 +81,8 @@ const CardImage = ({ postType, node }) => {
   )
 }
 
-CardImage.propTypes = {
+ArticleCardImage.propTypes = {
   node: PropTypes.object.isRequired,
 }
 
-export default CardImage
+export default ArticleCardImage

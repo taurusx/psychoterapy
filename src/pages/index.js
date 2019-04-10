@@ -4,7 +4,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Section from '../components/section'
-import Listing from '../components/listing'
+import ArticlesListing from '../components/articles/listing'
 import ButtonLink from './../components/buttonLink'
 import { MottoImage } from './../components/siteImages'
 import AboutWithPic from '../components/aboutWithPic'
@@ -88,7 +88,7 @@ class BlogIndex extends React.Component {
         </Section>
         {/* Articles */}
         <Section id="section-5" title="Ostatnie wpisy" maxWidth={CONTENT_WIDTH}>
-          <Listing posts={posts} />
+          <ArticlesListing posts={posts} />
           <ButtonLink to="/artykuly/" lightTheme arrow alignRight>
             Zobacz wszystkie
           </ButtonLink>
