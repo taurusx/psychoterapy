@@ -43,14 +43,14 @@ const slides = [
   {
     heading: `Chcesz rozpocząć terapię indywidualną?`,
     button: {
-      to: '/oferta/',
+      to: '/terapie/',
       text: 'Dowiedz się więcej',
     },
   },
   {
     heading: `Twoje nastoletnie dziecko potrzebuje wsparcia?`,
     button: {
-      to: '/oferta/',
+      to: '/terapie/',
       text: 'Poznaj szczegóły',
     },
   },

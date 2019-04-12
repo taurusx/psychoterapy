@@ -92,7 +92,7 @@ class Menu extends React.Component {
     let menuLinks = [
       { to: '/', linkTitle: 'Główna' },
       { to: '/w-czym-pomagam/', linkTitle: 'W\u00A0czym\u00A0pomagam' },
-      { to: '/oferta/', linkTitle: 'Oferta' },
+      { to: '/terapie/', linkTitle: 'Terapie' },
       { to: '/o-mnie/', linkTitle: 'O\u00A0mnie' },
       { to: '/artykuly/', linkTitle: 'Artykuły' },
       { to: '/cennik/', linkTitle: 'Cennik' },

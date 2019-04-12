@@ -9,7 +9,7 @@ const ServicesPage = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <SEO
-        title="Oferta"
+        title="Terapie"
         keywords={[
           `terapia małżeństw`,
           `psychoterapia`,
@@ -18,7 +18,7 @@ const ServicesPage = ({ data, location }) => {
           `poradnia`,
         ]}
       />
-      <h1>Oferta</h1>
+      <h1>Terapie</h1>
     </Layout>
   )
 }

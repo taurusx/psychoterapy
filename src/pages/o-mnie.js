@@ -61,7 +61,7 @@ const AboutPage = ({ data, location }) => {
           życia. Stosuję przede wszystkim życzliwe i pełne szacunku podejście
           wobec każdej osoby, pomagając pacjentowi w procesie zmiany.
         </p>
-        <ButtonLink to="/oferta/" lightTheme transparent arrow alignRight>
+        <ButtonLink to="/terapie/" lightTheme transparent arrow alignRight>
           Moje terapie
         </ButtonLink>
       </Section>
