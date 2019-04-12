@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Section from '../components/section'
+import DisordersListing from '../components/disorders/listing'
 import ArticlesListing from '../components/articles/listing'
 import ButtonLink from './../components/buttonLink'
 import { MottoImage } from './../components/siteImages'
@@ -30,14 +31,15 @@ class BlogIndex extends React.Component {
             `poradnia`,
           ]}
         />
-        {/* Offer */}
+        {/* Disorders */}
         <Section
           id="section-1"
-          title="W czym pomagamy?"
+          title="W czym pomagam?"
           maxWidth={CONTENT_WIDTH}
         >
-          <ButtonLink to="/oferta/" lightTheme arrow alignRight>
-            Poznaj pełną ofertę
+          <DisordersListing overview quantity="6" />
+          <ButtonLink to="/w-czym-pomagam/" lightTheme arrow alignRight>
+            Poznaj pełną listę i szczegóły
           </ButtonLink>
         </Section>
         {/* Motto */}

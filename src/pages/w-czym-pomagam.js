@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
+import DisordersListing from '../components/disorders/listing'
 import Section from '../components/section'
 
 class DisordersIndex extends React.Component {
@@ -17,7 +18,8 @@ class DisordersIndex extends React.Component {
           keywords={[`psychoterapia`, `nerwica`, `depresja`, `poradnia`]}
         />
         <Section maxWidth="80%">
-          <h1>W czym pomagam</h1>
+          <h1>W czym pomagam?</h1>
+          <DisordersListing />
         </Section>
       </Layout>
     )

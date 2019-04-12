@@ -37,6 +37,7 @@
     "react-dom": "^16.8.6",
     "react-google-recaptcha": "^1.0.5",
     "react-helmet": "^5.2.0",
+    "react-icons": "^3.5.0",
     "react-intersection-observer": "^8.22.5",
     "react-slick": "^0.23.2",
     "react-typography": "^0.16.19",
