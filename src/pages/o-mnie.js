@@ -1,36 +1,15 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import styled from 'styled-components'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
+import PageHeader from './../components/pageHeader'
 import Section from '../components/section'
 import ButtonLink from './../components/buttonLink'
 import { LibraryImage } from './../components/siteImages'
 import AboutWithPic from '../components/aboutWithPic'
 
 const CONTENT_WIDTH = '75%'
-
-const PageTitle = styled.div`
-  max-width: ${CONTENT_WIDTH};
-  text-align: center;
-  align-self: center;
-
-  h1 {
-    margin: 2rem 1rem;
-    text-shadow: 2px 2px 4px white;
-  }
-
-  @media (min-width: 720px) {
-    h1 {
-      font-size: 3rem;
-    }
-  }
-`
-
-const StyledHeader = styled.header`
-  margin-bottom: 3.5rem;
-`
 
 const AboutPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -45,17 +24,9 @@ const AboutPage = ({ data, location }) => {
           `poradnia`,
         ]}
       />
-      <StyledHeader>
-        <Section
-          backgroundImg={<LibraryImage />}
-          backgroundColor={'linear-gradient(transparent, white)'}
-          minHeight="300px"
-        >
-          <PageTitle>
-            <h1>O mnie</h1>
-          </PageTitle>
-        </Section>
-      </StyledHeader>
+      <PageHeader backgroundImg={<LibraryImage />} maxWidth={CONTENT_WIDTH}>
+        <h1>O mnie</h1>
+      </PageHeader>
       <Section maxWidth={CONTENT_WIDTH}>
         <AboutWithPic>
           <h2>Edukacja</h2>
