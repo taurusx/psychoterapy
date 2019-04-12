@@ -21,7 +21,7 @@ export const testimonials = [
     src:
       'https://www.znanylekarz.pl/agnieszka-wojnar-jadczyszyn/psychoterapeuta-psycholog/warszawa',
     srcName: 'znanylekarz.pl',
-    author: 'Agnieszka G.',
+    author: 'Agnieszka',
     stars: 5,
     dateLocalePl: '31 października 2018',
     contentHtml: () => (
@@ -78,7 +78,7 @@ export const testimonials = [
     src:
       'https://www.znanylekarz.pl/agnieszka-wojnar-jadczyszyn/psychoterapeuta-psycholog/warszawa',
     srcName: 'znanylekarz.pl',
-    author: 'Tomasz S.',
+    author: 'Tomasz',
     stars: 5,
     dateLocalePl: '23 sierpnia 2018',
     contentHtml: () => (
