@@ -62,7 +62,7 @@ const AboutPage = ({ data, location }) => {
           wobec każdej osoby, pomagając pacjentowi w procesie zmiany.
         </p>
         <ButtonLink to="/terapie/" lightTheme transparent arrow alignRight>
-          Moje terapie
+          Prowadzone terapie
         </ButtonLink>
       </Section>
     </Layout>

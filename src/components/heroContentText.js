@@ -36,15 +36,15 @@ const slides = [
     heading: `"Najważniejszy w każdym działaniu jest początek" - Platon`,
     subheading: 'Szukasz wsparcia?',
     button: {
-      to: '/kontakt/',
-      text: 'Umów się na wizytę',
+      to: '/o-mnie/',
+      text: 'Poznaj poradnię eMocJa',
     },
   },
   {
     heading: `Chcesz rozpocząć terapię indywidualną?`,
     button: {
-      to: '/terapie/',
-      text: 'Dowiedz się więcej',
+      to: '/w-czym-pomagam/',
+      text: 'Dowiedz się w czym pomagam',
     },
   },
   {
