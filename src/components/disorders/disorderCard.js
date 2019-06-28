@@ -5,8 +5,6 @@ import styled, { css } from 'styled-components'
 import Card from '../card'
 import { rhythm } from '../../utils/typography'
 
-const colorAccent = '#0741AD'
-
 const CardWrapper = styled(Card)`
   min-height: 200px;
   max-width: 280px;
@@ -19,9 +17,10 @@ const CardWrapper = styled(Card)`
     bottom: -2rem;
     left: 50%;
     transform: translateX(-50%);
-    color: ${colorAccent};
+    color: ${props => props.theme.accentDark};
     opacity: 0;
-    transition: all 0.5s ease-in;
+    transition: ${({ theme: { transition } }) =>
+      `${transition.duration} ${transition.function}`};
   }
 
   &:hover {
@@ -51,7 +50,8 @@ const CardImageWrapper = styled.div`
   justify-content: center;
   overflow: hidden;
   color: #555;
-  transition: all 0.5s ease-in;
+  transition: ${({ theme: { transition } }) =>
+    `${transition.duration} ${transition.function}`};
   margin-top: ${rhythm(0.5)};
 
   svg {
@@ -73,13 +73,13 @@ const CardImageWrapper = styled.div`
   }
 
   ${CardWrapper}:hover & {
-    color: ${colorAccent};
+    color: ${props => props.theme.accentDark};
   }
 
   ${props =>
     props.overview &&
     css`
-      color: ${colorAccent};
+      color: ${props.theme.accentDark};
     `}
 `
 

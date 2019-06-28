@@ -2,10 +2,12 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
+import Bio from '../components/bio'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import Bio from '../components/bio'
+import { options } from '../transform/contentful-rich-text-options'
 import { rhythm, scale } from '../utils/typography'
 
 const ContentfulPostText = styled.div`
@@ -106,9 +108,12 @@ class ArticlePostContentfulTemplate extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title={post.title} description={post.subtitle} />
-        <Img fluid={post.image.fluid} />
+        <SEO title={post.title} description={post.lead.lead} />
+        {/* Main image */}
+        <Img fluid={post.mainImage.fluid} />
+        {/* Title */}
         <h1>{post.title}</h1>
+        {/* Date and Author */}
         <p
           style={{
             ...scale(-1 / 5),
@@ -118,28 +123,37 @@ class ArticlePostContentfulTemplate extends React.Component {
           }}
         >
           {post.date}
-          {` | `}
-          {post.author === 'info' ? siteTitle : post.author}
+          {!post.author && 'Poradnia Emocja'}
+          {post.author &&
+            post.author.length > 0 &&
+            post.author.map(
+              author =>
+                ` |
+            ${author.firstName ? ` ${author.firstName}` : ''}
+              ${author.lastName ? ` ${author.lastName}` : ''}`
+            )}
         </p>
+        {/* Lead */}
         <p
           style={{
             fontWeight: 'bold',
             fontStyle: 'italic',
           }}
         >
-          {post.subtitle}
+          {post.lead.lead}
         </p>
-        <ContentfulPostText
-          dangerouslySetInnerHTML={{
-            __html: post.content.childContentfulRichText.html,
-          }}
-        />
+        {/* Content */}
+        <ContentfulPostText>
+          {documentToReactComponents(post.content.json, options)}
+        </ContentfulPostText>
         <hr
           style={{
             marginBottom: rhythm(1),
           }}
         />
+        {/* Bio */}
         <Bio author={post.author} />
+        {/* Next and Previous */}
         <ul
           style={{
             display: `flex`,
@@ -180,17 +194,38 @@ export const pageQuery = graphql`
     }
     contentfulArticlePost(slug: { eq: $slug }) {
       title
-      subtitle
+      lead {
+        lead
+      }
       date(formatString: "DD MMMM, YYYY", locale: "pl-PL")
-      author
-      image {
+      author {
+        avatar {
+          fixed(width: 50, height: 50, cropFocus: CENTER) {
+            ...GatsbyContentfulFixed_withWebp
+          }
+        }
+        description {
+          description
+        }
+        email
+        firstName
+        lastName
+      }
+      mainImage {
         fluid {
           ...GatsbyContentfulFluid
         }
       }
       content {
-        childContentfulRichText {
-          html
+        json
+      }
+    }
+    allContentfulArticlePost {
+      edges {
+        node {
+          childContentfulArticlePostContentRichTextNode {
+            json
+          }
         }
       }
     }

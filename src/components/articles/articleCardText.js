@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql, StaticQuery } from 'gatsby'
 import styled from 'styled-components'
 
 import { rhythm } from '../../utils/typography'
@@ -48,49 +47,40 @@ const Subtitle = styled.p`
   }
 `
 
-const ArticleCardText = ({ node }) => (
-  <StaticQuery
-    query={cardTextQuery}
-    render={data => {
-      const siteTitle = data.site.siteMetadata.title
-      const date = new Date(node.date)
-      const dayMonthFormatted = date.toLocaleDateString('pl-PL', {
-        day: '2-digit',
-        month: 'long',
-      })
-      const yearFormatted = date.toLocaleDateString('pl-PL', {
-        year: 'numeric',
-      })
+const ArticleCardText = ({ node }) => {
+  const date = new Date(node.date)
+  const dayMonthFormatted = date.toLocaleDateString('pl-PL', {
+    day: '2-digit',
+    month: 'long',
+  })
+  const yearFormatted = date.toLocaleDateString('pl-PL', {
+    year: 'numeric',
+  })
 
-      return (
-        <CardTextWrapper>
-          <Title>
-            <Link to={`/${node.postType}/${node.slug}`}>{node.title}</Link>
-          </Title>
-          <DateAuthor>
-            {`${dayMonthFormatted}, ${yearFormatted}`}
-            {` | `}
-            {node.author === 'info' ? siteTitle : node.author}
-          </DateAuthor>
-          <Subtitle>{node.subtitle}</Subtitle>
-        </CardTextWrapper>
-      )
-    }}
-  />
-)
+  return (
+    <CardTextWrapper>
+      <Title>
+        <Link to={`/${node.postType}/${node.slug}`}>{node.title}</Link>
+      </Title>
+      <DateAuthor>
+        {`${dayMonthFormatted}, ${yearFormatted}`}
+        {!node.author && 'Poradnia Emocja'}
+        {node.author &&
+          node.author.length > 0 &&
+          node.author.map(
+            author =>
+              ` |
+            ${author.firstName ? ` ${author.firstName}` : ''}
+              ${author.lastName ? ` ${author.lastName}` : ''}`
+          )}
+      </DateAuthor>
+      <Subtitle>{node.lead.lead}</Subtitle>
+    </CardTextWrapper>
+  )
+}
 
 ArticleCardText.propTypes = {
   node: PropTypes.object.isRequired,
 }
 
 export default ArticleCardText
-
-export const cardTextQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

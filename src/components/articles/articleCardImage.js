@@ -69,9 +69,9 @@ const ArticleCardImage = ({ postType, node }) => {
 
   return (
     <CardImageWrapper>
-      <Img fluid={node.image.fluid} />
+      {node.mainImage && <Img fluid={node.mainImage.fluid} />}
       <CardImageType>
-        {postType === 'artykuly' ? 'ARTYKUŁ' : 'NEWS'}
+        {postType && postType[0] === 'article' ? 'ARTYKUŁ' : 'NEWS'}
       </CardImageType>
       <CardImageDate>
         <div className="day">{day}</div>

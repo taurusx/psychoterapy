@@ -41,10 +41,24 @@ export const allArticlesQuery = graphql`
     edges {
       node {
         title
-        subtitle
+        lead {
+          lead
+        }
         date
-        author
-        image {
+        author {
+          avatar {
+            fluid {
+              ...GatsbyContentfulFluid
+            }
+          }
+          description {
+            description
+          }
+          email
+          firstName
+          lastName
+        }
+        mainImage {
           fluid(maxWidth: 600) {
             ...GatsbyContentfulFluid
           }
