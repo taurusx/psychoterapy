@@ -101,17 +101,27 @@ const Title = styled.h3`
   text-align: center;
 `
 
-const DisorderCard = ({ disorder, overview, hiddenOverview }) => (
+const DisorderCard = ({
+  disorder: { icon: Icon, title },
+  overview,
+  hiddenOverview,
+}) => (
   <CardWrapper hidden={hiddenOverview} overview={overview}>
-    <CardImageWrapper overview={overview}>{disorder.icon}</CardImageWrapper>
+    <CardImageWrapper overview={overview}>{Icon && <Icon />}</CardImageWrapper>
     <CardTextWrapper>
-      <Title>{disorder.title}</Title>
+      <Title>{title}</Title>
     </CardTextWrapper>
   </CardWrapper>
 )
 
 DisorderCard.propTypes = {
-  disorder: PropTypes.object.isRequired,
+  disorder: PropTypes.shape({
+    contentHtml: PropTypes.element,
+    icon: PropTypes.element,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+  hiddenOverview: PropTypes.bool.isRequired,
+  overview: PropTypes.bool.isRequired,
 }
 
 export default DisorderCard

@@ -1,24 +1,10 @@
 import React from 'react'
-import {
-  FaSadTear,
-  FaEye,
-  FaPlane,
-  FaBroadcastTower,
-  FaAllergies,
-  FaUserInjured,
-  FaHeart,
-  FaClock,
-  FaMedkit,
-  FaBalanceScale,
-  FaMicrophoneAltSlash,
-  FaUser,
-} from 'react-icons/fa'
 
 export const disorders = {
   types: [
     {
       title: 'Depresja i obniżony nastrój',
-      icon: <FaSadTear />,
+      icon: '',
       contentHtml: () => (
         <>
           <p>
@@ -48,7 +34,7 @@ export const disorders = {
     },
     {
       title: 'Zaburzenia lękowe',
-      icon: <FaEye />,
+      icon: '',
       contentHtml: () => (
         <>
           <p>
@@ -66,7 +52,7 @@ export const disorders = {
     },
     {
       title: 'Fobie',
-      icon: <FaPlane />,
+      icon: '',
       contentHtml: () => (
         <>
           <p>
@@ -89,7 +75,7 @@ export const disorders = {
     },
     {
       title: 'Lęk uogólniony',
-      icon: <FaBroadcastTower />,
+      icon: '',
       contentHtml: () => (
         <>
           <p>
@@ -106,7 +92,7 @@ export const disorders = {
     },
     {
       title: 'Zaburzenia obsesyjno-kompulsyjne',
-      icon: <FaAllergies />,
+      icon: '',
       contentHtml: () => (
         <>
           <p>
@@ -122,7 +108,7 @@ export const disorders = {
     },
     {
       title: 'Zespół Stresu Pourazowego (PTSD)',
-      icon: <FaUserInjured />,
+      icon: '',
       contentHtml: () => (
         <>
           <p>
@@ -141,7 +127,7 @@ export const disorders = {
     },
     {
       title: 'Problemy w relacjach z innymi',
-      icon: <FaHeart />,
+      icon: '',
       contentHtml: () => (
         <>
           <p>
@@ -164,7 +150,7 @@ export const disorders = {
     },
     {
       title: 'Stres',
-      icon: <FaClock />,
+      icon: '',
       contentHtml: () => (
         <>
           <p>
@@ -180,7 +166,7 @@ export const disorders = {
     },
     {
       title: 'Zaburzenia psychosomatyczne',
-      icon: <FaMedkit />,
+      icon: '',
       contentHtml: () => (
         <>
           <p>
@@ -207,7 +193,7 @@ export const disorders = {
     },
     {
       title: 'Problemy z emocjami',
-      icon: <FaBalanceScale />,
+      icon: '',
       contentHtml: () => (
         <>
           <p>
@@ -227,7 +213,7 @@ export const disorders = {
     },
     {
       title: 'Niska samoocena',
-      icon: <FaMicrophoneAltSlash />,
+      icon: '',
       contentHtml: () => (
         <>
           <p>
@@ -249,7 +235,7 @@ export const disorders = {
     },
     {
       title: 'Zaburzenia osobowości',
-      icon: <FaUser />,
+      icon: '',
       contentHtml: () => (
         <>
           <p>
