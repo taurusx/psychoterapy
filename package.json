@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^13.2.0",
+    "@svgr/cli": "^4.3.1",
     "babel-plugin-styled-components": "^1.10.4",
     "dotenv": "^8.0.0",
     "gatsby": "^2.11.2",
@@ -63,6 +64,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
+    "icons": "rm -fr src/components/icons && npx @svgr/cli --ext jsx --template src/templates/svgr/icons-template.js -d src/components/icons content/assets/icons",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""

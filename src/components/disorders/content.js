@@ -1,10 +1,24 @@
 import React from 'react'
+import Airplane from './../icons/Airplane'
+import Alert from './../icons/Alert'
+import Aperture from './../icons/Aperture'
+import Contact from './../icons/Contact'
+import Contacts from './../icons/Contacts'
+import DayLightning from './../icons/DayLightning'
+import Earthquake from './../icons/Earthquake'
+import Eye from './../icons/Eye'
+import GitCompare from './../icons/GitCompare'
+import HeartHalf from './../icons/HeartHalf'
+import MicOff from './../icons/MicOff'
+import PartlySunny from './../icons/PartlySunny'
+import Pulse from './../icons/Pulse'
+import Thermometer from './../icons/Thermometer'
 
 export const disorders = {
   types: [
     {
       title: 'Depresja i obniżony nastrój',
-      icon: '',
+      icon: DayLightning,
       contentHtml: () => (
         <>
           <p>
@@ -34,7 +48,7 @@ export const disorders = {
     },
     {
       title: 'Zaburzenia lękowe',
-      icon: '',
+      icon: Eye,
       contentHtml: () => (
         <>
           <p>
@@ -52,7 +66,7 @@ export const disorders = {
     },
     {
       title: 'Fobie',
-      icon: '',
+      icon: Airplane,
       contentHtml: () => (
         <>
           <p>
@@ -75,7 +89,7 @@ export const disorders = {
     },
     {
       title: 'Lęk uogólniony',
-      icon: '',
+      icon: Aperture,
       contentHtml: () => (
         <>
           <p>
@@ -92,7 +106,7 @@ export const disorders = {
     },
     {
       title: 'Zaburzenia obsesyjno-kompulsyjne',
-      icon: '',
+      icon: GitCompare,
       contentHtml: () => (
         <>
           <p>
@@ -108,7 +122,7 @@ export const disorders = {
     },
     {
       title: 'Zespół Stresu Pourazowego (PTSD)',
-      icon: '',
+      icon: Alert,
       contentHtml: () => (
         <>
           <p>
@@ -127,7 +141,7 @@ export const disorders = {
     },
     {
       title: 'Problemy w relacjach z innymi',
-      icon: '',
+      icon: Contacts,
       contentHtml: () => (
         <>
           <p>
@@ -150,7 +164,7 @@ export const disorders = {
     },
     {
       title: 'Stres',
-      icon: '',
+      icon: Pulse,
       contentHtml: () => (
         <>
           <p>
@@ -166,7 +180,7 @@ export const disorders = {
     },
     {
       title: 'Zaburzenia psychosomatyczne',
-      icon: '',
+      icon: Thermometer,
       contentHtml: () => (
         <>
           <p>
@@ -193,7 +207,7 @@ export const disorders = {
     },
     {
       title: 'Problemy z emocjami',
-      icon: '',
+      icon: HeartHalf,
       contentHtml: () => (
         <>
           <p>
@@ -213,7 +227,7 @@ export const disorders = {
     },
     {
       title: 'Niska samoocena',
-      icon: '',
+      icon: MicOff,
       contentHtml: () => (
         <>
           <p>
@@ -235,7 +249,7 @@ export const disorders = {
     },
     {
       title: 'Zaburzenia osobowości',
-      icon: '',
+      icon: Contact,
       contentHtml: () => (
         <>
           <p>

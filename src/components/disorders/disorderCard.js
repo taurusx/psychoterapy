@@ -56,8 +56,6 @@ const CardImageWrapper = styled.div`
 
   svg {
     margin: 0 auto;
-    height: 50px;
-    min-width: 50px;
   }
 
   &::before {
@@ -107,7 +105,9 @@ const DisorderCard = ({
   hiddenOverview,
 }) => (
   <CardWrapper hidden={hiddenOverview} overview={overview}>
-    <CardImageWrapper overview={overview}>{Icon && <Icon />}</CardImageWrapper>
+    <CardImageWrapper overview={overview}>
+      {Icon && <Icon height={'56px'} width={'56px'} />}
+    </CardImageWrapper>
     <CardTextWrapper>
       <Title>{title}</Title>
     </CardTextWrapper>
