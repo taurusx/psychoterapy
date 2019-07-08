@@ -48,6 +48,15 @@
     "typography-theme-wordpress-2016": "^0.16.19"
   },
   "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "eslint": "^5.3.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.2",
+    "npm-run-all": "4.1.5",
     "prettier": "^1.18.2"
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
@@ -62,9 +71,15 @@
   },
   "scripts": {
     "build": "gatsby build",
+    "clean": "rm -fr node_modules package-lock.json",
+    "clean:all": "npm run clean:build && npm run clean",
+    "clean:build": "rm -fr public .cache",
     "develop": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
     "icons": "rm -fr src/components/icons && npx @svgr/cli --ext jsx --template src/templates/svgr/icons-template.js -d src/components/icons content/assets/icons",
+    "lint": "npm-run-all --continue-on-error -p lint:code lint:style",
+    "lint:code": "eslint  --ignore-path .eslintignore --ext .js,.jsx \"src/**\"",
+    "lint:style": "prettier --check \"src/**\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
