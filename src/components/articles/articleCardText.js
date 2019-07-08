@@ -1,9 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types' // eslint-disable-line
 import styled from 'styled-components'
 
 import { rhythm } from '../../utils/typography'
 import Link from '../link'
+
+import { articlePropTypes } from './articlePropTypes'
 
 const colorAccent = '#0741AD'
 
@@ -47,8 +49,8 @@ const Subtitle = styled.p`
   }
 `
 
-const ArticleCardText = ({ node }) => {
-  const date = new Date(node.date)
+const ArticleCardText = ({ article }) => {
+  const date = new Date(article.date)
   const dayMonthFormatted = date.toLocaleDateString('pl-PL', {
     day: '2-digit',
     month: 'long',
@@ -60,27 +62,27 @@ const ArticleCardText = ({ node }) => {
   return (
     <CardTextWrapper>
       <Title>
-        <Link to={`/${node.postType}/${node.slug}`}>{node.title}</Link>
+        <Link to={`/${article.postType}/${article.slug}`}>{article.title}</Link>
       </Title>
       <DateAuthor>
         {`${dayMonthFormatted}, ${yearFormatted}`}
-        {!node.author && 'Poradnia Emocja'}
-        {node.author &&
-          node.author.length > 0 &&
-          node.author.map(
+        {!article.author && 'Poradnia Emocja'}
+        {article.author &&
+          article.author.length > 0 &&
+          article.author.map(
             author =>
               ` |
             ${author.firstName ? ` ${author.firstName}` : ''}
               ${author.lastName ? ` ${author.lastName}` : ''}`
           )}
       </DateAuthor>
-      <Subtitle>{node.lead.lead}</Subtitle>
+      <Subtitle>{article.lead.lead}</Subtitle>
     </CardTextWrapper>
   )
 }
 
 ArticleCardText.propTypes = {
-  node: PropTypes.object.isRequired,
+  article: PropTypes.shape(articlePropTypes.node).isRequired,
 }
 
 export default ArticleCardText

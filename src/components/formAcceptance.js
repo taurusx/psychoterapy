@@ -75,7 +75,7 @@ const FormField = styled.div`
 
 const FormAcceptance = ({ checked, onChange }) => (
   <StaticQuery
-    query={formAcceptanceQuery}
+    query={formAcceptanceQuery} // eslint-disable-line
     render={data => (
       <FormField>
         <p>

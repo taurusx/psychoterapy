@@ -15,26 +15,21 @@ const AuthorLink = styled.a`
   font-weight: bold;
 `
 
-const Footer = () => {
-  return (
-    <StaticQuery
-      query={footerQuery}
-      render={data => {
-        const owner = data.site.siteMetadata.owner
-        const author = data.site.siteMetadata.author
-        const authorSite = data.site.siteMetadata.authorSite
+const Footer = () => (
+  <StaticQuery
+    query={footerQuery} // eslint-disable-line
+    render={data => {
+      const { author, authorSite, owner } = data.site.siteMetadata
 
-        return (
-          <FooterWrapper>
-            {owner}&nbsp;©&nbsp;{new Date().getFullYear()},
-            Created&nbsp;by&nbsp;
-            <AuthorLink href={authorSite}>{author}</AuthorLink>
-          </FooterWrapper>
-        )
-      }}
-    />
-  )
-}
+      return (
+        <FooterWrapper>
+          {owner}&nbsp;©&nbsp;{new Date().getFullYear()}, Created&nbsp;by&nbsp;
+          <AuthorLink href={authorSite}>{author}</AuthorLink>
+        </FooterWrapper>
+      )
+    }}
+  />
+)
 
 export default Footer
 

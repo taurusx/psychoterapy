@@ -1,12 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types' // eslint-disable-line
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
 function SEO({ description, lang, meta, keywords, title }) {
   return (
     <StaticQuery
-      query={detailsQuery}
+      query={detailsQuery} // eslint-disable-line no-use-before-define
       render={data => {
         const metaDescription =
           description || data.site.siteMetadata.description
@@ -68,16 +68,23 @@ function SEO({ description, lang, meta, keywords, title }) {
 }
 
 SEO.defaultProps = {
+  description: '',
+  keywords: [],
   lang: `pl`,
   meta: [],
-  keywords: [],
 }
 
+const { string } = PropTypes
 SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.array,
+  description: string,
   keywords: PropTypes.arrayOf(PropTypes.string),
+  lang: PropTypes.string,
+  meta: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.shape({ property: string, content: string }),
+      PropTypes.shape({ name: string, content: string }),
+    ])
+  ),
   title: PropTypes.string.isRequired,
 }
 

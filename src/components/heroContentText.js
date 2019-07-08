@@ -72,7 +72,7 @@ const slides = [
 ]
 
 const slidesContent = slides.map(slide => {
-  let content = {}
+  const content = {}
   content.heading = slide.heading ? <Heading>{slide.heading}</Heading> : ''
   content.subheading = slide.subheading ? (
     <SubHeading>{slide.subheading}</SubHeading>

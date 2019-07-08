@@ -1,7 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types' // eslint-disable-line
 import Img from 'gatsby-image'
 import styled from 'styled-components'
+
+import { articlePropTypes } from './articlePropTypes'
 
 const colorAccent = '#0741AD'
 
@@ -62,14 +64,15 @@ const CardImageType = styled.div`
   padding: 0.4em 0.9em;
 `
 
-const ArticleCardImage = ({ postType, node }) => {
-  const date = new Date(node.date)
-  const month = date.toLocaleString('pl-PL', { month: 'short' })
-  const day = date.getDate()
+const ArticleCardImage = ({ article }) => {
+  const { date, mainImage, postType } = article
+  const currentDate = new Date(date)
+  const month = currentDate.toLocaleString('pl-PL', { month: 'short' })
+  const day = currentDate.getDate()
 
   return (
     <CardImageWrapper>
-      {node.mainImage && <Img fluid={node.mainImage.fluid} />}
+      {mainImage && <Img fluid={mainImage.fluid} />}
       <CardImageType>
         {postType && postType[0] === 'article' ? 'ARTYKUŁ' : 'NEWS'}
       </CardImageType>
@@ -82,7 +85,7 @@ const ArticleCardImage = ({ postType, node }) => {
 }
 
 ArticleCardImage.propTypes = {
-  node: PropTypes.object.isRequired,
+  article: PropTypes.shape(articlePropTypes.node).isRequired,
 }
 
 export default ArticleCardImage

@@ -21,8 +21,8 @@ const GridLayout = styled.div`
 
 const DisordersListing = ({ overview, quantity }) => {
   let disordersList
-  if (quantity && typeof parseInt(quantity) === 'number') {
-    disordersList = disorders.types.slice(0, parseInt(quantity))
+  if (quantity && typeof parseInt(quantity, 10) === 'number') {
+    disordersList = disorders.types.slice(0, parseInt(quantity, 10))
   } else {
     disordersList = disorders.types
   }

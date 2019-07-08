@@ -1,18 +1,16 @@
 import React from 'react'
-import Airplane from './../icons/Airplane'
-import Alert from './../icons/Alert'
-import Aperture from './../icons/Aperture'
-import Contact from './../icons/Contact'
-import Contacts from './../icons/Contacts'
-import DayLightning from './../icons/DayLightning'
-import Earthquake from './../icons/Earthquake'
-import Eye from './../icons/Eye'
-import GitCompare from './../icons/GitCompare'
-import HeartHalf from './../icons/HeartHalf'
-import MicOff from './../icons/MicOff'
-import PartlySunny from './../icons/PartlySunny'
-import Pulse from './../icons/Pulse'
-import Thermometer from './../icons/Thermometer'
+import Airplane from '../icons/Airplane'
+import Alert from '../icons/Alert'
+import Aperture from '../icons/Aperture'
+import Contact from '../icons/Contact'
+import Contacts from '../icons/Contacts'
+import DayLightning from '../icons/DayLightning'
+import Eye from '../icons/Eye'
+import GitCompare from '../icons/GitCompare'
+import HeartHalf from '../icons/HeartHalf'
+import MicOff from '../icons/MicOff'
+import Pulse from '../icons/Pulse'
+import Thermometer from '../icons/Thermometer'
 
 export const disorders = {
   types: [
@@ -132,7 +130,7 @@ export const disorders = {
             wypadek, bycie świadkiem czyjejś gwałtownej śmierci, doświadczenie
             napaści. Typowe objawy PTSD obejmują epizody powtarzającego się
             przeżywania urazu na nowo w natrętnych wspomnieniach lub snach,
-            którym może towarzyszyć poczucie "odrętwienia", dążenie do
+            którym może towarzyszyć poczucie &quot;odrętwienia&quot;, dążenie do
             odizolowania sie od ludzi, unikanie działań i sytuacji które w
             jakkolwiek sposób przypominają traumatyczne zdarzenie.
           </p>
@@ -153,7 +151,7 @@ export const disorders = {
             Problemy w relacjach mogą mieć różne oblicza, coraz bardziej
             powszechną trudnością w obecnym świecie jest bycie blisko z drugim
             człowiekiem (może być to związane z lękiem przed porzuceniem,
-            odkryciem się - "nie da się mnie lubić taką jaka jestem").
+            odkryciem się - &quot;nie da się mnie lubić taką jaka jestem&quot;).
             Trudnością w relacjach może być też utrudniona komunikacja,
             konflikty, poczucie, że robie za dużo (poświęcam się) lub zarzuty
             innych, że robię za mało (myślę tylko o sobie). To tylko przykładowe
@@ -198,9 +196,9 @@ export const disorders = {
             na coś chora. Charakterystyczne jest skupianie się na ciele i stałe
             sprawdzanie za pomocą wizyt lekarskich, czy coś jej dolega. Po
             otrzymaniu informacji od lekarza następuje chwilowa ulga, ale za
-            moment pojawiają się wątpliwości czy "aby na pewno lekarz miał
-            rację" i lęk powraca (czasami przenosząc się na inne części ciała:
-            serce mam zdrowe, ale co z bólami brzucha ?).
+            moment pojawiają się wątpliwości czy &quot;aby na pewno lekarz miał
+            rację&quot; i lęk powraca (czasami przenosząc się na inne części
+            ciała: serce mam zdrowe, ale co z bólami brzucha ?).
           </p>
         </>
       ),

@@ -51,17 +51,15 @@ const HeroHeader = ({ siteTitle, location }) => {
   }, [])
 
   const [headerColor, setHeaderColor] = useState('transparent')
-  let heroHeaderStyles = {
+  const heroHeaderStyles = {
     headerColor: `${headerColor}`,
     fontColor: 'white',
   }
 
   return (
-    <InView threshold={0.97} rootMargin={'0px 0px 0px 0px'}>
+    <InView threshold={0.97} rootMargin="0px 0px 0px 0px">
       {({ inView: heroInView, ref: heroRef }) => {
-        heroInView
-          ? setHeaderColor('transparent')
-          : setHeaderColor('rgba(0, 0, 0, 0.8)')
+        setHeaderColor(heroInView ? 'transparent' : 'rgba(0, 0, 0, 0.8)')
 
         return (
           <HeroLayout ref={heroRef}>

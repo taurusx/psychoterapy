@@ -4,7 +4,7 @@ import Img from 'gatsby-image'
 
 const withImageData = WrappedComponent => props => (
   <StaticQuery
-    query={query}
+    query={query} // eslint-disable-line no-use-before-define
     render={data => <WrappedComponent {...props} imageData={data} />}
   />
 )

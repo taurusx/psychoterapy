@@ -7,7 +7,7 @@ const lightColor = '#EEEEFF'
 const lightestColor = 'white'
 const grayColor = '#555'
 
-const darkTheme = {
+const darkButtonTheme = {
   fontColor: lightColor,
   fontColorHover: lightestColor,
   backgroundColor: darkestColor,
@@ -17,7 +17,7 @@ const darkTheme = {
   boxShadowColor: '#00000033',
 }
 
-const lightTheme = {
+const lightButtonTheme = {
   fontColor: darkColor,
   fontColorHover: darkestColor,
   backgroundColor: lightestColor,
@@ -27,7 +27,7 @@ const lightTheme = {
   boxShadowColor: 'transparent',
 }
 
-const grayTheme = {
+const grayButtonTheme = {
   fontColor: grayColor,
   fontColorHover: darkestColor,
   backgroundColor: lightestColor,
@@ -37,7 +37,7 @@ const grayTheme = {
   boxShadowColor: 'transparent',
 }
 
-const whiteTheme = {
+const whiteButtonTheme = {
   fontColor: lightestColor,
   fontColorHover: darkestColor,
   backgroundColor: 'transparent',
@@ -133,15 +133,16 @@ const StyledButton = styled.button`
 `
 
 const Button = props => {
+  const { grayTheme, lightTheme, whiteTheme } = props
   let currentTheme
-  if (props.lightTheme) {
-    currentTheme = lightTheme
-  } else if (props.grayTheme) {
-    currentTheme = grayTheme
-  } else if (props.whiteTheme) {
-    currentTheme = whiteTheme
+  if (lightTheme) {
+    currentTheme = lightButtonTheme
+  } else if (grayTheme) {
+    currentTheme = grayButtonTheme
+  } else if (whiteTheme) {
+    currentTheme = whiteButtonTheme
   } else {
-    currentTheme = darkTheme
+    currentTheme = darkButtonTheme
   }
   return <StyledButton currentTheme={currentTheme} {...props} />
 }

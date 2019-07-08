@@ -20,6 +20,6 @@ export const themes = {
     accentDarkest: accentDarkestColor,
     accentDark: accentDarkColor,
     accentLight: accentLightColor,
-    transition: transition,
+    transition,
   },
 }

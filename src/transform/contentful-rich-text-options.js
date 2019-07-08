@@ -1,8 +1,8 @@
 import React from 'react'
-import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
+import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types' // eslint-disable-line
 import styled from 'styled-components'
 
-import Link from './../components/link'
+import Link from '../components/link'
 
 const StyledBold = styled.strong`
   color: ${props => props.theme.accentDark};
@@ -32,11 +32,11 @@ export const options = {
           <picture>
             <source
               srcSet={`${fields.file['pl-PL'].url}?q=50&w=450`}
-              media={`(max-width: 480px)`}
+              media="(max-width: 480px)"
             />
             <source
               srcSet={`${fields.file['pl-PL'].url}?q=50&w=750`}
-              media={`(max-width: 800px)`}
+              media="(max-width: 800px)"
             />
             <img
               src={`${fields.file['pl-PL'].url}?q=50`}

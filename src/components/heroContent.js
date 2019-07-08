@@ -18,17 +18,13 @@ const SliderButton = styled.div`
 `
 
 const HeroContent = ({ index }) => {
-  if (typeof index !== 'number' || index < 0) return
-  if (index >= slidesContent.length) return
+  if (typeof index !== 'number' || index < 0) return null
+  if (index >= slidesContent.length) return null
 
   const slide = slidesContent[index]
   const { heading, subheading, button } = slide
-  let to = '/o-mnie/'
-  let text = 'Poznaj mnie'
-  if (typeof button === 'object') {
-    to = button.to
-    text = button.text
-  }
+  const to = typeof button === 'object' ? button.to : '/o-mnie/'
+  const text = typeof button === 'object' ? button.text : 'Poznaj mnie'
 
   return (
     <HeroContentWrapper>

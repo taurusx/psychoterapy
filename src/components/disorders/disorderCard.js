@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types' // eslint-disable-line
 import styled, { css } from 'styled-components'
 
 import Card from '../card'
@@ -106,7 +106,7 @@ const DisorderCard = ({
 }) => (
   <CardWrapper hidden={hiddenOverview} overview={overview}>
     <CardImageWrapper overview={overview}>
-      {Icon && <Icon height={'56px'} width={'56px'} />}
+      {Icon && <Icon height="56px" width="56px" />}
     </CardImageWrapper>
     <CardTextWrapper>
       <Title>{title}</Title>
@@ -116,8 +116,8 @@ const DisorderCard = ({
 
 DisorderCard.propTypes = {
   disorder: PropTypes.shape({
-    contentHtml: PropTypes.element,
-    icon: PropTypes.element,
+    contentHtml: PropTypes.func,
+    icon: PropTypes.func,
     title: PropTypes.string.isRequired,
   }).isRequired,
   hiddenOverview: PropTypes.bool.isRequired,

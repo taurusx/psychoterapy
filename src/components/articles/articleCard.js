@@ -1,23 +1,25 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types' // eslint-disable-line
 
 import Card from '../card'
+
 import ArticleCardImage from './articleCardImage'
 import ArticleCardText from './articleCardText'
 import ArticleCardButton from './articleCardButton'
+import { articlePropTypes } from './articlePropTypes'
 
-const ArticleCard = ({ article: node }) => (
+const ArticleCard = ({ article }) => (
   <Card>
-    <ArticleCardImage postType={node.postType} node={node} />
-    <ArticleCardText node={node} />
-    <ArticleCardButton to={`/${node.postType}/${node.slug}`}>
+    <ArticleCardImage article={article} />
+    <ArticleCardText article={article} />
+    <ArticleCardButton to={`/${article.postType}/${article.slug}`}>
       Czytaj więcej
     </ArticleCardButton>
   </Card>
 )
 
 ArticleCard.propTypes = {
-  article: PropTypes.object.isRequired,
+  article: PropTypes.shape(articlePropTypes.node).isRequired,
 }
 
 export default ArticleCard

@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types' // eslint-disable-line
 import styled from 'styled-components'
 
 import ToggleButton from './toggle'
@@ -67,29 +67,30 @@ class Menu extends React.Component {
 
   onFocus() {
     this.timeoutId = setTimeout(() => {
-      if (!this.state.isOpen) this.setState({ isOpen: true })
+      const { isOpen } = this.state
+      if (!isOpen) this.setState({ isOpen: true })
     }, 250)
   }
 
   onBlur() {
-    if (this.state.isOpen) this.setState({ isOpen: false })
+    const { isOpen } = this.state
+    if (isOpen) this.setState({ isOpen: false })
     clearTimeout(this.timeoutId)
   }
 
   toggleClickHandler() {
-    this.setState({ isOpen: !this.state.isOpen })
+    const { isOpen } = this.state
+    this.setState({ isOpen: !isOpen })
     this.navMenu.current.focus()
   }
 
   render() {
-    let menuClassName = 'menu'
-    if (this.state.isOpen) {
-      menuClassName += ' menu-active'
-    }
+    const { isOpen } = this.state
+    const menuClassName = `menu${isOpen ? ' menu-active' : ''}`
 
-    let { location } = this.props
+    const { location, pageTop } = this.props
 
-    let menuLinks = [
+    const menuLinks = [
       { to: '/', linkTitle: 'Główna' },
       { to: '/w-czym-pomagam/', linkTitle: 'W\u00A0czym\u00A0pomagam' },
       { to: '/terapie/', linkTitle: 'Terapie' },
@@ -102,7 +103,7 @@ class Menu extends React.Component {
     return (
       <NavMenu
         className={menuClassName}
-        tabIndex={1}
+        tabIndex={0}
         ref={this.navMenu}
         onBlur={this.onBlur}
         onFocus={this.onFocus}
@@ -121,8 +122,8 @@ class Menu extends React.Component {
         </ul>
         <ToggleButton
           onClick={this.toggleClickHandler}
-          isOpen={this.state.isOpen}
-          pageTop={this.props.pageTop}
+          isOpen={isOpen}
+          pageTop={pageTop}
         />
       </NavMenu>
     )
@@ -130,11 +131,13 @@ class Menu extends React.Component {
 }
 
 Menu.propTypes = {
-  location: PropTypes.object,
-}
-
-Menu.defaultProps = {
-  location: {},
+  location: PropTypes.shape({
+    href: PropTypes.string,
+    origin: PropTypes.string,
+    pathname: PropTypes.string,
+    state: PropTypes.object,
+  }).isRequired,
+  pageTop: PropTypes.bool.isRequired,
 }
 
 export default Menu

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Section from '../components/section'
+import Section from './section'
 
 const PageTitle = styled.div`
   max-width: ${props => props.maxWidth || '80%'};
@@ -28,7 +28,7 @@ const PageHeader = ({ children, backgroundImg, maxWidth }) => (
   <StyledHeader>
     <Section
       backgroundImg={backgroundImg}
-      backgroundColor={'linear-gradient(transparent, white)'}
+      backgroundColor="linear-gradient(transparent, white)"
       minHeight="300px"
     >
       <PageTitle maxWidth={maxWidth}>{children}</PageTitle>

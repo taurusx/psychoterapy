@@ -100,87 +100,85 @@ const ContentfulPostText = styled.div`
   }
 `
 
-class ArticlePostContentfulTemplate extends React.Component {
-  render() {
-    const post = this.props.data.contentfulArticlePost
-    const siteTitle = this.props.data.site.siteMetadata.title
-    const { previous, next } = this.props.pageContext
+const ArticlePostContentfulTemplate = ({ data, location, pageContext }) => {
+  const post = data.contentfulArticlePost
+  const siteTitle = data.site.siteMetadata.title
+  const { previous, next } = pageContext
 
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO title={post.title} description={post.lead.lead} />
-        {/* Main image */}
-        <Img fluid={post.mainImage.fluid} />
-        {/* Title */}
-        <h1>{post.title}</h1>
-        {/* Date and Author */}
-        <p
-          style={{
-            ...scale(-1 / 5),
-            display: `block`,
-            marginBottom: rhythm(1),
-            marginTop: rhythm(-1),
-          }}
-        >
-          {post.date}
-          {!post.author && 'Poradnia Emocja'}
-          {post.author &&
-            post.author.length > 0 &&
-            post.author.map(
-              author =>
-                ` |
+  return (
+    <Layout location={location} title={siteTitle}>
+      <SEO title={post.title} description={post.lead.lead} />
+      {/* Main image */}
+      <Img fluid={post.mainImage.fluid} />
+      {/* Title */}
+      <h1>{post.title}</h1>
+      {/* Date and Author */}
+      <p
+        style={{
+          ...scale(-1 / 5),
+          display: `block`,
+          marginBottom: rhythm(1),
+          marginTop: rhythm(-1),
+        }}
+      >
+        {post.date}
+        {!post.author && 'Poradnia Emocja'}
+        {post.author &&
+          post.author.length > 0 &&
+          post.author.map(
+            author =>
+              ` |
             ${author.firstName ? ` ${author.firstName}` : ''}
               ${author.lastName ? ` ${author.lastName}` : ''}`
-            )}
-        </p>
-        {/* Lead */}
-        <p
-          style={{
-            fontWeight: 'bold',
-            fontStyle: 'italic',
-          }}
-        >
-          {post.lead.lead}
-        </p>
-        {/* Content */}
-        <ContentfulPostText>
-          {documentToReactComponents(post.content.json, options)}
-        </ContentfulPostText>
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
-        {/* Bio */}
-        <Bio author={post.author} />
-        {/* Next and Previous */}
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={previous.slugFull} rel="prev">
-                ← {previous.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.slugFull} rel="next">
-                {next.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </Layout>
-    )
-  }
+          )}
+      </p>
+      {/* Lead */}
+      <p
+        style={{
+          fontWeight: 'bold',
+          fontStyle: 'italic',
+        }}
+      >
+        {post.lead.lead}
+      </p>
+      {/* Content */}
+      <ContentfulPostText>
+        {documentToReactComponents(post.content.json, options)}
+      </ContentfulPostText>
+      <hr
+        style={{
+          marginBottom: rhythm(1),
+        }}
+      />
+      {/* Bio */}
+      <Bio author={post.author} />
+      {/* Next and Previous */}
+      <ul
+        style={{
+          display: `flex`,
+          flexWrap: `wrap`,
+          justifyContent: `space-between`,
+          listStyle: `none`,
+          padding: 0,
+        }}
+      >
+        <li>
+          {previous && (
+            <Link to={previous.slugFull} rel="prev">
+              ← {previous.title}
+            </Link>
+          )}
+        </li>
+        <li>
+          {next && (
+            <Link to={next.slugFull} rel="next">
+              {next.title} →
+            </Link>
+          )}
+        </li>
+      </ul>
+    </Layout>
+  )
 }
 
 export default ArticlePostContentfulTemplate

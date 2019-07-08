@@ -6,8 +6,8 @@ import Img from 'gatsby-image'
 
 import HeroContent from './heroContent'
 
-import './../utils/slick/slick.css'
-import './../utils/slick/slick-theme.css'
+import '../utils/slick/slick.css'
+import '../utils/slick/slick-theme.css'
 
 const ARROW_SIZE = '2.5rem'
 const DOTS_SIZE = '1.5rem'
@@ -131,7 +131,7 @@ const HeroSlider = () => {
 
   return (
     <StaticQuery
-      query={HERO_SLIDER_IMAGES_QUERY}
+      query={HERO_SLIDER_IMAGES_QUERY} // eslint-disable-line
       render={data => {
         const images = data.headerImages.edges
         return (

@@ -6,7 +6,7 @@ function template(
   // Remove 'Svg' and 'Ion'/'Wi' from SvgIonComponentName:
   const matchName = componentName.name.match(/^(?:svg)(.*)$/i)
   const customName = matchName[1]
-  exports.declaration.name = customName
+  exports.declaration.name = customName // eslint-disable-line
 
   return template.ast`${imports}
 

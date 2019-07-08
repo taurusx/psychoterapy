@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { navigateTo } from 'gatsby-link'
+import { navigateTo } from 'gatsby-link' // eslint-disable-line
 import Recaptcha from 'react-google-recaptcha'
 
 import { rhythm } from '../utils/typography'
@@ -10,7 +10,7 @@ const RECAPTCHA_KEY = process.env.SITE_RECAPTCHA_KEY
 
 function encode(data) {
   return Object.keys(data)
-    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
     .join('&')
 }
 
@@ -125,12 +125,6 @@ class Form extends React.Component {
     this.onSubmitHandle = this.onSubmitHandle.bind(this)
   }
 
-  validateAllInputs() {
-    this.formRef.current.checkValidity()
-      ? this.setState({ isFormValid: true })
-      : this.setState({ isFormValid: false })
-  }
-
   onRecaptchaChange = value => {
     this.setState({ recaptchaResponse: value })
   }
@@ -146,7 +140,8 @@ class Form extends React.Component {
   onSubmitHandle = e => {
     e.preventDefault()
 
-    if (!this.state.recaptchaResponse) {
+    const { acceptance, recaptchaResponse } = this.state
+    if (!recaptchaResponse) {
       return
     }
 
@@ -156,8 +151,8 @@ class Form extends React.Component {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({
         'form-name': form.getAttribute('name'),
-        'g-recaptcha-response': this.state.recaptchaResponse,
-        'acceptance-marketing': this.state.acceptance,
+        'g-recaptcha-response': recaptchaResponse,
+        'acceptance-marketing': acceptance,
         ...this.state,
       }),
     })
@@ -165,9 +160,26 @@ class Form extends React.Component {
       .catch(error => console.error(error.message))
   }
 
+  validateAllInputs() {
+    this.setState(
+      this.formRef.current.checkValidity()
+        ? { isFormValid: true }
+        : { isFormValid: false }
+    )
+  }
+
   render() {
     const isSmallMobile =
       typeof window !== 'undefined' && window.innerWidth <= 370
+    const {
+      acceptance,
+      email,
+      isFormValid,
+      message,
+      name,
+      phone,
+      recaptchaResponse,
+    } = this.state
     return (
       <FormLayout role="form">
         <h3>Napisz do mnie</h3>
@@ -180,11 +192,7 @@ class Form extends React.Component {
           method="post"
           action="/dziekujemy/"
           ref={this.formRef}
-          className={
-            this.state.isFormValid && this.state.recaptchaResponse
-              ? 'form-valid'
-              : ''
-          }
+          className={isFormValid && recaptchaResponse ? 'form-valid' : ''}
           autoComplete="off"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
@@ -194,58 +202,63 @@ class Form extends React.Component {
         >
           <input type="hidden" name="form-name" value="contact-form" />
           <FormField>
-            <label htmlFor="name">Twoje imię</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              value={this.state.name}
-              placeholder="(podaj imię)"
-              required
-              onChange={this.onChangeHandle}
-            />
+            <label htmlFor="name">
+              Twoje imię
+              <input
+                type="text"
+                name="name"
+                id="name"
+                value={name}
+                placeholder="(podaj imię)"
+                required
+                onChange={this.onChangeHandle}
+              />
+            </label>
           </FormField>
           <FormField>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={this.state.email}
-              placeholder="(wymagane, żebyśmy mogli udzielić odpowiedzi)"
-              required
-              onChange={this.onChangeHandle}
-            />
+            <label htmlFor="email">
+              Email
+              <input
+                type="email"
+                name="email"
+                id="email"
+                value={email}
+                placeholder="(wymagane, żebyśmy mogli udzielić odpowiedzi)"
+                required
+                onChange={this.onChangeHandle}
+              />
+            </label>
           </FormField>
           <FormField className="optional">
-            <label htmlFor="phone">Telefon</label>
-            <input
-              type="tel"
-              name="phone"
-              id="phone"
-              value={this.state.phone}
-              placeholder="+48 | "
-              pattern="[0-9() +-]{9,21}"
-              title="Sprawdź, czy poprawnie wpisano numer. Dopuszczalne są cyfry od 0 do 9, myślniki, spacje, nr kierunkowy. "
-              onChange={this.onChangeHandle}
-            />
+            <label htmlFor="phone">
+              Telefon
+              <input
+                type="tel"
+                name="phone"
+                id="phone"
+                value={phone}
+                placeholder="+48 | "
+                pattern="[0-9() +-]{9,21}"
+                title="Sprawdź, czy poprawnie wpisano numer. Dopuszczalne są cyfry od 0 do 9, myślniki, spacje, nr kierunkowy. "
+                onChange={this.onChangeHandle}
+              />
+            </label>
           </FormField>
           <FormField>
-            <label htmlFor="message">Jak możemy Ci pomóc?</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              value={this.state.message}
-              placeholder="Twoja wiadomość"
-              required
-              onChange={this.onChangeHandle}
-            />
+            <label htmlFor="message">
+              Jak możemy Ci pomóc?
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                value={message}
+                placeholder="Twoja wiadomość"
+                required
+                onChange={this.onChangeHandle}
+              />
+            </label>
           </FormField>
-          <FormAcceptance
-            checked={this.state.acceptance}
-            onChange={this.onChangeHandle}
-          />
+          <FormAcceptance checked={acceptance} onChange={this.onChangeHandle} />
           <Recaptcha
             ref={this.recaptchaRef}
             sitekey={RECAPTCHA_KEY}

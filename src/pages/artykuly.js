@@ -6,24 +6,21 @@ import SEO from '../components/seo'
 import ArticlesListing from '../components/articles/listing'
 import Section from '../components/section'
 
-class ArticlesIndex extends React.Component {
-  render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allContentfulArticlePost.edges
+const ArticlesIndex = ({ data, location }) => {
+  const siteTitle = data.site.siteMetadata.title
+  const posts = data.allContentfulArticlePost.edges
 
-    return (
-      <Layout location={this.props.location} title={siteTitle} fullWidth>
-        <SEO
-          title="Artykuły"
-          keywords={[`psychoterapia`, `nerwica`, `depresja`, `poradnia`]}
-        />
-        <Section maxWidth="80%">
-          <ArticlesListing posts={posts} />
-        </Section>
-      </Layout>
-    )
-  }
+  return (
+    <Layout location={location} title={siteTitle} fullWidth>
+      <SEO
+        title="Artykuły"
+        keywords={[`psychoterapia`, `nerwica`, `depresja`, `poradnia`]}
+      />
+      <Section maxWidth="80%">
+        <ArticlesListing posts={posts} />
+      </Section>
+    </Layout>
+  )
 }
 
 export default ArticlesIndex

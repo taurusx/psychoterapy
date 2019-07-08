@@ -3,10 +3,10 @@ import Slider from 'react-slick'
 import styled from 'styled-components'
 
 import { testimonials } from './testimonialsContent'
-import Link from './../link'
+import Link from '../link'
 
-import './../../utils/slick/slick.css'
-import './../../utils/slick/slick-theme.css'
+import '../../utils/slick/slick.css'
+import '../../utils/slick/slick-theme.css'
 
 const ARROW_SIZE = '2.5rem'
 const DOTS_SIZE = '1.5rem'
@@ -153,14 +153,12 @@ const TestimonialsSlider = () => {
       {testimonials.map(testimonial => {
         const content = <testimonial.contentHtml />
         let stars = ''
-        for (let i = 0; i < testimonial.stars; i++) {
+        for (let i = 0; i < testimonial.stars; i += 1) {
           stars += '★'
         }
         return (
           <div
-            key={`testimonial-${testimonial.dateLocalePl}-${
-              testimonial.author
-            }`}
+            key={`testimonial-${testimonial.dateLocalePl}-${testimonial.author}`}
           >
             <SliderText>
               <div className="content">{content}</div>

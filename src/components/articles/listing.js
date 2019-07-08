@@ -1,8 +1,10 @@
 import React from 'react'
+import { PropTypes } from 'prop-types' // eslint-disable-line
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
 
 import ArticleCard from './articleCard'
+import { articlePropTypes } from './articlePropTypes'
 
 const GridLayout = styled.div`
   display: grid;
@@ -20,21 +22,19 @@ const GridLayout = styled.div`
   }
 `
 
-class ArticlesListing extends React.Component {
-  render() {
-    const { posts } = this.props
-
-    return (
-      <GridLayout>
-        {posts.map(({ node }) => {
-          return <ArticleCard key={node.slug} article={node} />
-        })}
-      </GridLayout>
-    )
-  }
-}
+const ArticlesListing = ({ posts }) => (
+  <GridLayout>
+    {posts.map(({ node }) => {
+      return <ArticleCard key={node.slug} article={node} />
+    })}
+  </GridLayout>
+)
 
 export default ArticlesListing
+
+ArticlesListing.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.shape(articlePropTypes)).isRequired,
+}
 
 export const allArticlesQuery = graphql`
   fragment AllContentfulArticlePosts on ContentfulArticlePostConnection {

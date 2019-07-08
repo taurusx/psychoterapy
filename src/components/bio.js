@@ -16,9 +16,7 @@ function Bio({ author }) {
           lastName,
           social,
         }) => {
-          const authorName = `${firstName ? firstName : ''} ${
-            lastName ? lastName : ''
-          }`
+          const authorName = `${firstName || ''} ${lastName || ''}`
 
           return (
             <div

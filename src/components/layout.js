@@ -1,12 +1,13 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types' // eslint-disable-line
 import styled, { ThemeProvider } from 'styled-components'
 
-import { GlobalStyles } from './../styles/global-styles'
-import { themes } from './../styles/themes'
+import { GlobalStyles } from '../styles/global-styles'
+import { themes } from '../styles/themes'
 import { rhythm } from '../utils/typography'
-import Header from '../components/header'
-import HeroHeader from '../components/heroHeader'
+
+import Header from './header'
+import HeroHeader from './heroHeader'
 import Footer from './footer'
 
 const Main = styled.main`
@@ -26,17 +27,13 @@ const MainFull = styled(Main)`
 const Layout = props => {
   const { location, title, children, fullWidth } = props
   const rootPath = `${__PATH_PREFIX__}/`
-  let header
-  let fontColor
 
-  if (location.pathname === rootPath) {
-    fontColor = 'white'
-    header = (
-      <HeroHeader siteTitle={title} location={location} fontColor={fontColor} />
+  const header =
+    location.pathname === rootPath ? (
+      <HeroHeader siteTitle={title} location={location} fontColor="white" />
+    ) : (
+      <Header siteTitle={title} location={location} />
     )
-  } else {
-    header = <Header siteTitle={title} location={location} />
-  }
 
   return (
     <ThemeProvider theme={themes.light}>
@@ -60,7 +57,12 @@ const Layout = props => {
 
 Layout.propTypes = {
   title: PropTypes.string,
-  location: PropTypes.object,
+  location: PropTypes.shape({
+    href: PropTypes.string,
+    origin: PropTypes.string,
+    pathname: PropTypes.string,
+    state: PropTypes.object,
+  }),
 }
 
 Layout.defaultProps = {

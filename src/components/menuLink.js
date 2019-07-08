@@ -61,20 +61,22 @@ const StyledLink = styled(Link)`
 
 const MenuLink = props => {
   const { location, to, children, dataText, ...restProps } = props
-  const linkClass = !location
-    ? ''
-    : to === location.pathname && to === '/'
-    ? 'link-hidden'
-    : // Simulate Reach React Router Link's (https://reach.tech/router)
-    // retrieving getProps({isPartiallyCurrent})
-    to !== '/' && startsWith(location.pathname, to)
-    ? 'active'
-    : ''
+  const linkClass =
+    `${
+      location && to === location.pathname && to === '/' ? 'link-hidden' : ''
+    }` ||
+    `${
+      // Simulate Reach React Router Link's (https://reach.tech/router)
+      // retrieving getProps({isPartiallyCurrent})
+      location && to !== '/' && startsWith(location.pathname, to)
+        ? 'active'
+        : ''
+    }`
 
   return (
     <StyledLink
       to={to}
-      activeClassName={'active'}
+      activeClassName="active"
       className={linkClass}
       {...restProps}
     >

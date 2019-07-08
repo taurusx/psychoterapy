@@ -1,5 +1,5 @@
 import { Link } from 'gatsby'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types' // eslint-disable-line
 import React, { useState, useEffect } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 
@@ -110,6 +110,7 @@ const Header = ({ siteTitle, location, headerStyles, noPlaceholder }) => {
         <HeaderWrapper
           className={classPageTop}
           onMouseOver={() => setClassHeaderHovered('headerHovered')}
+          onFocus={() => setClassHeaderHovered('headerHovered')}
           onMouseLeave={() => setClassHeaderHovered('')}
         >
           <StyledLink to="/">
@@ -126,6 +127,12 @@ const Header = ({ siteTitle, location, headerStyles, noPlaceholder }) => {
 }
 
 Header.propTypes = {
+  location: PropTypes.shape({
+    href: PropTypes.string,
+    origin: PropTypes.string,
+    pathname: PropTypes.string,
+    state: PropTypes.object,
+  }).isRequired,
   siteTitle: PropTypes.string,
 }
 

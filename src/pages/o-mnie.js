@@ -3,10 +3,10 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import PageHeader from './../components/pageHeader'
+import PageHeader from '../components/pageHeader'
 import Section from '../components/section'
-import ButtonLink from './../components/buttonLink'
-import { LibraryImage } from './../components/siteImages'
+import ButtonLink from '../components/buttonLink'
+import { LibraryImage } from '../components/siteImages'
 import AboutWithPic from '../components/aboutWithPic'
 
 const CONTENT_WIDTH = '75%'
