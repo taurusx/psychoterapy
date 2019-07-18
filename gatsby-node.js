@@ -55,7 +55,7 @@ exports.createPages = ({ graphql, actions }) => {
             component: articlePost,
             context: {
               slug: post.node.slug,
-              slugFull: slugFull,
+              slugFull,
               previous,
               next,
             },

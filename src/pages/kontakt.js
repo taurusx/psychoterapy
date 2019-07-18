@@ -1,6 +1,8 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import styled from 'styled-components'
 
+import Details from '../components/contact/details'
 import GoogleMap from '../components/contact/googleMap'
 import Form from '../components/form'
 import Layout from '../components/layout'
@@ -8,6 +10,17 @@ import Section from '../components/section'
 import SEO from '../components/seo'
 
 const CONTENT_WIDTH = '75%'
+
+const GridWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 4fr;
+  grid-gap: 4rem;
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+    grid-gap: 0;
+  }
+`
 
 const ContactPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -25,9 +38,12 @@ const ContactPage = ({ data, location }) => {
       />
       <Section maxWidth={CONTENT_WIDTH}>
         <h1>Kontakt</h1>
-        <Form />
+        <GridWrapper>
+          <Details />
+          <Form />
+        </GridWrapper>
       </Section>
-      <GoogleMap />
+      <GoogleMap id="google-map" />
     </Layout>
   )
 }

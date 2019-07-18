@@ -80,14 +80,13 @@ const FormField = styled.div`
       position: relative;
     }
 
-    label:after {
+    label::after {
       content: ' (opcjonalnie)';
       position: absolute;
-      left: calc(100% + 1rem);
-      top: 50%;
-      transform: translateY(-50%);
+      right: 0;
+      top: 0.5em;
       font-style: italic;
-      font-size: 80%;
+      font-size: 70%;
     }
   }
 `
