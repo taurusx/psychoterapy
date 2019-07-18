@@ -1,14 +1,18 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+import GoogleMap from '../components/contact/googleMap'
 import Form from '../components/form'
+import Layout from '../components/layout'
+import Section from '../components/section'
+import SEO from '../components/seo'
+
+const CONTENT_WIDTH = '75%'
 
 const ContactPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location} title={siteTitle} fullWidth>
       <SEO
         title="Kontakt"
         keywords={[
@@ -19,8 +23,11 @@ const ContactPage = ({ data, location }) => {
           `poradnia`,
         ]}
       />
-      <h1>Kontakt</h1>
-      <Form />
+      <Section maxWidth={CONTENT_WIDTH}>
+        <h1>Kontakt</h1>
+        <Form />
+      </Section>
+      <GoogleMap />
     </Layout>
   )
 }
