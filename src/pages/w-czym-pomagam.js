@@ -1,10 +1,14 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
 import DisordersListing from '../components/disorders/listing'
+import Layout from '../components/layout'
+import PageHeader from '../components/pageHeader'
 import Section from '../components/section'
+import SEO from '../components/seo'
+import { RescueBuoyImage } from '../components/siteImages'
+
+const CONTENT_WIDTH = '75%'
 
 const DisordersIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -15,8 +19,10 @@ const DisordersIndex = ({ data, location }) => {
         title="Artykuły"
         keywords={[`psychoterapia`, `nerwica`, `depresja`, `poradnia`]}
       />
-      <Section maxWidth="80%">
-        <h1>W czym pomagam?</h1>
+      <PageHeader backgroundImg={<RescueBuoyImage />} maxWidth={CONTENT_WIDTH}>
+        <h1>W czym pomagam</h1>
+      </PageHeader>
+      <Section maxWidth={CONTENT_WIDTH}>
         <DisordersListing />
       </Section>
     </Layout>

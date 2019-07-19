@@ -25,10 +25,42 @@ export const AgnieszkaImage = withImageData(props => (
   />
 ))
 
-export const LibraryImage = withImageData(props => (
+export const JournalImage = withImageData(props => (
   <Img
-    fluid={props.imageData.libraryImage.childImageSharp.fluid}
-    alt="Books on shelves in a library"
+    fluid={props.imageData.journalImage.childImageSharp.fluid}
+    alt="Kalendarz, zapisywanie dat"
+    {...props}
+  />
+))
+
+export const LaptopImage = withImageData(props => (
+  <Img
+    fluid={props.imageData.laptopImage.childImageSharp.fluid}
+    alt="Laptop i kawa na biurku"
+    {...props}
+  />
+))
+
+export const DeskPaperImage = withImageData(props => (
+  <Img
+    fluid={props.imageData.deskPaperImage.childImageSharp.fluid}
+    alt="Kartka na stole"
+    {...props}
+  />
+))
+
+export const JarPlantImage = withImageData(props => (
+  <Img
+    fluid={props.imageData.jarPlantImage.childImageSharp.fluid}
+    alt="Roślina w słoiku"
+    {...props}
+  />
+))
+
+export const RescueBuoyImage = withImageData(props => (
+  <Img
+    fluid={props.imageData.rescueBuoyImage.childImageSharp.fluid}
+    alt="Koło ratunkowe"
     {...props}
   />
 ))
@@ -51,8 +83,42 @@ export const query = graphql`
         }
       }
     }
-    libraryImage: file(
-      relativePath: { regex: "/biblioteka-ksiazki-edukacja.jpg/" }
+    journalImage: file(relativePath: { regex: "/page-cennik-kalendarz.jpg/" }) {
+      childImageSharp {
+        fluid(maxWidth: 1920, maxHeight: 1000) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    laptopImage: file(
+      relativePath: { regex: "/page-kontakt-laptop-kawa.jpg/" }
+    ) {
+      childImageSharp {
+        fluid(maxWidth: 1920, maxHeight: 1000) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    deskPaperImage: file(
+      relativePath: { regex: "/page-o-mnie-kartka-stol.jpg/" }
+    ) {
+      childImageSharp {
+        fluid(maxWidth: 1920, maxHeight: 1000) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    jarPlantImage: file(
+      relativePath: { regex: "/page-terapie-roslina-w-sloiku.jpg/" }
+    ) {
+      childImageSharp {
+        fluid(maxWidth: 1920, maxHeight: 1000) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    rescueBuoyImage: file(
+      relativePath: { regex: "/page-w-czym-pomagam-kolo-ratunkowe.jpg/" }
     ) {
       childImageSharp {
         fluid(maxWidth: 1920, maxHeight: 1000) {

@@ -1,13 +1,13 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
+import AboutWithPic from '../components/aboutWithPic'
+import ButtonLink from '../components/buttonLink'
 import Layout from '../components/layout'
-import SEO from '../components/seo'
 import PageHeader from '../components/pageHeader'
 import Section from '../components/section'
-import ButtonLink from '../components/buttonLink'
-import { LibraryImage } from '../components/siteImages'
-import AboutWithPic from '../components/aboutWithPic'
+import SEO from '../components/seo'
+import { DeskPaperImage } from '../components/siteImages'
 
 const CONTENT_WIDTH = '75%'
 
@@ -24,7 +24,7 @@ const AboutPage = ({ data, location }) => {
           `poradnia`,
         ]}
       />
-      <PageHeader backgroundImg={<LibraryImage />} maxWidth={CONTENT_WIDTH}>
+      <PageHeader backgroundImg={<DeskPaperImage />} maxWidth={CONTENT_WIDTH}>
         <h1>O mnie</h1>
       </PageHeader>
       <Section maxWidth={CONTENT_WIDTH}>
