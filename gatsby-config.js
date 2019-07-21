@@ -6,7 +6,7 @@ module.exports = {
   siteMetadata: {
     title: `eMOCja`,
     owner: `Poradnia Psychologiczna eMOCja - Agnieszka Wojnar-Jadczyszyn`,
-    description: `Uzyskaj pomoc psychologa. Poradnia psychologiczna - Warszawa, Rzeszów i okolice. Konsultacje oraz psychoterapia indywidualna, dziecka, par, małżeństw.`,
+    description: `Agnieszka Wojnar-Jadczyszyn - bardzo dobry psycholog, psychoterapeuta z Warszawa Włochy, Ursus i Rzeszów. Umów się na wizytę 🕿 665-400-815.`,
     siteUrl: `https://psychoterapia.netlify.com`,
     social: {
       twitter: ``,

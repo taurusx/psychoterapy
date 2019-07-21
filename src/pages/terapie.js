@@ -15,6 +15,7 @@ const ServicesPage = ({ data, location }) => {
     <Layout location={location} title={siteTitle} fullWidth>
       <SEO
         title="Terapie"
+        description="Konsultacje oraz psychoterapia indywidualna, dziecka, par, małżeństw."
         keywords={[
           `terapia małżeństw`,
           `psychoterapia`,
