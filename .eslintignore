@@ -1,5 +1,6 @@
-# ignore auto-generated icons
+# ignore auto-generated icons and logos
 src/components/icons/**/*.jsx
+src/components/logos/**/*.jsx
 
 # ignore imported lib 'Slick'
 src/utils/slick/**/*

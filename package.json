@@ -80,6 +80,7 @@
     "lint": "npm-run-all --continue-on-error -p lint:code lint:style",
     "lint:code": "eslint  --ignore-path .eslintignore --ext .js,.jsx \"src/**\"",
     "lint:style": "prettier --check \"src/**\"",
+    "logos": "rm -fr src/components/logos && npx @svgr/cli --ext jsx --template src/templates/svgr/icons-template.js -d src/components/logos content/assets/logo",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""

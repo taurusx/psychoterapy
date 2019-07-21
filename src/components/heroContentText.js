@@ -37,7 +37,7 @@ const slides = [
     subheading: 'Szukasz wsparcia?',
     button: {
       to: '/o-mnie/',
-      text: 'Poznaj poradnię eMocJa',
+      text: 'Poznaj poradnię eMOCja',
     },
   },
   {

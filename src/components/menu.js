@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types' // eslint-disable-line
 import styled from 'styled-components'
 
@@ -51,83 +51,73 @@ const NavMenu = styled.nav`
   }
 `
 
-class Menu extends React.Component {
-  timeoutId
+const Menu = props => {
+  let timeoutId
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      isOpen: false,
-    }
-    this.navMenu = React.createRef()
-    this.onFocus = this.onFocus.bind(this)
-    this.onBlur = this.onBlur.bind(this)
-    this.toggleClickHandler = this.toggleClickHandler.bind(this)
-  }
+  const [isOpen, setIsOpen] = useState(false)
+  const navMenu = React.createRef()
 
-  onFocus() {
-    this.timeoutId = setTimeout(() => {
-      const { isOpen } = this.state
-      if (!isOpen) this.setState({ isOpen: true })
+  const onFocus = () => {
+    timeoutId = setTimeout(() => {
+      if (!isOpen) setIsOpen(true)
     }, 250)
   }
 
-  onBlur() {
-    const { isOpen } = this.state
-    if (isOpen) this.setState({ isOpen: false })
-    clearTimeout(this.timeoutId)
+  const onBlur = () => {
+    if (isOpen) setIsOpen(false)
+    clearTimeout(timeoutId)
   }
 
-  toggleClickHandler() {
-    const { isOpen } = this.state
-    this.setState({ isOpen: !isOpen })
-    this.navMenu.current.focus()
+  const toggleClickHandler = () => {
+    setIsOpen(!isOpen)
+    navMenu.current.focus()
   }
 
-  render() {
-    const { isOpen } = this.state
-    const menuClassName = `menu${isOpen ? ' menu-active' : ''}`
+  const { setClassMenuActive } = props
 
-    const { location, pageTop } = this.props
+  const menuClassName = `menu${isOpen ? ' menu-active' : ''}`
+  const classMenuActive = `${isOpen ? ' menu-active' : ''}`
+  setClassMenuActive(classMenuActive)
 
-    const menuLinks = [
-      { to: '/', linkTitle: 'Główna' },
-      { to: '/w-czym-pomagam/', linkTitle: 'W\u00A0czym\u00A0pomagam' },
-      { to: '/terapie/', linkTitle: 'Terapie' },
-      { to: '/o-mnie/', linkTitle: 'O\u00A0mnie' },
-      { to: '/artykuly/', linkTitle: 'Artykuły' },
-      { to: '/cennik/', linkTitle: 'Cennik' },
-      { to: '/kontakt/', linkTitle: 'Kontakt' },
-    ]
+  const { location, pageTop } = props
 
-    return (
-      <NavMenu
-        className={menuClassName}
-        tabIndex={0}
-        ref={this.navMenu}
-        onBlur={this.onBlur}
-        onFocus={this.onFocus}
-      >
-        <ul>
-          {menuLinks.map(menuLink => (
-            <MenuLink
-              key={menuLink.linkTitle}
-              to={menuLink.to}
-              dataText={menuLink.linkTitle}
-              location={location}
-            >
-              {menuLink.linkTitle}
-            </MenuLink>
-          ))}
-        </ul>
-        <ToggleButton
-          onClick={this.toggleClickHandler}
-          isOpen={isOpen}
-          pageTop={pageTop}
-        />
-      </NavMenu>
-    )
-  }
+  const menuLinks = [
+    { to: '/', linkTitle: 'Główna' },
+    { to: '/w-czym-pomagam/', linkTitle: 'W\u00A0czym\u00A0pomagam' },
+    { to: '/terapie/', linkTitle: 'Terapie' },
+    { to: '/o-mnie/', linkTitle: 'O\u00A0mnie' },
+    { to: '/artykuly/', linkTitle: 'Artykuły' },
+    { to: '/cennik/', linkTitle: 'Cennik' },
+    { to: '/kontakt/', linkTitle: 'Kontakt' },
+  ]
+
+  return (
+    <NavMenu
+      className={menuClassName}
+      tabIndex={0}
+      ref={navMenu}
+      onBlur={onBlur}
+      onFocus={onFocus}
+    >
+      <ul>
+        {menuLinks.map(menuLink => (
+          <MenuLink
+            key={menuLink.linkTitle}
+            to={menuLink.to}
+            dataText={menuLink.linkTitle}
+            location={location}
+          >
+            {menuLink.linkTitle}
+          </MenuLink>
+        ))}
+      </ul>
+      <ToggleButton
+        onClick={toggleClickHandler}
+        isOpen={isOpen}
+        pageTop={pageTop}
+      />
+    </NavMenu>
+  )
 }
 
 Menu.propTypes = {

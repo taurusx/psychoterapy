@@ -4,8 +4,8 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: `eMocJa`,
-    owner: `Poradnia Psychologiczna eMocJa - Agnieszka Wojnar-Jadczyszyn`,
+    title: `eMOCja`,
+    owner: `Poradnia Psychologiczna eMOCja - Agnieszka Wojnar-Jadczyszyn`,
     description: `Uzyskaj pomoc psychologa. Poradnia psychologiczna - Warszawa, Rzeszów i okolice. Konsultacje oraz psychoterapia indywidualna, dziecka, par, małżeństw.`,
     siteUrl: `https://psychoterapia.netlify.com`,
     social: {
@@ -55,13 +55,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Psychoterapia eMocJa`,
-        short_name: `eMocJa`,
+        name: `Psychoterapia eMOCja`,
+        short_name: `eMOCja`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#113377`,
         display: `minimal-ui`,
-        icon: `content/assets/logo-psychoterapia.png`,
+        icon: `content/assets/logo/emocja-logo-butterfly.svg`,
       },
     },
     {

@@ -102,6 +102,7 @@ const Header = ({ siteTitle, location, headerStyles, noPlaceholder }) => {
   const isAtPageTop = windowY < 50
   const classPageTop = isAtPageTop ? 'page-top' : ''
   const [classHeaderHovered, setClassHeaderHovered] = useState('')
+  const [classMenuActive, setClassMenuActive] = useState('')
 
   return (
     <ThemeProvider theme={headerThemes}>
@@ -116,10 +117,18 @@ const Header = ({ siteTitle, location, headerStyles, noPlaceholder }) => {
           <StyledLink to="/">
             <Logo
               siteTitle={siteTitle}
-              className={[classPageTop, classHeaderHovered].join(' ')}
+              className={[
+                classPageTop,
+                classHeaderHovered,
+                classMenuActive,
+              ].join(' ')}
             />
           </StyledLink>
-          <Menu location={location} pageTop={isAtPageTop} />
+          <Menu
+            location={location}
+            pageTop={isAtPageTop}
+            setClassMenuActive={setClassMenuActive}
+          />
         </HeaderWrapper>
       </>
     </ThemeProvider>

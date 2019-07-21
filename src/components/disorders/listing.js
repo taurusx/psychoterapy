@@ -35,7 +35,7 @@ const DisordersListing = ({ overview, quantity }) => {
             key={disorder.title}
             disorder={disorder}
             overview={overview}
-            hiddenOverview={overview && index >= 3}
+            hiddenOverview={(overview && index >= 3) || false}
           />
         )
       })}
