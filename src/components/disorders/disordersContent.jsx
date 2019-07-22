@@ -1,22 +1,11 @@
 import React from 'react'
-import Airplane from '../icons/Airplane'
-import Alert from '../icons/Alert'
-import Aperture from '../icons/Aperture'
-import Contact from '../icons/Contact'
-import Contacts from '../icons/Contacts'
-import DayLightning from '../icons/DayLightning'
-import Eye from '../icons/Eye'
-import GitCompare from '../icons/GitCompare'
-import HeartHalf from '../icons/HeartHalf'
-import MicOff from '../icons/MicOff'
-import Pulse from '../icons/Pulse'
-import Thermometer from '../icons/Thermometer'
+import { iconsMap } from '../icons'
 
 export const disorders = {
   types: [
     {
       title: 'Depresja i obniżony nastrój',
-      icon: DayLightning,
+      icon: iconsMap['day-lightning'],
       contentHtml: () => (
         <>
           <p>
@@ -46,7 +35,7 @@ export const disorders = {
     },
     {
       title: 'Zaburzenia lękowe',
-      icon: Eye,
+      icon: iconsMap.eye,
       contentHtml: () => (
         <>
           <p>
@@ -64,7 +53,7 @@ export const disorders = {
     },
     {
       title: 'Fobie',
-      icon: Airplane,
+      icon: iconsMap.airplane,
       contentHtml: () => (
         <>
           <p>
@@ -87,7 +76,7 @@ export const disorders = {
     },
     {
       title: 'Lęk uogólniony',
-      icon: Aperture,
+      icon: iconsMap.aperture,
       contentHtml: () => (
         <>
           <p>
@@ -104,7 +93,7 @@ export const disorders = {
     },
     {
       title: 'Zaburzenia obsesyjno-kompulsyjne',
-      icon: GitCompare,
+      icon: iconsMap['git-compare'],
       contentHtml: () => (
         <>
           <p>
@@ -120,7 +109,7 @@ export const disorders = {
     },
     {
       title: 'Zespół Stresu Pourazowego (PTSD)',
-      icon: Alert,
+      icon: iconsMap.alert,
       contentHtml: () => (
         <>
           <p>
@@ -139,7 +128,7 @@ export const disorders = {
     },
     {
       title: 'Problemy w relacjach z innymi',
-      icon: Contacts,
+      icon: iconsMap.contacts,
       contentHtml: () => (
         <>
           <p>
@@ -162,7 +151,7 @@ export const disorders = {
     },
     {
       title: 'Stres',
-      icon: Pulse,
+      icon: iconsMap.pulse,
       contentHtml: () => (
         <>
           <p>
@@ -178,7 +167,7 @@ export const disorders = {
     },
     {
       title: 'Zaburzenia psychosomatyczne',
-      icon: Thermometer,
+      icon: iconsMap.thermometer,
       contentHtml: () => (
         <>
           <p>
@@ -205,7 +194,7 @@ export const disorders = {
     },
     {
       title: 'Problemy z emocjami',
-      icon: HeartHalf,
+      icon: iconsMap['heart-half'],
       contentHtml: () => (
         <>
           <p>
@@ -225,7 +214,7 @@ export const disorders = {
     },
     {
       title: 'Niska samoocena',
-      icon: MicOff,
+      icon: iconsMap['mic-off'],
       contentHtml: () => (
         <>
           <p>
@@ -247,7 +236,7 @@ export const disorders = {
     },
     {
       title: 'Zaburzenia osobowości',
-      icon: Contact,
+      icon: iconsMap.contact,
       contentHtml: () => (
         <>
           <p>

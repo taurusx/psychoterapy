@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { disorders } from './content'
+import { disorders } from './disordersContent'
 import DisorderCard from './disorderCard'
 
 const GridLayout = styled.div`
@@ -19,7 +19,7 @@ const GridLayout = styled.div`
   }
 `
 
-const DisordersListing = ({ overview, quantity }) => {
+const DisordersListing = ({ overview = false, quantity }) => {
   let disordersList
   if (quantity && typeof parseInt(quantity, 10) === 'number') {
     disordersList = disorders.types.slice(0, parseInt(quantity, 10))
