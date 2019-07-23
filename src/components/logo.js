@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import EmocjaLogoButterfly from './logos/EmocjaLogoButterfly'
+import EmocjaLogoSimple from './logos/EmocjaLogoSimple'
 
 const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
-  max-width: 280px;
-  margin-left: 2rem;
+  max-width: 240px;
+  margin-left: 0.5rem;
   margin-right: 2rem;
   color: ${props => props.theme.grayColor};
   flex: 0 0 auto;
@@ -22,13 +22,13 @@ const LogoWrapper = styled.div`
   }
 
   @media (max-width: ${props => props.theme.mobileTreshold}) {
-    margin-left: 0.5rem;
+    margin-left: 0rem;
   }
 `
 
 const LogoImage = styled.div`
   height: 40px;
-  width: 40px;
+  width: 220px;
   margin-right: 0.8rem;
   flex: 0 0 auto;
   background-size: contain;
@@ -36,45 +36,26 @@ const LogoImage = styled.div`
 
   ${LogoWrapper}.page-top & {
     height: 48px;
-    width: 48px;
+    width: 240px;
   }
 
   @media (max-width: ${props => props.theme.mobileTreshold}) {
     height: 32px;
-    width: 32px;
+    width: 160px;
 
     ${LogoWrapper}.page-top & {
       height: 40px;
-      width: 40px;
+      width: 180px;
     }
   }
 `
 
-const LogoTitle = styled.h1`
-  margin: 0;
-  flex: 0 1 auto;
-  font-size: 1.1rem;
-  font-weight: 700;
-  transition: all ${props => props.theme.menuTransitions};
-
-  ${LogoWrapper}.page-top & {
-    font-size: 1.6rem;
-  }
-
-  @media (max-width: ${props => props.theme.mobileTreshold}) {
-    ${LogoWrapper}.page-top & {
-      font-size: 1.3rem;
-    }
-  }
-`
-
-const Logo = ({ className, siteTitle }) => {
+const Logo = ({ className }) => {
   return (
     <LogoWrapper className={className}>
       <LogoImage>
-        <EmocjaLogoButterfly width="100%" height="100%" />
+        <EmocjaLogoSimple width="100%" height="100%" />
       </LogoImage>
-      <LogoTitle>{siteTitle}</LogoTitle>
     </LogoWrapper>
   )
 }
