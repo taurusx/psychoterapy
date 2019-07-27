@@ -7,6 +7,7 @@ export const pricingPropTypes = {
       json: arrayOf(object),
     }).isRequired,
     icon: string.isRequired,
+    order: number.isRequired,
     price: number.isRequired,
     time: number.isRequired,
     title: string.isRequired,
