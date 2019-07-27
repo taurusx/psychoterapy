@@ -12,7 +12,9 @@ const CONTENT_WIDTH = '75%'
 
 const PricingPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
-  const pricings = data.allContentfulPricing.edges.map(edge => edge.node)
+  const pricings = data.allContentfulPricing.edges
+    .map(edge => edge.node)
+    .sort(({ order: orderA }, { order: orderB }) => orderA - orderB)
 
   return (
     <Layout location={location} title={siteTitle} fullWidth>
@@ -41,6 +43,7 @@ export const pricingPageQuery = graphql`
           description {
             json
           }
+          order
           price
           time
           title

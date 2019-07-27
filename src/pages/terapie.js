@@ -15,7 +15,7 @@ const TherapiesPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const therapies = data.allContentfulTherapy.edges
     .map(therapy => therapy.node)
-    .sort(({ order: orderA }, { order: orderB }) => orderB - orderA)
+    .sort(({ order: orderA }, { order: orderB }) => orderA - orderB)
 
   return (
     <Layout location={location} title={siteTitle} fullWidth>
