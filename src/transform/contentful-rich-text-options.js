@@ -83,9 +83,11 @@ export const options = {
 
       return (
         <span className="contentful-post-link-span">
+          [{' '}
           <Link href={href} target="_blank" rel="noopener noreferrer">
             {fields.title['pl-PL']}
-          </Link>
+          </Link>{' '}
+          ]
         </span>
       )
     },
