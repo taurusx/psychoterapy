@@ -72,7 +72,7 @@ const CardTextWrapper = styled.div`
   }
 `
 
-const Title = styled.h3`
+const Title = styled.h2`
   margin: 0;
   text-align: center;
 `

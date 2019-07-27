@@ -3,6 +3,7 @@ import PropTypes from 'prop-types' // eslint-disable-line
 import styled from 'styled-components'
 
 import { rhythm } from '../../utils/typography'
+import { formatDate } from '../../utils/utils'
 import Link from '../link'
 
 import { articlePropTypes } from './articlePropTypes'
@@ -50,14 +51,7 @@ const Subtitle = styled.p`
 `
 
 const ArticleCardText = ({ article }) => {
-  const date = new Date(article.date)
-  const dayMonthFormatted = date.toLocaleDateString('pl-PL', {
-    day: '2-digit',
-    month: 'long',
-  })
-  const yearFormatted = date.toLocaleDateString('pl-PL', {
-    year: 'numeric',
-  })
+  const formattedDate = formatDate(article.date)
 
   return (
     <CardTextWrapper>
@@ -65,7 +59,7 @@ const ArticleCardText = ({ article }) => {
         <Link to={`/${article.postType}/${article.slug}`}>{article.title}</Link>
       </Title>
       <DateAuthor>
-        {`${dayMonthFormatted}, ${yearFormatted}`}
+        {formattedDate}
         {!article.author && 'Poradnia Emocja'}
         {article.author &&
           article.author.length > 0 &&

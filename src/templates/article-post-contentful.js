@@ -9,6 +9,7 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import { options } from '../transform/contentful-rich-text-options'
 import { rhythm, scale } from '../utils/typography'
+import { formatDate } from '../utils/utils'
 
 const ContentfulPostText = styled.div`
   .contentful-image-container {
@@ -104,6 +105,7 @@ const ArticlePostContentfulTemplate = ({ data, location, pageContext }) => {
   const post = data.contentfulArticlePost
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
+  const formattedDate = formatDate(post.date)
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -121,7 +123,7 @@ const ArticlePostContentfulTemplate = ({ data, location, pageContext }) => {
           marginTop: rhythm(-1),
         }}
       >
-        {post.date}
+        {formattedDate}
         {!post.author && 'Poradnia Emocja'}
         {post.author &&
           post.author.length > 0 &&
@@ -195,7 +197,7 @@ export const pageQuery = graphql`
       lead {
         lead
       }
-      date(formatString: "DD MMMM, YYYY", locale: "pl-PL")
+      date(locale: "pl-PL")
       author {
         avatar {
           fixed(width: 50, height: 50, cropFocus: CENTER) {
