@@ -1,8 +1,9 @@
 import React from 'react'
+import { PropTypes } from 'prop-types' // eslint-disable-line
 import styled from 'styled-components'
 
-import { disorders } from './disordersContent'
 import DisorderCard from './disorderCard'
+import { disorderPropTypes } from './disorderPropTypes'
 
 const GridLayout = styled.div`
   display: grid;
@@ -19,12 +20,12 @@ const GridLayout = styled.div`
   }
 `
 
-const DisordersListing = ({ overview = false, quantity }) => {
+const DisordersListing = ({ disorders, overview = false, quantity }) => {
   let disordersList
   if (quantity && typeof parseInt(quantity, 10) === 'number') {
-    disordersList = disorders.types.slice(0, parseInt(quantity, 10))
+    disordersList = disorders.slice(0, parseInt(quantity, 10))
   } else {
-    disordersList = disorders.types
+    disordersList = disorders
   }
 
   return (
@@ -32,8 +33,8 @@ const DisordersListing = ({ overview = false, quantity }) => {
       {disordersList.map((disorder, index) => {
         return (
           <DisorderCard
-            key={disorder.title}
-            disorder={disorder}
+            key={disorder.node.title}
+            disorder={disorder.node}
             overview={overview}
             hiddenOverview={(overview && index >= 3) || false}
           />
@@ -44,3 +45,8 @@ const DisordersListing = ({ overview = false, quantity }) => {
 }
 
 export default DisordersListing
+
+DisordersListing.propTypes = {
+  disorders: PropTypes.arrayOf(PropTypes.shape(disorderPropTypes.node))
+    .isRequired,
+}

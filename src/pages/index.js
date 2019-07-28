@@ -16,6 +16,7 @@ const CONTENT_WIDTH = '80%'
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allContentfulArticlePost.edges
+  const disorders = data.allContentfulDisorder.edges
 
   return (
     <Layout location={location} title={siteTitle} fullWidth>
@@ -31,7 +32,7 @@ const BlogIndex = ({ data, location }) => {
       />
       {/* Disorders */}
       <Section id="section-1" title="W czym pomagam?" maxWidth={CONTENT_WIDTH}>
-        <DisordersListing overview quantity="6" />
+        <DisordersListing overview quantity="6" disorders={disorders} />
         <ButtonLink to="/w-czym-pomagam/" lightTheme arrow alignRight>
           Poznaj pełną listę i szczegóły
         </ButtonLink>
@@ -108,6 +109,13 @@ export const pageQuery = graphql`
       limit: 3
     ) {
       ...AllContentfulArticlePosts
+    }
+    allContentfulDisorder(
+      filter: { node_locale: { eq: "pl-PL" } }
+      sort: { fields: [order], order: ASC }
+      limit: 6
+    ) {
+      ...AllContentfulDisorders
     }
   }
 `

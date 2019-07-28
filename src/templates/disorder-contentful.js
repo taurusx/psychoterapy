@@ -1,15 +1,13 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import Img from 'gatsby-image'
 import styled from 'styled-components'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
-import Bio from '../components/bio'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import { options } from '../transform/contentful-rich-text-options'
-import { rhythm, scale } from '../utils/typography'
-import { formatDate } from '../utils/utils'
+import { rhythm } from '../utils/typography'
+import ButtonLink from '../components/buttonLink'
 
 const ContentfulPostText = styled.div`
   .contentful-image-container {
@@ -101,65 +99,35 @@ const ContentfulPostText = styled.div`
   }
 `
 
-const ArticlePostContentfulTemplate = ({ data, location, pageContext }) => {
-  const post = data.contentfulArticlePost
+const DisorderContentfulTemplate = ({ data, location, pageContext }) => {
+  const disorder = data.contentfulDisorder
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
-  const formattedDate = formatDate(post.date)
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title={post.title} description={post.lead.lead} />
-      {/* Main image */}
-      <Img fluid={post.mainImage.fluid} />
+      <SEO
+        title={disorder.title}
+        description={`${siteTitle} - Opis zaburzeń - ${disorder.title}`}
+      />
       {/* Title */}
-      <h1>{post.title}</h1>
-      {/* Date and Author */}
-      <p
-        style={{
-          ...scale(-1 / 5),
-          display: `block`,
-          marginBottom: rhythm(1),
-          marginTop: rhythm(-1),
-        }}
-      >
-        {formattedDate}
-        {!post.author && 'Poradnia Emocja'}
-        {post.author &&
-          post.author.length > 0 &&
-          post.author.map(
-            author =>
-              ` |
-            ${author.firstName ? ` ${author.firstName}` : ''}
-              ${author.lastName ? ` ${author.lastName}` : ''}`
-          )}
-      </p>
-      {/* Lead */}
-      <p
-        style={{
-          fontWeight: 'bold',
-          fontStyle: 'italic',
-        }}
-      >
-        {post.lead.lead}
-      </p>
+      <h1>{disorder.title}</h1>
       {/* Content */}
       <ContentfulPostText>
-        {documentToReactComponents(post.content.json, options)}
+        {documentToReactComponents(disorder.description.json, options)}
       </ContentfulPostText>
       <hr
         style={{
           marginBottom: rhythm(1),
         }}
       />
-      {/* Bio */}
-      <Bio author={post.author} />
       {/* Next and Previous */}
       <ul
         style={{
           display: `flex`,
           flexWrap: `wrap`,
           justifyContent: `space-between`,
+          alignItems: 'center',
           listStyle: `none`,
           padding: 0,
         }}
@@ -170,6 +138,16 @@ const ArticlePostContentfulTemplate = ({ data, location, pageContext }) => {
               ← {previous.title}
             </Link>
           )}
+        </li>
+        <li>
+          {/* Back button */}
+          <ButtonLink
+            to="/w-czym-pomagam/"
+            grayTheme
+            changeSize={{ size: '80%', borderWidth: '1px' }}
+          >
+            Powrót do listy
+          </ButtonLink>
         </li>
         <li>
           {next && (
@@ -183,42 +161,23 @@ const ArticlePostContentfulTemplate = ({ data, location, pageContext }) => {
   )
 }
 
-export default ArticlePostContentfulTemplate
+export default DisorderContentfulTemplate
 
-export const articlePageQuery = graphql`
-  query ContentfulArticlePostBySlug($slug: String!) {
+export const disorderPageQuery = graphql`
+  query ContentfulDisorderBySlug($slug: String!) {
     site {
       siteMetadata {
         title
       }
     }
-    contentfulArticlePost(slug: { eq: $slug }) {
-      title
-      lead {
-        lead
-      }
-      date(locale: "pl-PL")
-      author {
-        avatar {
-          fixed(width: 50, height: 50, cropFocus: CENTER) {
-            ...GatsbyContentfulFixed_withWebp
-          }
-        }
-        description {
-          description
-        }
-        email
-        firstName
-        lastName
-      }
-      mainImage {
-        fluid {
-          ...GatsbyContentfulFluid
-        }
-      }
-      content {
+    contentfulDisorder(slug: { eq: $slug }) {
+      description {
         json
       }
+      icon
+      order
+      slug
+      title
     }
   }
 `

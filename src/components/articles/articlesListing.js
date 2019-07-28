@@ -1,6 +1,5 @@
 import React from 'react'
 import { PropTypes } from 'prop-types' // eslint-disable-line
-import { graphql } from 'gatsby'
 import styled from 'styled-components'
 
 import ArticleCard from './articleCard'
@@ -24,8 +23,8 @@ const GridLayout = styled.div`
 
 const ArticlesListing = ({ posts }) => (
   <GridLayout>
-    {posts.map(({ node }) => {
-      return <ArticleCard key={node.slug} article={node} />
+    {posts.map(post => {
+      return <ArticleCard key={post.node.slug} article={post.node} />
     })}
   </GridLayout>
 )
@@ -35,37 +34,3 @@ export default ArticlesListing
 ArticlesListing.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape(articlePropTypes)).isRequired,
 }
-
-export const allArticlesQuery = graphql`
-  fragment AllContentfulArticlePosts on ContentfulArticlePostConnection {
-    edges {
-      node {
-        title
-        lead {
-          lead
-        }
-        date
-        author {
-          avatar {
-            fluid {
-              ...GatsbyContentfulFluid
-            }
-          }
-          description {
-            description
-          }
-          email
-          firstName
-          lastName
-        }
-        mainImage {
-          fluid(maxWidth: 600) {
-            ...GatsbyContentfulFluid
-          }
-        }
-        slug
-        postType
-      }
-    }
-  }
-`

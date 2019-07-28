@@ -2,33 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types' // eslint-disable-line
 import styled, { css } from 'styled-components'
 
-import Card from '../card'
 import { rhythm } from '../../utils/typography'
+import Card from '../card'
+import { iconsMap } from '../icons'
+import Link from '../link'
+import { disorderPropTypes } from './disorderPropTypes'
 
 const CardWrapper = styled(Card)`
   min-height: 200px;
   max-width: 280px;
+  height: 100%;
   overflow: visible;
 
-  &::after {
-    content: '⯆';
-    font-size: 2rem;
-    position: absolute;
-    bottom: -2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    color: ${props => props.theme.accentDark};
-    opacity: 0;
-    transition: ${({ theme: { transition } }) =>
-      `${transition.duration} ${transition.function}`};
-  }
-
   &:hover {
-    cursor: ${props => (props.overview ? '' : 'pointer')};
-
-    &::after {
-      opacity: ${props => (props.overview ? '0' : '1')};
-    }
+    cursor: pointer;
+    box-shadow: 2px 3px 6px 0 ${p => p.theme.accentDarkest}55;
   }
 
   ${props =>
@@ -99,27 +87,26 @@ const Title = styled.h3`
   text-align: center;
 `
 
-const DisorderCard = ({
-  disorder: { icon: Icon, title },
-  overview,
-  hiddenOverview,
-}) => (
-  <CardWrapper hidden={hiddenOverview} overview={overview}>
-    <CardImageWrapper overview={overview}>
-      {Icon && <Icon height="56px" width="56px" />}
-    </CardImageWrapper>
-    <CardTextWrapper>
-      <Title>{title}</Title>
-    </CardTextWrapper>
-  </CardWrapper>
-)
+const DisorderCard = ({ disorder, overview, hiddenOverview }) => {
+  const { icon, slug, title } = disorder
+  const Icon = iconsMap[icon || 'contact']
+
+  return (
+    <Link to={`/opis-zaburzen/${slug}`} style={{ boxShadow: 'none' }}>
+      <CardWrapper hidden={hiddenOverview} overview={overview}>
+        <CardImageWrapper overview={overview}>
+          {Icon && <Icon height="56px" width="56px" />}
+        </CardImageWrapper>
+        <CardTextWrapper>
+          <Title>{title}</Title>
+        </CardTextWrapper>
+      </CardWrapper>
+    </Link>
+  )
+}
 
 DisorderCard.propTypes = {
-  disorder: PropTypes.shape({
-    contentHtml: PropTypes.func,
-    icon: PropTypes.func,
-    title: PropTypes.string.isRequired,
-  }).isRequired,
+  disorder: PropTypes.shape(disorderPropTypes.node).isRequired,
   hiddenOverview: PropTypes.bool.isRequired,
   overview: PropTypes.bool.isRequired,
 }

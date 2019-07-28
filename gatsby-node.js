@@ -4,8 +4,11 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    const articlePost = path.resolve(
+    const articlePostTemplate = path.resolve(
       `./src/templates/article-post-contentful.js`
+    )
+    const disorderTemplate = path.resolve(
+      `./src/templates/disorder-contentful.js`
     )
     resolve(
       graphql(
@@ -34,6 +37,31 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
+            allContentfulDisorder(
+              filter: { node_locale: { eq: "pl-PL" } }
+              sort: { fields: [order], order: ASC }
+            ) {
+              edges {
+                next {
+                  slug
+                  title
+                }
+                previous {
+                  slug
+                  title
+                }
+                node {
+                  description {
+                    json
+                  }
+                  icon
+                  order
+                  slug
+                  title
+                }
+              }
+              totalCount
+            }
           }
         `
       ).then(result => {
@@ -43,6 +71,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create contentful articles pages.
         const articles = result.data.allContentfulArticlePost.edges
+        const disorders = result.data.allContentfulDisorder.edges
 
         articles.forEach(post => {
           const { previous } = post
@@ -54,9 +83,29 @@ exports.createPages = ({ graphql, actions }) => {
 
           createPage({
             path: slugFull,
-            component: articlePost,
+            component: articlePostTemplate,
             context: {
               slug: post.node.slug,
+              slugFull,
+              previous,
+              next,
+            },
+          })
+        })
+
+        // Create contentful disorders descriptions pages.
+        disorders.forEach(disorder => {
+          const { previous } = disorder
+          const { next } = disorder
+          const slugFull = `/opis-zaburzen/${disorder.node.slug}`
+          if (previous) previous.slugFull = `/opis-zaburzen/${previous.slug}`
+          if (next) next.slugFull = `/opis-zaburzen/${next.slug}`
+
+          createPage({
+            path: slugFull,
+            component: disorderTemplate,
+            context: {
+              slug: disorder.node.slug,
               slugFull,
               previous,
               next,
