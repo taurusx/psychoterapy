@@ -34,7 +34,7 @@ const TherapiesPage = ({ data, location }) => {
         <h1>Terapie</h1>
       </PageHeader>
       <Section maxWidth={CONTENT_WIDTH}>
-        <h2>Poznaj terapie, którymi się zajmuję.</h2>
+        <h3>Poznaj terapie, którymi się zajmuję.</h3>
         {therapies && <TherapiesListing therapies={therapies} />}
       </Section>
       <Section maxWidth={CONTENT_WIDTH} backgroundColor="#eee">

@@ -22,10 +22,6 @@ const StyledSection = styled.section`
     padding: ${rhythm(0.5)} ${rhythm(3 / 4)} ${rhythm(0.5)};
     min-height: 300px;
   }
-
-  @media (max-width: 380px) {
-    padding: ${rhythm(0.5)} ${rhythm(0.5)} ${rhythm(0.5)};
-  }
 `
 
 const Background = styled.div`

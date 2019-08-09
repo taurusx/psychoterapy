@@ -111,6 +111,10 @@ const SliderText = styled.div`
 
   @media (max-width: 720px) {
     padding: 4rem 4rem;
+
+    .content {
+      font-size: unset;
+    }
   }
 
   @media (max-width: 480px) {

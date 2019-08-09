@@ -77,6 +77,11 @@ const StyledButton = styled.button`
     box-shadow: 0 1px 20px 0 ${props => props.currentTheme.boxShadowColor};
   }
 
+  @media (max-width: 480px) {
+    font-size: 1rem;
+    padding: 0.6em 1.2em;
+  }
+
   ${props =>
     props.fullWidth &&
     css`

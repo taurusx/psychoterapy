@@ -45,13 +45,17 @@ const BlogIndex = ({ data, location }) => {
         overlay="#11111166"
       >
         <h4
-          css={{
-            alignSelf: 'center',
-            textAlign: 'center',
-            fontSize: '160%',
-            color: '#fff',
-            maxWidth: '800px',
-          }}
+          css={`
+            align-self: center;
+            text-align: center;
+            font-size: 160%;
+            color: #fff;
+            max-width: 800px;
+
+            @media (max-width: 480px) {
+              font-size: 120%;
+            }
+          `}
         >
           „To ciekawy paradoks, że dopiero kiedy akceptuję siebie takiego, jakim
           jestem, mogę się zmienić.”<small> -&nbsp;Carl Rogers</small>

@@ -12,6 +12,10 @@ const StyledHeading = styled.h2`
   @media (max-width: 720px) {
     ${{ ...scale(0.8) }}
   }
+
+  @media (max-width: 480px) {
+    ${{ ...scale(0.5) }}
+  }
 `
 
 const StyledSubHeading = styled.h3`
@@ -22,6 +26,10 @@ const StyledSubHeading = styled.h3`
 
   @media (max-width: 720px) {
     ${{ ...scale(0.8) }}
+  }
+
+  @media (max-width: 480px) {
+    ${{ ...scale(0.5) }}
   }
 `
 

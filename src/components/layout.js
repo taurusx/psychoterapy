@@ -10,12 +10,18 @@ import Header from './header'
 import HeroHeader from './heroHeader'
 import Footer from './footer'
 
+const MEDIUM_SCREEN_BREAKPOINT = '960px'
+
 const Main = styled.main`
   flex: 1 0 auto;
   margin-left: auto;
   margin-right: auto;
   max-width: ${rhythm(32)};
   padding: ${rhythm(1.5)} ${rhythm(5 / 4)} ${rhythm(1 / 4)};
+
+  @media (max-width: ${MEDIUM_SCREEN_BREAKPOINT}) {
+    max-width: 100%;
+  }
 `
 
 const MainFull = styled(Main)`
