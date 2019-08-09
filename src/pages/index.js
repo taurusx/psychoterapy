@@ -8,7 +8,7 @@ import DisordersListing from '../components/disorders/disordersListing'
 import ArticlesListing from '../components/articles/articlesListing'
 import ButtonLink from '../components/buttonLink'
 import { MottoImage } from '../components/siteImages'
-import AboutWithPic from '../components/aboutWithPic'
+import AboutWithPic from '../components/about/aboutWithPic'
 import TestimonialsSlider from '../components/testimonials/testimonialsSlider'
 
 const CONTENT_WIDTH = '80%'
@@ -17,6 +17,7 @@ const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allContentfulArticlePost.edges
   const disorders = data.allContentfulDisorder.edges
+  const aboutDetails = data.contentfulAbout
 
   return (
     <Layout location={location} title={siteTitle} fullWidth>
@@ -63,22 +64,7 @@ const BlogIndex = ({ data, location }) => {
       </Section>
       {/* About */}
       <Section id="section-3" title="O mnie" maxWidth={CONTENT_WIDTH}>
-        <AboutWithPic>
-          <p>
-            Nazywam się <strong>Agnieszka Wojnar-Jadczyszyn</strong> i jestem
-            psychologiem i psychoterapeutą poznawczo-behawioralnym.
-          </p>
-          <p>
-            Prowadzę terapię osób dorosłych i młodzieży oraz konsultacje dla
-            rodziców pomagając rozwijać kompetencje wychowawcze. W swojej pracy
-            wykorzystuję metody terapii poznawczo-behawioralnej, terapii
-            schematu oraz akceptacji i zaangażowania. Swoją pracę poddaje
-            regularnej superwizji. Traktuję pracę terapeutyczną jako drogę do
-            poprawy jakości życia. Stosuję przede wszystkim życzliwe i pełne
-            szacunku podejście wobec każdej osoby, pomagając pacjentowi w
-            procesie zmiany.
-          </p>
-        </AboutWithPic>
+        <AboutWithPic about={aboutDetails} summaryOnly />
         <ButtonLink to="/o-mnie/" lightTheme transparent arrow alignRight>
           Poznaj mnie
         </ButtonLink>
@@ -120,6 +106,12 @@ export const pageQuery = graphql`
       limit: 6
     ) {
       ...AllContentfulDisorders
+    }
+    contentfulAbout(
+      node_locale: { eq: "pl-PL" }
+      slug: { eq: "agnieszka-wojnar-jadczyszyn" }
+    ) {
+      ...QueryContentfulAbout
     }
   }
 `
