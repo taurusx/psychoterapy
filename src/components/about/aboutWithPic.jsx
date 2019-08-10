@@ -6,7 +6,6 @@ import TextWithPic from '../textWithPic'
 
 const AboutWithPic = ({ about, summaryOnly }) => {
   const {
-    degree,
     description,
     descriptionFirst,
     descriptionSummary,
@@ -16,9 +15,7 @@ const AboutWithPic = ({ about, summaryOnly }) => {
     position,
   } = about
 
-  const name = `${degree ? `${degree} ` : ''}${fullName}${
-    position ? `\n${position}` : ''
-  }`
+  const name = `${fullName}${position ? `\n${position}` : ''}`
 
   const textFirst = documentToReactComponents(descriptionFirst.json, options)
   const textRest =

@@ -2,7 +2,6 @@ import { graphql } from 'gatsby'
 
 export const allDisordersQuery = graphql`
   fragment QueryContentfulAbout on ContentfulAbout {
-    degree
     description {
       json
     }
