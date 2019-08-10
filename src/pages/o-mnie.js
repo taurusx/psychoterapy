@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 
 import AboutWithPic from '../components/about/aboutWithPic'
 import ButtonLink from '../components/buttonLink'
+import DiplomasSlider from '../components/diplomasSlider'
 import Layout from '../components/layout'
 import PageHeader from '../components/pageHeader'
 import Section from '../components/section'
@@ -14,6 +15,7 @@ const CONTENT_WIDTH = '75%'
 const AboutPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const aboutDetails = data.contentfulAbout
+  const { diplomas } = aboutDetails
 
   return (
     <Layout location={location} title={siteTitle} fullWidth>
@@ -31,6 +33,15 @@ const AboutPage = ({ data, location }) => {
       </PageHeader>
       <Section maxWidth={CONTENT_WIDTH}>
         <AboutWithPic about={aboutDetails} />
+      </Section>
+      {/* Diplomas */}
+      <Section
+        backgroundColor="#555"
+        color="white"
+        titleAlign="center"
+        title="Dyplomy i certyfikaty"
+      >
+        <DiplomasSlider diplomas={diplomas} />
       </Section>
       <Section maxWidth={CONTENT_WIDTH} backgroundColor="#eee">
         <h2>Zapoznaj się z moją ofertą terapeutyczną</h2>

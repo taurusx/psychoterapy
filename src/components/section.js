@@ -17,6 +17,7 @@ const StyledSection = styled.section`
   flex-direction: column;
   justify-content: center;
   background: ${props => props.backgroundColor || 'transparent'};
+  color: ${props => props.color || 'inherit'};
 
   @media (max-width: 480px) {
     padding: ${rhythm(0.5)} ${rhythm(3 / 4)} ${rhythm(0.5)};
@@ -51,13 +52,16 @@ const BackgroundOverlay = styled.div`
 `
 
 const SectionTitle = styled.h2`
-  margin: ${rhythm(1)} ${rhythm(0)} ${rhythm(0.75)};
+  margin: ${rhythm(1.25)} ${rhythm(0)} ${rhythm(1)};
+  text-align: ${({ titleAlign }) => titleAlign || 'left'};
 `
 
 const Section = ({
   title,
+  titleAlign,
   maxWidth,
   minHeight,
+  color,
   backgroundColor,
   backgroundImg,
   overlay,
@@ -67,10 +71,11 @@ const Section = ({
     maxWidth={maxWidth}
     minHeight={minHeight}
     backgroundColor={backgroundColor}
+    color={color}
   >
     {backgroundImg ? <Background>{backgroundImg}</Background> : ''}
     {overlay ? <BackgroundOverlay overlay={overlay} /> : ''}
-    {title ? <SectionTitle>{title}</SectionTitle> : ''}
+    {title ? <SectionTitle titleAlign={titleAlign}>{title}</SectionTitle> : ''}
     {children}
   </StyledSection>
 )
