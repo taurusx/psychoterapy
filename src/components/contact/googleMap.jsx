@@ -29,7 +29,7 @@ const GoogleMap = ({ id }) => {
         allowFullScreen
         src="https://maps.google.com/maps?q=Dobra+Przestrzeń,+Drzymały+18/24,+Warszawa&hl=pl&z=15&ie=UTF8&output=embed"
         title="Google Maps - Dobra Przestrzeń"
-      ></iframe>
+      />
     </MapContainer>
   )
 }

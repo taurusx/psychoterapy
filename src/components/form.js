@@ -107,21 +107,24 @@ const SubmitButton = styled.input`
 class Form extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      isFormValid: false,
-      recaptchaResponse: null,
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
-      acceptance: false,
-    }
+
     this.formRef = React.createRef()
     this.recaptchaRef = React.createRef()
+
     this.validateAllInputs = this.validateAllInputs.bind(this)
     this.onRecaptchaChange = this.onRecaptchaChange.bind(this)
     this.onChangeHandle = this.onChangeHandle.bind(this)
     this.onSubmitHandle = this.onSubmitHandle.bind(this)
+  }
+
+  state = {
+    isFormValid: false,
+    recaptchaResponse: null,
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+    acceptance: false,
   }
 
   onRecaptchaChange = value => {
