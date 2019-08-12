@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Slider from 'react-slick'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 
 import '../utils/slick/slick.css'
 import '../utils/slick/slick-theme.css'
+
+import Modal from './modal'
 
 const ARROW_SIZE = '2.5rem'
 const DOTS_SIZE = '1.5rem'
@@ -102,14 +104,34 @@ const DiplomaImageContainer = styled.div`
     border-radius: 1rem;
     box-shadow: 2px 2px 3px black, 4px 4px 5px white;
 
-    &:hover {
-      cursor: pointer;
-      box-shadow: 2px 2px 3px black, 6px 6px 5px white;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #11111122;
+    }
+  }
+  & .gatsby-image-wrapper:hover {
+    cursor: zoom-in;
+  }
+
+  & .gatsby-image-wrapper:hover,
+  &.active .gatsby-image-wrapper,
+  &:focus .gatsby-image-wrapper,
+  &:active .gatsby-image-wrapper {
+    box-shadow: 2px 2px 3px black, 6px 6px 5px white;
+
+    &::after {
+      background-color: transparent;
     }
   }
 `
 
 const DiplomasSlider = ({ diplomas }) => {
+  const [activeId, setActiveId] = useState(null)
+  const [showModal, setShowModal] = useState(false)
+
   const settings = {
     dots: true,
     infinite: true,
@@ -143,20 +165,86 @@ const DiplomasSlider = ({ diplomas }) => {
     ],
   }
 
+  const onFocus = id => {
+    if (activeId !== id) setActiveId(id)
+  }
+
+  const onBlur = () => {
+    if (!showModal) setActiveId(null)
+  }
+
+  const handleDiplomaClick = (e, id) => {
+    if (id && e.target.classList.contains('gatsby-image-wrapper')) {
+      setActiveId(id)
+      setShowModal(true)
+    }
+  }
+
+  const handleDiplomaKeyDown = (e, id) => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault()
+      setActiveId(id)
+      setShowModal(true)
+    }
+  }
+
+  const handleDiplomaClose = activeId => {
+    Array.from(document.getElementsByClassName('slick-slide'))
+      .filter(el => !el.classList.contains('slick-cloned'))
+      .find(el => el.innerHTML.includes(`diploma-${activeId}`))
+      // solution below depend on the structure of slick-slides:
+      .firstChild.firstChild.firstChild.focus()
+
+    setShowModal(false)
+    setActiveId(null)
+  }
+
   const sliderContent =
     diplomas &&
     diplomas.map(diploma => {
       return (
         // use additional div wrapper for slick-slider to set slider items
-        <div key={diploma.id}>
-          <DiplomaImageContainer>
+        <div key={`diploma-${diploma.id}`}>
+          <DiplomaImageContainer
+            id={`diploma-${diploma.id}`}
+            className={activeId === diploma.id ? 'active' : ''}
+            tabIndex="0"
+            onFocus={onFocus}
+            onBlur={onBlur}
+            onKeyDown={e => handleDiplomaKeyDown(e, diploma.id)}
+            onClick={e => handleDiplomaClick(e, diploma.id)}
+          >
             <Img fixed={diploma.fixed} alt={diploma.description || ''} />
           </DiplomaImageContainer>
         </div>
       )
     })
 
-  return <StyledSlider {...settings}>{sliderContent}</StyledSlider>
+  const currentDiploma = diplomas.find(diploma => diploma.id === activeId)
+  // width to height ratio for currently active diploma, or 1.0 if unknown
+  const imgWidth =
+    (currentDiploma && currentDiploma.fixed && currentDiploma.fixed.width) || 1
+  const imgHeight =
+    (currentDiploma && currentDiploma.fixed && currentDiploma.fixed.height) || 1
+
+  return (
+    <>
+      <StyledSlider {...settings}>{sliderContent}</StyledSlider>
+      <Modal
+        showModal={showModal}
+        handleClose={() => handleDiplomaClose(activeId)}
+        imgWidth={imgWidth}
+        imgHeight={imgHeight}
+      >
+        {currentDiploma && (
+          <Img
+            fluid={currentDiploma.fluid}
+            alt={currentDiploma.description || ''}
+          />
+        )}
+      </Modal>
+    </>
+  )
 }
 
 export default DiplomasSlider
