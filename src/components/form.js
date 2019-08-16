@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { navigateTo } from 'gatsby-link' // eslint-disable-line
 import Recaptcha from 'react-google-recaptcha'
@@ -96,6 +96,7 @@ const SubmitButton = styled.input`
   color: white;
   border: 2px solid transparent;
   border-radius: 0.3rem;
+  background-color: #ccc;
   transition: background 0.2s linear;
 
   &:hover {
@@ -104,45 +105,35 @@ const SubmitButton = styled.input`
   }
 `
 
-class Form extends React.Component {
-  constructor(props) {
-    super(props)
+const Form = () => {
+  const formRef = React.createRef()
+  const recaptchaRef = React.createRef()
 
-    this.formRef = React.createRef()
-    this.recaptchaRef = React.createRef()
-
-    this.validateAllInputs = this.validateAllInputs.bind(this)
-    this.onRecaptchaChange = this.onRecaptchaChange.bind(this)
-    this.onChangeHandle = this.onChangeHandle.bind(this)
-    this.onSubmitHandle = this.onSubmitHandle.bind(this)
-  }
-
-  state = {
-    isFormValid: false,
-    recaptchaResponse: null,
+  const [isFormValid, setIsFormValid] = useState(false)
+  const [recaptchaResponse, setRecaptchaResponse] = useState(null)
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     message: '',
-    acceptance: false,
+  })
+  const [acceptance, setAcceptance] = useState(false)
+
+  const onRecaptchaChange = value => {
+    setRecaptchaResponse(value)
   }
 
-  onRecaptchaChange = value => {
-    this.setState({ recaptchaResponse: value })
-  }
-
-  onChangeHandle = e => {
+  const onChangeHandle = e => {
     if (e.target.name === 'acceptance-marketing') {
-      this.setState({ acceptance: e.target.checked })
+      setAcceptance(e.target.checked)
     } else {
-      this.setState({ [e.target.name]: e.target.value })
+      setFormData({ ...formData, [e.target.name]: e.target.value })
     }
   }
 
-  onSubmitHandle = e => {
+  const onSubmitHandle = e => {
     e.preventDefault()
 
-    const { acceptance, recaptchaResponse } = this.state
     if (!recaptchaResponse) {
       return
     }
@@ -155,125 +146,112 @@ class Form extends React.Component {
         'form-name': form.getAttribute('name'),
         'g-recaptcha-response': recaptchaResponse,
         'acceptance-marketing': acceptance,
-        ...this.state,
+        ...formData,
       }),
     })
       .then(() => navigateTo(form.getAttribute('action')))
       .catch(error => console.error(error.message))
   }
 
-  validateAllInputs() {
-    this.setState(
-      this.formRef.current.checkValidity()
-        ? { isFormValid: true }
-        : { isFormValid: false }
-    )
+  const validateAllInputs = () => {
+    setIsFormValid(formRef.current.checkValidity())
   }
 
-  render() {
-    const isSmallMobile =
-      typeof window !== 'undefined' && window.innerWidth <= 370
-    const {
-      acceptance,
-      email,
-      isFormValid,
-      message,
-      name,
-      phone,
-      recaptchaResponse,
-    } = this.state
-    return (
-      <FormLayout role="form">
-        <h3>Napisz do mnie</h3>
-        <p>
-          Jeśli chcesz się umówić na wizytę lub chcesz, żebym skontaktowała się
-          z Tobą, proszę o przesłanie wiadomości poprzez poniższy formularz.
-        </p>
-        <form
-          name="contact-form"
-          method="post"
-          action="/dziekujemy/"
-          ref={this.formRef}
-          className={isFormValid && recaptchaResponse ? 'form-valid' : ''}
-          autoComplete="off"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          data-netlify-recaptcha="true"
-          onChange={this.validateAllInputs}
-          onSubmit={this.onSubmitHandle}
-        >
-          <input type="hidden" name="form-name" value="contact-form" />
-          <FormField>
-            <label htmlFor="name">
-              Twoje imię
-              <input
-                type="text"
-                name="name"
-                id="name"
-                value={name}
-                placeholder="(podaj imię)"
-                required
-                onChange={this.onChangeHandle}
-              />
-            </label>
-          </FormField>
-          <FormField>
-            <label htmlFor="email">
-              Email
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={email}
-                placeholder="(wymagane, żebyśmy mogli udzielić odpowiedzi)"
-                required
-                onChange={this.onChangeHandle}
-              />
-            </label>
-          </FormField>
-          <FormField className="optional">
-            <label htmlFor="phone">
-              Telefon
-              <input
-                type="tel"
-                name="phone"
-                id="phone"
-                value={phone}
-                placeholder="+48 | "
-                pattern="[0-9() +-]{9,21}"
-                title="Sprawdź, czy poprawnie wpisano numer. Dopuszczalne są cyfry od 0 do 9, myślniki, spacje, nr kierunkowy. "
-                onChange={this.onChangeHandle}
-              />
-            </label>
-          </FormField>
-          <FormField>
-            <label htmlFor="message">
-              Jak możemy Ci pomóc?
-              <textarea
-                id="message"
-                name="message"
-                rows="5"
-                value={message}
-                placeholder="Twoja wiadomość"
-                required
-                onChange={this.onChangeHandle}
-              />
-            </label>
-          </FormField>
-          <FormAcceptance checked={acceptance} onChange={this.onChangeHandle} />
-          <Recaptcha
-            ref={this.recaptchaRef}
-            sitekey={RECAPTCHA_KEY}
-            size={isSmallMobile ? 'compact' : 'normal'}
-            onChange={this.onRecaptchaChange}
-          />
-          <FormField>
-            <SubmitButton type="submit" value="Wyślij" />
-          </FormField>
-        </form>
-      </FormLayout>
-    )
-  }
+  const isSmallMobile =
+    typeof window !== 'undefined' && window.innerWidth <= 370
+  const { email, message, name, phone } = formData
+
+  return (
+    <FormLayout role="form">
+      <h3>Napisz do mnie</h3>
+      <p>
+        Jeśli chcesz się umówić na wizytę lub chcesz, żebym skontaktowała się z
+        Tobą, proszę o przesłanie wiadomości poprzez poniższy formularz.
+      </p>
+      <form
+        name="contact-form"
+        method="post"
+        action="/dziekujemy/"
+        ref={formRef}
+        className={isFormValid && recaptchaResponse ? 'form-valid' : ''}
+        autoComplete="off"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        data-netlify-recaptcha="true"
+        onChange={validateAllInputs}
+        onSubmit={onSubmitHandle}
+      >
+        <input type="hidden" name="form-name" value="contact-form" />
+        <FormField>
+          <label htmlFor="name">
+            Twoje imię
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={name}
+              placeholder="(podaj imię)"
+              required
+              onChange={onChangeHandle}
+            />
+          </label>
+        </FormField>
+        <FormField>
+          <label htmlFor="email">
+            Email
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              placeholder="(wymagane, żebyśmy mogli udzielić odpowiedzi)"
+              required
+              onChange={onChangeHandle}
+            />
+          </label>
+        </FormField>
+        <FormField className="optional">
+          <label htmlFor="phone">
+            Telefon
+            <input
+              type="tel"
+              name="phone"
+              id="phone"
+              value={phone}
+              placeholder="+48 | "
+              pattern="[0-9() +-]{9,21}"
+              title="Sprawdź, czy poprawnie wpisano numer. Dopuszczalne są cyfry od 0 do 9, myślniki, spacje, nr kierunkowy. "
+              onChange={onChangeHandle}
+            />
+          </label>
+        </FormField>
+        <FormField>
+          <label htmlFor="message">
+            Jak możemy Ci pomóc?
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              value={message}
+              placeholder="Twoja wiadomość"
+              required
+              onChange={onChangeHandle}
+            />
+          </label>
+        </FormField>
+        <FormAcceptance checked={acceptance} onChange={onChangeHandle} />
+        <Recaptcha
+          ref={recaptchaRef}
+          sitekey={RECAPTCHA_KEY}
+          size={isSmallMobile ? 'compact' : 'normal'}
+          onChange={onRecaptchaChange}
+        />
+        <FormField>
+          <SubmitButton type="submit" value="Wyślij" />
+        </FormField>
+      </form>
+    </FormLayout>
+  )
 }
 
 export default Form
