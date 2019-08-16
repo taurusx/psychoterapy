@@ -36,10 +36,10 @@ const ContactPage = ({ data, location }) => {
         title="Kontakt"
         keywords={[
           `kontakt`,
-          `Rzeszów`,
+          `gabinet emocja`,
           `Warszawa`,
           `psychoterapia`,
-          `poradnia`,
+          `Warszawa Ursus`,
         ]}
       />
       <PageHeader backgroundImg={<LaptopImage />} maxWidth={CONTENT_WIDTH}>

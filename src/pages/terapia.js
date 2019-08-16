@@ -21,13 +21,13 @@ const TherapiesPage = ({ data, location }) => {
     <Layout location={location} title={siteTitle} fullWidth>
       <SEO
         title="Terapia"
-        description="Konsultacje oraz psychoterapia indywidualna, dziecka, par, małżeństw."
+        description="Psychoterapia jest metodą leczenia i wspomagania rozwoju. W zależności od problemu i stopnia jego nasilenia, stosuje się różne rodzaje i metody terapii."
         keywords={[
-          `terapia małżeństw`,
+          `terapia poznawczo-behawioralna`,
+          `terapia schematu`,
+          `terapia akceptacji i zaangażowania`,
           `psychoterapia`,
-          `nerwica`,
-          `depresja`,
-          `poradnia`,
+          `pomoc psychologa`,
         ]}
       />
       <PageHeader backgroundImg={<JarPlantImage />} maxWidth={CONTENT_WIDTH}>

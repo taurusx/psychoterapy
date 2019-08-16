@@ -23,9 +23,9 @@ const AboutPage = ({ data, location }) => {
         title="O mnie"
         keywords={[
           `Agnieszka Wojnar-Jadczyszyn`,
+          `psychoterapeuta poznawczo-behawioralny`,
           `psychoterapeuta`,
           `psycholog`,
-          `poradnia`,
         ]}
       />
       <PageHeader backgroundImg={<DeskPaperImage />} maxWidth={CONTENT_WIDTH}>

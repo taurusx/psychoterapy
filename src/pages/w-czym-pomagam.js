@@ -19,7 +19,16 @@ const DisordersIndex = ({ data, location }) => {
     <Layout location={location} title={siteTitle} fullWidth>
       <SEO
         title="Artykuły"
-        keywords={[`psychoterapia`, `nerwica`, `depresja`, `poradnia`]}
+        description="Pomocy psychoterapeutyczna osobom dorosłym i młodzieży. Zakres pomocy jest dostosowany do indywidualnych potrzeb. Obszary, w których psychoterapia może pomóc."
+        keywords={[
+          `psychoterapia`,
+          `depresja`,
+          `lęk`,
+          `stres`,
+          `emocje`,
+          `niska samoocena`,
+          `nerwica`,
+        ]}
       />
       <PageHeader backgroundImg={<RescueBuoyImage />} maxWidth={CONTENT_WIDTH}>
         <h1>W czym pomagam</h1>

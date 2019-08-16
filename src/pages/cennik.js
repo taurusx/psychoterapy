@@ -20,7 +20,14 @@ const PricingPage = ({ data, location }) => {
     <Layout location={location} title={siteTitle} fullWidth>
       <SEO
         title="Cennik"
-        keywords={[`cennik usług`, `wizyta`, `psychoterapia`, `poradnia`]}
+        keywords={[
+          `cennik usług`,
+          `konsultacja`,
+          `psychoterapia`,
+          `poradnia`,
+          'psycholog',
+          'Warszawa Ursus',
+        ]}
       />
       <PageHeader backgroundImg={<JournalImage />} maxWidth={CONTENT_WIDTH}>
         <h1>Cennik</h1>

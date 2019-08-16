@@ -7,7 +7,7 @@ module.exports = {
     title: `eMOCja`,
     owner: `Poradnia Psychologiczna eMOCja - Agnieszka Wojnar-Jadczyszyn`,
     description: `Agnieszka Wojnar-Jadczyszyn - bardzo dobry psycholog, psychoterapeuta z Warszawa Włochy, Ursus i Rzeszów. Umów się na wizytę 🕿 665-400-815.`,
-    siteUrl: `https://psychoterapia.netlify.com`,
+    siteUrl: `https://gabinet-emocja.pl`,
     social: {
       twitter: ``,
     },

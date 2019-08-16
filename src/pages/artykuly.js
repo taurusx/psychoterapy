@@ -14,7 +14,17 @@ const ArticlesIndex = ({ data, location }) => {
     <Layout location={location} title={siteTitle} fullWidth>
       <SEO
         title="Artykuły"
-        keywords={[`psychoterapia`, `nerwica`, `depresja`, `poradnia`]}
+        description="Wiedza z zakresu psychologii i psychoterapii - z czego wynikają różne trudności, jak to wpływa na nasze życie i co możemy robić, by sobie pomóc."
+        keywords={[
+          `psychologia`,
+          `wiedza`,
+          `terapia`,
+          `schematy`,
+          `pomoc`,
+          `nerwica`,
+          `depresja`,
+          `poradnia`,
+        ]}
       />
       <Section maxWidth="80%">
         <ArticlesListing posts={posts} />

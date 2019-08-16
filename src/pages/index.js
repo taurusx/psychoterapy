@@ -26,9 +26,9 @@ const BlogIndex = ({ data, location }) => {
         keywords={[
           `psychoterapia`,
           `Warszawa`,
-          `Rzeszów`,
+          `psychoterapeuta poznawczo-behawioralny`,
           `psycholog`,
-          `poradnia`,
+          `Warszawa Ursus`,
         ]}
       />
       {/* Disorders */}
