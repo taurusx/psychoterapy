@@ -82,9 +82,9 @@ const Menu = props => {
   const { location, pageTop } = props
 
   const menuLinks = [
-    { to: '/', linkTitle: 'Główna' },
+    { to: '/', linkTitle: 'Strona Główna' },
     { to: '/w-czym-pomagam/', linkTitle: 'W\u00A0czym\u00A0pomagam' },
-    { to: '/terapie/', linkTitle: 'Terapie' },
+    { to: '/terapia/', linkTitle: 'Terapia' },
     { to: '/o-mnie/', linkTitle: 'O\u00A0mnie' },
     { to: '/artykuly/', linkTitle: 'Artykuły' },
     { to: '/cennik/', linkTitle: 'Cennik' },

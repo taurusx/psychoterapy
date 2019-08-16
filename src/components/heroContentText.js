@@ -58,7 +58,7 @@ const slides = [
   {
     heading: `Twoje nastoletnie dziecko potrzebuje wsparcia?`,
     button: {
-      to: '/terapie/',
+      to: '/terapia/',
       text: 'Poznaj szczegóły',
     },
   },

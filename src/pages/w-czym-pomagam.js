@@ -29,7 +29,7 @@ const DisordersIndex = ({ data, location }) => {
       </Section>
       <Section maxWidth={CONTENT_WIDTH} backgroundColor="#eee">
         <h2>Poznaj moją ofertę terapeutyczną</h2>
-        <ButtonLink to="/terapie" lightTheme transparent arrow alignRight>
+        <ButtonLink to="/terapia/" lightTheme transparent arrow alignRight>
           Rodzaje terapii
         </ButtonLink>
       </Section>

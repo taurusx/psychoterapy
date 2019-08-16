@@ -20,7 +20,7 @@ const TherapiesPage = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle} fullWidth>
       <SEO
-        title="Terapie"
+        title="Terapia"
         description="Konsultacje oraz psychoterapia indywidualna, dziecka, par, małżeństw."
         keywords={[
           `terapia małżeństw`,
@@ -31,10 +31,10 @@ const TherapiesPage = ({ data, location }) => {
         ]}
       />
       <PageHeader backgroundImg={<JarPlantImage />} maxWidth={CONTENT_WIDTH}>
-        <h1>Terapie</h1>
+        <h1>Terapia</h1>
       </PageHeader>
       <Section maxWidth={CONTENT_WIDTH}>
-        <h3>Poznaj terapie, którymi się zajmuję.</h3>
+        <h3>Poznaj metody terapii, którymi się zajmuję.</h3>
         {therapies && <TherapiesListing therapies={therapies} />}
       </Section>
       <Section maxWidth={CONTENT_WIDTH} backgroundColor="#eee">

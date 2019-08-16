@@ -109,7 +109,7 @@ export const query = graphql`
       }
     }
     jarPlantImage: file(
-      relativePath: { regex: "/page-terapie-roslina-w-sloiku.jpg/" }
+      relativePath: { regex: "/page-terapia-roslina-w-sloiku.jpg/" }
     ) {
       childImageSharp {
         fluid(maxWidth: 1920, maxHeight: 1000) {

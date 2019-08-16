@@ -45,7 +45,7 @@ const AboutPage = ({ data, location }) => {
       </Section>
       <Section maxWidth={CONTENT_WIDTH} backgroundColor="#eee">
         <h2>Zapoznaj się z moją ofertą terapeutyczną</h2>
-        <ButtonLink to="/terapie/" lightTheme transparent arrow alignRight>
+        <ButtonLink to="/terapia/" lightTheme transparent arrow alignRight>
           Prowadzone terapie
         </ButtonLink>
       </Section>
