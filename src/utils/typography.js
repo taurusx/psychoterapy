@@ -6,6 +6,11 @@ Wordpress2016.overrideThemeStyles = () => {
     'a.gatsby-resp-image-link': {
       boxShadow: `none`,
     },
+    '@media(min-width:640px)': {
+      p: {
+        fontSize: '110%',
+      },
+    },
     '@media(max-width:480px)': {
       h1: {
         fontSize: '2.1rem',
