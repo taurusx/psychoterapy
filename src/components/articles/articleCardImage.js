@@ -72,7 +72,9 @@ const ArticleCardImage = ({ article }) => {
 
   return (
     <CardImageWrapper>
-      {mainImage && <Img fluid={mainImage.fluid} />}
+      {mainImage && (
+        <Img fluid={mainImage.fluid} alt={mainImage.description || ''} />
+      )}
       <CardImageType>
         {postType && postType[0] === 'article' ? 'ARTYKUŁ' : 'NEWS'}
       </CardImageType>

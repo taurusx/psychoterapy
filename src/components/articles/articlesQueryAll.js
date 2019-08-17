@@ -23,6 +23,7 @@ export const allArticlesQuery = graphql`
           lastName
         }
         mainImage {
+          description
           fluid(maxWidth: 600) {
             ...GatsbyContentfulFluid
           }

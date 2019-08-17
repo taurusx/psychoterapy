@@ -111,7 +111,10 @@ const ArticlePostContentfulTemplate = ({ data, location, pageContext }) => {
     <Layout location={location} title={siteTitle}>
       <SEO title={post.title} description={post.lead.lead} />
       {/* Main image */}
-      <Img fluid={post.mainImage.fluid} />
+      <Img
+        fluid={post.mainImage.fluid}
+        alt={post.mainImage.description || ''}
+      />
       {/* Title */}
       <h1>{post.title}</h1>
       {/* Date and Author */}

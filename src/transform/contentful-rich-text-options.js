@@ -58,7 +58,7 @@ export const options = {
         <div className="contentful-post-link-container">
           <div className="image-container">
             <img
-              alt={fields.mainImage['pl-PL'].fields.description['pl-PL']}
+              alt={fields.mainImage['pl-PL'].fields.description['pl-PL'] || ''}
               src={`
             ${fields.mainImage['pl-PL'].fields.file['pl-PL'].url}?fit=thumb&w=400&q=50
           `}

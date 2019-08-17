@@ -141,6 +141,7 @@ const HeroSlider = () => {
                 <Img
                   key={image.node.childImageSharp.id}
                   fluid={image.node.childImageSharp.fluid}
+                  alt=""
                 />
                 <SliderText>
                   <HeroContent index={index} />

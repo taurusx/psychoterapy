@@ -18,7 +18,10 @@ export const articlePropTypes = {
     lead: shape({
       lead: string.isRequired,
     }).isRequired,
-    mainImage: shape({ fluid: object.isRequired }).isRequired,
+    mainImage: shape({
+      description: string,
+      fluid: object.isRequired,
+    }).isRequired,
     postType: arrayOf(string).isRequired,
     slug: string.isRequired,
     title: string.isRequired,
