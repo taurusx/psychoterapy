@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, graphql } from 'gatsby'
 import styled from 'styled-components'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import Layout from '../components/layout'
+import Section from '../components/section'
 import SEO from '../components/seo'
 import { options } from '../transform/contentful-rich-text-options'
 import { rhythm } from '../utils/typography'
 import ButtonLink from '../components/buttonLink'
 
-const ContentfulPostText = styled.div`
+const ContentfulDisorderText = styled.div`
   .contentful-image-container {
     display: flex;
     justify-content: center;
@@ -104,60 +105,83 @@ const DisorderContentfulTemplate = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
 
+  // simulate media-queries for 960px breakpoint
+  const [maxWidth, setMaxWidth] = useState(
+    typeof window !== 'undefined' &&
+      window.innerWidth &&
+      window.innerWidth > 960
+      ? '720px'
+      : '70%'
+  )
+
+  const handleResize = () => {
+    setMaxWidth(
+      typeof window !== 'undefined' &&
+        window.innerWidth &&
+        window.innerWidth > 960
+        ? '720px'
+        : '70%'
+    )
+  }
+
+  if (typeof window !== 'undefined') window.onresize = handleResize
+
   return (
     <Layout location={location} title={siteTitle}>
       <SEO
         title={disorder.title}
         description={`${siteTitle} - Opis zaburzeń - ${disorder.title}`}
       />
-      {/* Title */}
-      <h1>{disorder.title}</h1>
-      {/* Content */}
-      <ContentfulPostText>
-        {documentToReactComponents(disorder.description.json, options)}
-      </ContentfulPostText>
-      <hr
-        style={{
-          marginBottom: rhythm(1),
-        }}
-      />
-      {/* Next and Previous */}
-      <ul
-        style={{
-          display: `flex`,
-          flexWrap: `wrap`,
-          justifyContent: `space-between`,
-          alignItems: 'center',
-          listStyle: `none`,
-          padding: 0,
-          marginLeft: 0,
-        }}
-      >
-        <li>
-          {previous && (
-            <Link to={previous.slugFull} rel="prev">
-              ← {previous.title}
-            </Link>
-          )}
-        </li>
-        <li>
-          {/* Back button */}
-          <ButtonLink
-            to="/w-czym-pomagam/"
-            grayTheme
-            changeSize={{ size: '80%', borderWidth: '1px' }}
-          >
-            Powrót do listy
-          </ButtonLink>
-        </li>
-        <li>
-          {next && (
-            <Link to={next.slugFull} rel="next">
-              {next.title} →
-            </Link>
-          )}
-        </li>
-      </ul>
+      <Section maxWidth={maxWidth}>
+        {/* Title */}
+        <h1>{disorder.title}</h1>
+        {/* Content */}
+        <ContentfulDisorderText>
+          {documentToReactComponents(disorder.description.json, options)}
+        </ContentfulDisorderText>
+        <hr
+          style={{
+            marginBottom: rhythm(1),
+          }}
+        />
+        {/* Next and Previous */}
+        <ul
+          style={{
+            display: `flex`,
+            flexWrap: `wrap`,
+            justifyContent: `space-between`,
+            alignItems: 'center',
+            listStyle: `none`,
+            padding: 0,
+            marginLeft: 0,
+          }}
+        >
+          <li>
+            {previous && (
+              <Link to={previous.slugFull} rel="prev">
+                ← {previous.title}
+              </Link>
+            )}
+          </li>
+          <li>
+            {/* Back button */}
+            <ButtonLink
+              to="/w-czym-pomagam/"
+              grayTheme
+              changeSize={{ size: '80%', borderWidth: '1px' }}
+            >
+              Powrót do listy
+            </ButtonLink>
+          </li>
+          <li>
+            {next && (
+              <Link to={next.slugFull} rel="next">
+                {next.title} →
+              </Link>
+            )}
+          </li>
+        </ul>
+      </Section>
     </Layout>
   )
 }

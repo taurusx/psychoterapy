@@ -16,7 +16,7 @@ const DisordersIndex = ({ data, location }) => {
   const disorders = data.allContentfulDisorder.edges
 
   return (
-    <Layout location={location} title={siteTitle} fullWidth>
+    <Layout location={location} title={siteTitle}>
       <SEO
         title="Artykuły"
         description="Pomocy psychoterapeutyczna osobom dorosłym i młodzieży. Zakres pomocy jest dostosowany do indywidualnych potrzeb. Obszary, w których psychoterapia może pomóc."

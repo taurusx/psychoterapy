@@ -18,7 +18,7 @@ const AboutPage = ({ data, location }) => {
   const { diplomas } = aboutDetails
 
   return (
-    <Layout location={location} title={siteTitle} fullWidth>
+    <Layout location={location} title={siteTitle}>
       <SEO
         title="O mnie"
         keywords={[

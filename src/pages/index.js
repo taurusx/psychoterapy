@@ -20,7 +20,7 @@ const BlogIndex = ({ data, location }) => {
   const aboutDetails = data.contentfulAbout
 
   return (
-    <Layout location={location} title={siteTitle} fullWidth>
+    <Layout location={location} title={siteTitle}>
       <SEO
         title="Strona Główna"
         keywords={[

@@ -11,7 +11,7 @@ const ArticlesIndex = ({ data, location }) => {
   const posts = data.allContentfulArticlePost.edges
 
   return (
-    <Layout location={location} title={siteTitle} fullWidth>
+    <Layout location={location} title={siteTitle}>
       <SEO
         title="Artykuły"
         description="Wiedza z zakresu psychologii i psychoterapii - z czego wynikają różne trudności, jak to wpływa na nasze życie i co możemy robić, by sobie pomóc."

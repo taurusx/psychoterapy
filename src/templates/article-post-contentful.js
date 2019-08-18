@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
@@ -6,6 +6,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import Bio from '../components/bio'
 import Layout from '../components/layout'
+import Section from '../components/section'
 import SEO from '../components/seo'
 import { options } from '../transform/contentful-rich-text-options'
 import { rhythm, scale } from '../utils/typography'
@@ -107,81 +108,111 @@ const ArticlePostContentfulTemplate = ({ data, location, pageContext }) => {
   const { previous, next } = pageContext
   const formattedDate = formatDate(post.date)
 
+  // simulate media-queries for 960px breakpoint
+  const [maxWidth, setMaxWidth] = useState(
+    typeof window !== 'undefined' &&
+      window.innerWidth &&
+      window.innerWidth > 960
+      ? '720px'
+      : '70%'
+  )
+
+  const handleResize = () => {
+    setMaxWidth(
+      typeof window !== 'undefined' &&
+        window.innerWidth &&
+        window.innerWidth > 960
+        ? '720px'
+        : '70%'
+    )
+  }
+
+  if (typeof window !== 'undefined') window.onresize = handleResize
+
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title={post.title} description={post.lead.lead} />
       {/* Main image */}
-      <Img
-        fluid={post.mainImage.fluid}
-        alt={post.mainImage.description || ''}
-      />
-      {/* Title */}
-      <h1>{post.title}</h1>
-      {/* Date and Author */}
-      <p
-        style={{
-          ...scale(-1 / 5),
-          display: `block`,
-          marginBottom: rhythm(1),
-          marginTop: rhythm(-1),
-        }}
-      >
-        {formattedDate}
-        {!post.author && 'Poradnia Emocja'}
-        {post.author &&
-          post.author.length > 0 &&
-          post.author.map(
-            author =>
-              ` |
+      <Section maxWidth="100%" maxHeight="400px" padding="0">
+        <Img
+          fluid={post.mainImage.fluid}
+          alt={post.mainImage.description || ''}
+        />
+      </Section>
+      <Section maxWidth={maxWidth}>
+        {/* Title */}
+        <h1
+          style={{
+            marginTop: rhythm(0.5),
+          }}
+        >
+          {post.title}
+        </h1>
+        {/* Date and Author */}
+        <p
+          style={{
+            ...scale(-1 / 5),
+            display: `block`,
+            marginBottom: rhythm(1),
+            marginTop: rhythm(-0.5),
+          }}
+        >
+          {formattedDate}
+          {!post.author && 'Poradnia Emocja'}
+          {post.author &&
+            post.author.length > 0 &&
+            post.author.map(
+              author =>
+                ` |
             ${author.firstName ? ` ${author.firstName}` : ''}
               ${author.lastName ? ` ${author.lastName}` : ''}`
-          )}
-      </p>
-      {/* Lead */}
-      <p
-        style={{
-          fontWeight: 'bold',
-          fontStyle: 'italic',
-        }}
-      >
-        {post.lead.lead}
-      </p>
-      {/* Content */}
-      <ContentfulPostText>
-        {documentToReactComponents(post.content.json, options)}
-      </ContentfulPostText>
-      <hr
-        style={{
-          marginBottom: rhythm(1),
-        }}
-      />
-      {/* Bio */}
-      <Bio author={post.author} />
-      {/* Next and Previous */}
-      <ul
-        style={{
-          display: `flex`,
-          flexWrap: `wrap`,
-          justifyContent: `space-between`,
-          listStyle: `none`,
-          padding: 0,
-        }}
-      >
-        <li>
-          {previous && (
-            <Link to={previous.slugFull} rel="prev">
-              ← {previous.title}
-            </Link>
-          )}
-        </li>
-        <li>
-          {next && (
-            <Link to={next.slugFull} rel="next">
-              {next.title} →
-            </Link>
-          )}
-        </li>
-      </ul>
+            )}
+        </p>
+        {/* Lead */}
+        <p
+          style={{
+            fontWeight: 'bold',
+          }}
+        >
+          {post.lead.lead}
+        </p>
+        {/* Content */}
+        <ContentfulPostText>
+          {documentToReactComponents(post.content.json, options)}
+        </ContentfulPostText>
+        <hr
+          style={{
+            marginBottom: rhythm(1),
+          }}
+        />
+        {/* Bio */}
+        <Bio author={post.author} />
+        {/* Next and Previous */}
+        <ul
+          style={{
+            display: `flex`,
+            flexWrap: `wrap`,
+            justifyContent: `space-between`,
+            listStyle: `none`,
+            padding: 0,
+          }}
+        >
+          <li>
+            {previous && (
+              <Link to={previous.slugFull} rel="prev">
+                ← {previous.title}
+              </Link>
+            )}
+          </li>
+          <li>
+            {next && (
+              <Link to={next.slugFull} rel="next">
+                {next.title} →
+              </Link>
+            )}
+          </li>
+        </ul>
+      </Section>
     </Layout>
   )
 }

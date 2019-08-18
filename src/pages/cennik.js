@@ -17,7 +17,7 @@ const PricingPage = ({ data, location }) => {
     .sort(({ order: orderA }, { order: orderB }) => orderA - orderB)
 
   return (
-    <Layout location={location} title={siteTitle} fullWidth>
+    <Layout location={location} title={siteTitle}>
       <SEO
         title="Cennik"
         keywords={[

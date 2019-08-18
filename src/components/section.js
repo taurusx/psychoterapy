@@ -1,28 +1,51 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { rhythm } from '../utils/typography'
+
+const paddingCss = ({ padding, maxWidth }) => {
+  if (padding) {
+    return maxWidth
+      ? css`
+          padding: ${padding};
+          max-width: ${maxWidth};
+        `
+      : css`
+          padding: ${padding};
+        `
+  }
+
+  return maxWidth
+    ? css`
+        padding: ${rhythm(1.5)} calc(50% - ${maxWidth} / 2) ${rhythm(1.5)};
+
+        @media (max-width: 480px) {
+          padding: ${rhythm(0.5)} ${rhythm(3 / 4)} ${rhythm(0.5)};
+        }
+      `
+    : css`
+        padding: ${rhythm(1.5)} ${rhythm(5 / 4)} ${rhythm(1.5)};
+
+        @media (max-width: 480px) {
+          padding: ${rhythm(0.5)} ${rhythm(3 / 4)} ${rhythm(0.5)};
+        }
+      `
+}
 
 const StyledSection = styled.section`
   position: relative;
   max-width: 100%;
   min-height: ${props => props.minHeight || '200px'};
+  max-height: ${props => props.maxHeight || 'initial'};
   margin-left: auto;
   margin-right: auto;
-  padding: ${props =>
-    props.maxWidth
-      ? `${rhythm(1.5)} calc(50% - ${props.maxWidth} / 2) ${rhythm(1.5)}`
-      : `${rhythm(1.5)} ${rhythm(5 / 4)} ${rhythm(1.5)}`};
   display: flex;
   flex-direction: column;
   justify-content: center;
   background: ${props => props.backgroundColor || 'transparent'};
   color: ${props => props.color || 'inherit'};
 
-  @media (max-width: 480px) {
-    padding: ${rhythm(0.5)} ${rhythm(3 / 4)} ${rhythm(0.5)};
-    min-height: 300px;
-  }
+  ${paddingCss}
 `
 
 const Background = styled.div`
@@ -60,7 +83,9 @@ const Section = ({
   title,
   titleAlign,
   maxWidth,
+  maxHeight,
   minHeight,
+  padding,
   color,
   backgroundColor,
   backgroundImg,
@@ -69,7 +94,9 @@ const Section = ({
 }) => (
   <StyledSection
     maxWidth={maxWidth}
+    maxHeight={maxHeight}
     minHeight={minHeight}
+    padding={padding}
     backgroundColor={backgroundColor}
     color={color}
   >

@@ -18,7 +18,7 @@ const TherapiesPage = ({ data, location }) => {
     .sort(({ order: orderA }, { order: orderB }) => orderA - orderB)
 
   return (
-    <Layout location={location} title={siteTitle} fullWidth>
+    <Layout location={location} title={siteTitle}>
       <SEO
         title="Terapia"
         description="Psychoterapia jest metodą leczenia i wspomagania rozwoju. W zależności od problemu i stopnia jego nasilenia, stosuje się różne rodzaje i metody terapii."
