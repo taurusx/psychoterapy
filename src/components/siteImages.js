@@ -17,6 +17,14 @@ export const MottoImage = withImageData(props => (
   />
 ))
 
+export const BalloonsImage = withImageData(props => (
+  <Img
+    fluid={props.imageData.balloonsImage.childImageSharp.fluid}
+    alt="Balony w chmurach"
+    {...props}
+  />
+))
+
 export const JournalImage = withImageData(props => (
   <Img
     fluid={props.imageData.journalImage.childImageSharp.fluid}
@@ -57,6 +65,14 @@ export const RescueBuoyImage = withImageData(props => (
   />
 ))
 
+export const TypewriterImage = withImageData(props => (
+  <Img
+    fluid={props.imageData.typewriterImage.childImageSharp.fluid}
+    alt="Maszyna do pisania"
+    {...props}
+  />
+))
+
 export const query = graphql`
   query SiteImagesQuery {
     mottoImage: file(
@@ -64,6 +80,15 @@ export const query = graphql`
     ) {
       childImageSharp {
         fluid(maxWidth: 1280, maxHeight: 500, quality: 85) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    balloonsImage: file(
+      relativePath: { regex: "/page-terapia-balony-chmury.jpg/" }
+    ) {
+      childImageSharp {
+        fluid(maxWidth: 1920, maxHeight: 1000) {
           ...GatsbyImageSharpFluid_withWebp
         }
       }
@@ -104,6 +129,15 @@ export const query = graphql`
     }
     rescueBuoyImage: file(
       relativePath: { regex: "/page-w-czym-pomagam-kolo-ratunkowe.jpg/" }
+    ) {
+      childImageSharp {
+        fluid(maxWidth: 1920, maxHeight: 1000) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    typewriterImage: file(
+      relativePath: { regex: "/page-artykuly-maszyna-do-pisania.jpg/" }
     ) {
       childImageSharp {
         fluid(maxWidth: 1920, maxHeight: 1000) {

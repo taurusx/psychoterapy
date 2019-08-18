@@ -1,10 +1,14 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
 import ArticlesListing from '../components/articles/articlesListing'
+import Layout from '../components/layout'
+import PageHeader from '../components/pageHeader'
 import Section from '../components/section'
+import SEO from '../components/seo'
+import { TypewriterImage } from '../components/siteImages'
+
+const CONTENT_WIDTH = '80%'
 
 const ArticlesIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -26,7 +30,10 @@ const ArticlesIndex = ({ data, location }) => {
           `poradnia`,
         ]}
       />
-      <Section maxWidth="80%">
+      <PageHeader backgroundImg={<TypewriterImage />} maxWidth={CONTENT_WIDTH}>
+        <h1>Artykuły</h1>
+      </PageHeader>
+      <Section maxWidth={CONTENT_WIDTH}>
         <ArticlesListing posts={posts} />
       </Section>
     </Layout>

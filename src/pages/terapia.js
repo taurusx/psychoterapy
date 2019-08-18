@@ -6,7 +6,7 @@ import Layout from '../components/layout'
 import PageHeader from '../components/pageHeader'
 import Section from '../components/section'
 import SEO from '../components/seo'
-import { JarPlantImage } from '../components/siteImages'
+import { BalloonsImage } from '../components/siteImages'
 import TherapiesListing from '../components/therapies/therapiesListing'
 
 const CONTENT_WIDTH = '75%'
@@ -30,7 +30,7 @@ const TherapiesPage = ({ data, location }) => {
           `pomoc psychologa`,
         ]}
       />
-      <PageHeader backgroundImg={<JarPlantImage />} maxWidth={CONTENT_WIDTH}>
+      <PageHeader backgroundImg={<BalloonsImage />} maxWidth={CONTENT_WIDTH}>
         <h1>Terapia</h1>
       </PageHeader>
       <Section maxWidth={CONTENT_WIDTH}>
