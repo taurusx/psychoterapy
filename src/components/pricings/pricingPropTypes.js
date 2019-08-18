@@ -1,6 +1,6 @@
 import { PropTypes } from 'prop-types' // eslint-disable-line
 
-const { arrayOf, number, object, oneOf, shape, string } = PropTypes
+const { arrayOf, number, object, shape, string } = PropTypes
 export const pricingPropTypes = {
   node: shape({
     description: shape({
@@ -9,9 +9,8 @@ export const pricingPropTypes = {
     icon: string.isRequired,
     order: number.isRequired,
     price: number.isRequired,
+    slug: string.isRequired,
     time: number.isRequired,
     title: string.isRequired,
-    type: oneOf(['psychoterapia-indywidualna', 'konsultacje-rodzice'])
-      .isRequired,
   }).isRequired,
 }

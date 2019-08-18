@@ -7,7 +7,7 @@ import { pricingPropTypes } from './pricingPropTypes'
 
 const GridLayout = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-gap: 3rem;
   justify-items: center;
   align-content: center;
@@ -15,7 +15,7 @@ const GridLayout = styled.div`
   padding: 2rem 0;
 
   @media (max-width: 960px) {
-    grid-gap: 1rem;
+    grid-gap: 2rem;
     grid-template-columns: 1fr;
   }
 `

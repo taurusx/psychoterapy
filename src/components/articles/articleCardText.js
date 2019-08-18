@@ -32,7 +32,7 @@ const DateAuthor = styled.small`
   opacity: 0.8;
 `
 
-const Subtitle = styled.p`
+const Lead = styled.p`
   margin: 0;
   max-height: 84px;
   line-height: 28px;
@@ -41,6 +41,7 @@ const Subtitle = styled.p`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  font-size: 100%;
 
   @media (max-width: 480px) {
     line-height: 25px;
@@ -70,7 +71,7 @@ const ArticleCardText = ({ article }) => {
               ${author.lastName ? ` ${author.lastName}` : ''}`
           )}
       </DateAuthor>
-      <Subtitle>{article.lead.lead}</Subtitle>
+      <Lead>{article.lead.lead}</Lead>
     </CardTextWrapper>
   )
 }

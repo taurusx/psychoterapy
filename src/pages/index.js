@@ -11,7 +11,7 @@ import { MottoImage } from '../components/siteImages'
 import AboutWithPic from '../components/about/aboutWithPic'
 import TestimonialsSlider from '../components/testimonials/testimonialsSlider'
 
-const CONTENT_WIDTH = '80%'
+const CONTENT_WIDTH = '70%'
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -74,7 +74,7 @@ const BlogIndex = ({ data, location }) => {
         <TestimonialsSlider />
       </Section>
       {/* Articles */}
-      <Section id="section-5" title="Ostatnie wpisy" maxWidth={CONTENT_WIDTH}>
+      <Section id="section-5" title="Ostatnie wpisy" maxWidth="80%">
         <ArticlesListing posts={posts} />
         <ButtonLink to="/artykuly/" lightTheme arrow alignRight>
           Zobacz wszystkie

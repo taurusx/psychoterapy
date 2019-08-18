@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
+import ButtonLink from '../components/buttonLink'
 import ArticlesListing from '../components/articles/articlesListing'
 import Layout from '../components/layout'
 import PageHeader from '../components/pageHeader'
@@ -35,6 +36,12 @@ const ArticlesIndex = ({ data, location }) => {
       </PageHeader>
       <Section maxWidth={CONTENT_WIDTH}>
         <ArticlesListing posts={posts} />
+      </Section>
+      <Section maxWidth={CONTENT_WIDTH} backgroundColor="#eee">
+        <h2>Przeczytaj więcej o Agnieszce Wojnar-Jadczyszyn</h2>
+        <ButtonLink to="/o-mnie/" lightTheme transparent arrow alignRight>
+          O mnie
+        </ButtonLink>
       </Section>
     </Layout>
   )

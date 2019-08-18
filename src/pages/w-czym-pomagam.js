@@ -9,7 +9,7 @@ import Section from '../components/section'
 import SEO from '../components/seo'
 import { RescueBuoyImage } from '../components/siteImages'
 
-const CONTENT_WIDTH = '75%'
+const CONTENT_WIDTH = '70%'
 
 const DisordersIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title

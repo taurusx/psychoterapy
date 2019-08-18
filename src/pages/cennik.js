@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
+import ButtonLink from '../components/buttonLink'
 import Layout from '../components/layout'
 import PageHeader from '../components/pageHeader'
 import PricingsListing from '../components/pricings/pricingsListing'
@@ -35,6 +36,12 @@ const PricingPage = ({ data, location }) => {
       <Section maxWidth={CONTENT_WIDTH}>
         <PricingsListing pricings={pricings} />
       </Section>
+      <Section maxWidth={CONTENT_WIDTH} backgroundColor="#eee">
+        <h2>Skontaktuj się ze mną i zapisz się na wizytę</h2>
+        <ButtonLink to="/kontakt/" lightTheme transparent arrow alignRight>
+          Umów wizytę
+        </ButtonLink>
+      </Section>
     </Layout>
   )
 }
@@ -42,21 +49,12 @@ const PricingPage = ({ data, location }) => {
 export default PricingPage
 
 export const pricingPageQuery = graphql`
-  query {
-    allContentfulPricing(filter: { node_locale: { eq: "pl-PL" } }) {
-      edges {
-        node {
-          icon
-          description {
-            json
-          }
-          order
-          price
-          time
-          title
-          type
-        }
-      }
+  query PricingsQuery {
+    allContentfulPricing(
+      filter: { node_locale: { eq: "pl-PL" } }
+      sort: { fields: [order], order: ASC }
+    ) {
+      ...AllContentfulPricings
     }
     site {
       siteMetadata {

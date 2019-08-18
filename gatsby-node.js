@@ -10,6 +10,9 @@ exports.createPages = ({ graphql, actions }) => {
     const disorderTemplate = path.resolve(
       `./src/templates/disorder-contentful.js`
     )
+    const pricingTemplate = path.resolve(
+      `./src/templates/pricing-contentful.js`
+    )
     resolve(
       graphql(
         `
@@ -62,6 +65,33 @@ exports.createPages = ({ graphql, actions }) => {
               }
               totalCount
             }
+            allContentfulPricing(
+              filter: { node_locale: { eq: "pl-PL" } }
+              sort: { fields: [order], order: ASC }
+            ) {
+              edges {
+                next {
+                  slug
+                  title
+                }
+                previous {
+                  slug
+                  title
+                }
+                node {
+                  description {
+                    json
+                  }
+                  icon
+                  order
+                  price
+                  slug
+                  time
+                  title
+                }
+              }
+              totalCount
+            }
           }
         `
       ).then(result => {
@@ -72,6 +102,7 @@ exports.createPages = ({ graphql, actions }) => {
         // Create contentful articles pages.
         const articles = result.data.allContentfulArticlePost.edges
         const disorders = result.data.allContentfulDisorder.edges
+        const pricings = result.data.allContentfulPricing.edges
 
         articles.forEach(post => {
           const { previous } = post
@@ -106,6 +137,26 @@ exports.createPages = ({ graphql, actions }) => {
             component: disorderTemplate,
             context: {
               slug: disorder.node.slug,
+              slugFull,
+              previous,
+              next,
+            },
+          })
+        })
+
+        // Create contentful pricings descriptions pages.
+        pricings.forEach(pricing => {
+          const { previous } = pricing
+          const { next } = pricing
+          const slugFull = `/cennik/${pricing.node.slug}`
+          if (previous) previous.slugFull = `/cennik/${previous.slug}`
+          if (next) next.slugFull = `/cennik/${next.slug}`
+
+          createPage({
+            path: slugFull,
+            component: pricingTemplate,
+            context: {
+              slug: pricing.node.slug,
               slugFull,
               previous,
               next,
