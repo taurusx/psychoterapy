@@ -9,7 +9,7 @@ const StyledListItem = styled.li`
   display: inline-block;
   margin-right: 1rem;
   margin-bottom: 0;
-  text-align: right;
+  text-align: center;
   text-transform: uppercase;
 
   @media (max-width: ${props => props.theme.menuTreshold}) {

@@ -21,7 +21,7 @@ const GridLayout = styled.div`
   }
 
   @media (max-width: 960px) {
-    grid-gap: 1.5rem;
+    grid-gap: 2.5rem;
   }
 `
 

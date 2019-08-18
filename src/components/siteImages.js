@@ -17,14 +17,6 @@ export const MottoImage = withImageData(props => (
   />
 ))
 
-export const AgnieszkaImage = withImageData(props => (
-  <Img
-    fluid={props.imageData.agnieszkaImage.childImageSharp.fluid}
-    alt="Agnieszka Wojnar-Jadczyszyn"
-    {...props}
-  />
-))
-
 export const JournalImage = withImageData(props => (
   <Img
     fluid={props.imageData.journalImage.childImageSharp.fluid}
@@ -71,15 +63,8 @@ export const query = graphql`
       relativePath: { regex: "/dziewczyna-w-kapeluszu-usmiechnieta.jpg/" }
     ) {
       childImageSharp {
-        fluid(maxWidth: 1280, maxHeight: 500) {
+        fluid(maxWidth: 1280, maxHeight: 500, quality: 85) {
           ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    agnieszkaImage: file(relativePath: { regex: "/A.Wojnar-Jadczyszyn.jpg/" }) {
-      childImageSharp {
-        fluid(maxWidth: 400, maxHeight: 500) {
-          ...GatsbyImageSharpFluid_withWebp_tracedSVG
         }
       }
     }

@@ -130,6 +130,7 @@ const DisorderContentfulTemplate = ({ data, location, pageContext }) => {
           alignItems: 'center',
           listStyle: `none`,
           padding: 0,
+          marginLeft: 0,
         }}
       >
         <li>

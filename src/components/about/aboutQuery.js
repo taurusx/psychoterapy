@@ -24,10 +24,10 @@ export const allDisordersQuery = graphql`
     fullName
     image {
       description
-      fluid(maxWidth: 600, maxHeight: 600, quality: 100) {
+      fluid(maxWidth: 600, maxHeight: 600, quality: 95) {
         ...GatsbyContentfulFluid
       }
-      fixed(resizingBehavior: PAD, toFormat: WEBP, quality: 100, height: 800) {
+      fixed(resizingBehavior: PAD, toFormat: WEBP, quality: 95, height: 800) {
         aspectRatio
         height
         src

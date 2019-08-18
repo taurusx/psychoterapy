@@ -19,6 +19,7 @@ const NavMenu = styled.nav`
   ul {
     list-style: none;
     display: flex;
+    align-items: center;
     margin: 0;
   }
 
