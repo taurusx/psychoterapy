@@ -60,7 +60,16 @@ function SEO({ description, lang, meta, keywords, title }) {
                   : []
               )
               .concat(meta)}
-          />
+          >
+            <link
+              href="https://fonts.googleapis.com/css?family=Montserrat:900&display=swap&subset=latin-ext"
+              rel="stylesheet"
+            />
+            <link
+              href="https://fonts.googleapis.com/css?family=Merriweather:900&display=swap&subset=latin-ext"
+              rel="stylesheet"
+            />
+          </Helmet>
         )
       }}
     />

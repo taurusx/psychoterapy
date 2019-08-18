@@ -1,3 +1,2 @@
-// custom typefaces
-import 'typeface-montserrat'
-import 'typeface-merriweather'
+// custom typefaces should be added here after installed, eg.:
+// import 'typeface-montserrat'
