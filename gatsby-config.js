@@ -5,7 +5,7 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: `eMOCja`,
-    owner: `Poradnia Psychologiczna eMOCja - Agnieszka Wojnar-Jadczyszyn`,
+    owner: `Gabinet terapii poznawczo-behawioralnej i terapii schematu "eMOCja" - Agnieszka Wojnar-Jadczyszyn`,
     description: `Agnieszka Wojnar-Jadczyszyn - bardzo dobry psycholog, psychoterapeuta z Warszawa Włochy, Ursus i Rzeszów. Umów się na wizytę 🕿 665-400-815.`,
     siteUrl: `https://gabinet-emocja.pl`,
     social: {
@@ -49,7 +49,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: `UA-135932891-1`,
+        trackingId: `UA-146004399-1`,
       },
     },
     {
