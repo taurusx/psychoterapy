@@ -171,7 +171,7 @@ const PricingContentfulTemplate = ({ data, location, pageContext }) => {
             <ButtonLink
               to="/cennik/"
               grayTheme
-              changeSize={{ size: '80%', borderWidth: '1px' }}
+              overrideStyles={{ fontSize: '80%', borderWidth: '1px' }}
             >
               Powrót do cennika
             </ButtonLink>

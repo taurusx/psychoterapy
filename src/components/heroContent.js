@@ -31,7 +31,11 @@ const HeroContent = ({ index }) => {
       {heading}
       {subheading}
       <SliderButton>
-        <ButtonLink to={to} whiteTheme changeSize>
+        <ButtonLink
+          to={to}
+          whiteTheme
+          overrideStyles={{ borderWidth: '3px', fontSize: '120%' }}
+        >
           {text}
         </ButtonLink>
       </SliderButton>

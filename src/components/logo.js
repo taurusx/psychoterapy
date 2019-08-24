@@ -6,9 +6,8 @@ import EmocjaLogoSimple from './logos/EmocjaLogoSimple'
 const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
-  max-width: 240px;
-  margin-left: 0.5rem;
-  margin-right: 2rem;
+  max-width: 200px;
+  margin-left: -1rem;
   color: ${props => props.theme.grayColor};
   flex: 0 0 auto;
   transition: color 0.1s linear;
@@ -28,7 +27,7 @@ const LogoWrapper = styled.div`
 
 const LogoImage = styled.div`
   height: 40px;
-  width: 220px;
+  width: 180px;
   margin-right: 0.8rem;
   flex: 0 0 auto;
   background-size: contain;
@@ -36,7 +35,7 @@ const LogoImage = styled.div`
 
   ${LogoWrapper}.page-top & {
     height: 48px;
-    width: 240px;
+    width: 200px;
   }
 
   @media (max-width: ${props => props.theme.mobileTreshold}) {

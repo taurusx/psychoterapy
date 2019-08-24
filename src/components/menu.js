@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types' // eslint-disable-line
-import styled from 'styled-components'
+import styled, { withTheme } from 'styled-components'
 
 import ToggleButton from './toggle'
 import MenuLink from './menuLink'
+import ButtonLink from './buttonLink'
+import { startsWith } from '../utils/utils'
 
 const NavMenu = styled.nav`
   position: relative;
@@ -34,7 +36,7 @@ const NavMenu = styled.nav`
     top: 0;
     right: 0;
     padding: 5rem 1rem 1rem;
-    transform: translateX(100%);
+    transform: translate3d(100%, 0, 0);
     box-shadow: none;
     min-width: 200px;
     font-size: 1.2rem;
@@ -53,34 +55,47 @@ const NavMenu = styled.nav`
 `
 
 const Menu = props => {
-  let timeoutId
-
   const [isOpen, setIsOpen] = useState(false)
+  const [readyToClose, setReadyToClose] = useState(false)
   const navMenu = React.createRef()
 
   const onFocus = () => {
-    timeoutId = setTimeout(() => {
-      if (!isOpen) setIsOpen(true)
-    }, 250)
+    if (!isOpen) setIsOpen(true)
   }
 
   const onBlur = () => {
     if (isOpen) setIsOpen(false)
-    clearTimeout(timeoutId)
+    setReadyToClose(false)
   }
 
   const toggleClickHandler = () => {
-    setIsOpen(!isOpen)
-    navMenu.current.focus()
+    if (isOpen && readyToClose) {
+      setIsOpen(false)
+      setReadyToClose(false)
+      return
+    }
+
+    if (!isOpen) setIsOpen(true)
   }
 
-  const { setClassMenuActive } = props
+  useEffect(() => {
+    let timeoutId
 
-  const menuClassName = `menu${isOpen ? ' menu-active' : ''}`
-  const classMenuActive = `${isOpen ? ' menu-active' : ''}`
-  setClassMenuActive(classMenuActive)
+    if (isOpen) {
+      timeoutId = setTimeout(() => {
+        setReadyToClose(true)
+      }, 250)
+    }
 
-  const { location, pageTop } = props
+    return () => clearTimeout(timeoutId)
+  }, [isOpen])
+
+  const { setMenuActive, headerHovered } = props
+
+  const menuClassName = isOpen ? 'menu-active' : ''
+  setMenuActive(isOpen)
+
+  const { location, pageTop, theme } = props
 
   const menuLinks = [
     { to: '/', linkTitle: 'Strona Główna' },
@@ -92,6 +107,8 @@ const Menu = props => {
     { to: '/kontakt/', linkTitle: 'Kontakt' },
   ]
 
+  const isOnMainPage = location.pathname === '/'
+
   return (
     <NavMenu
       className={menuClassName}
@@ -101,16 +118,44 @@ const Menu = props => {
       onFocus={onFocus}
     >
       <ul>
-        {menuLinks.map(menuLink => (
-          <MenuLink
-            key={menuLink.linkTitle}
-            to={menuLink.to}
-            dataText={menuLink.linkTitle}
-            location={location}
-          >
-            {menuLink.linkTitle}
-          </MenuLink>
-        ))}
+        {menuLinks.map((menuLink, index) => {
+          const isButtonToCurrent = startsWith(location.pathname, menuLink.to)
+
+          return index === menuLinks.length - 1 ? (
+            <ButtonLink
+              key={menuLink.linkTitle}
+              to={menuLink.to}
+              whiteTheme={isOnMainPage && (!headerHovered && !isOpen)}
+              grayTheme={
+                (!isOnMainPage && !isButtonToCurrent) ||
+                (isOnMainPage && (headerHovered || isOpen))
+              }
+              lightTheme={isButtonToCurrent}
+              overrideStyles={{
+                verticalPadding: '0.15rem',
+                horizontalPadding: '1.0rem',
+                fontSize: '100%',
+                minWidth: 'unset',
+                borderWidth: '0.1rem',
+              }}
+              style={{
+                margin: '0',
+                transition: `color 0s, border 0s, background ${theme.menuTransitions}`,
+              }}
+            >
+              {menuLink.linkTitle}
+            </ButtonLink>
+          ) : (
+            <MenuLink
+              key={menuLink.linkTitle}
+              to={menuLink.to}
+              dataText={menuLink.linkTitle}
+              location={location}
+            >
+              {menuLink.linkTitle}
+            </MenuLink>
+          )
+        })}
       </ul>
       <ToggleButton
         onClick={toggleClickHandler}
@@ -131,4 +176,4 @@ Menu.propTypes = {
   pageTop: PropTypes.bool.isRequired,
 }
 
-export default Menu
+export default withTheme(Menu)

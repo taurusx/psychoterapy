@@ -168,7 +168,7 @@ const DisorderContentfulTemplate = ({ data, location, pageContext }) => {
             <ButtonLink
               to="/w-czym-pomagam/"
               grayTheme
-              changeSize={{ size: '80%', borderWidth: '1px' }}
+              overrideStyles={{ fontSize: '80%', borderWidth: '1px' }}
             >
               Powrót do listy
             </ButtonLink>

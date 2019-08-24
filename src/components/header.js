@@ -49,7 +49,7 @@ const HeaderWrapper = styled.header`
     background: ${props => props.theme.headerColorHover};
     box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.4);
 
-    .menu a :not(:hover) {
+    nav a :not(:hover) {
       color: ${props => props.theme.fontColorHeaderHover};
     }
 
@@ -100,9 +100,12 @@ const Header = ({ siteTitle, location, headerStyles, noPlaceholder }) => {
     }
   }, [])
   const isAtPageTop = windowY < 50
+
+  const [headerHovered, setHeaderHovered] = useState(false)
+  const [menuActive, setMenuActive] = useState(false)
   const classPageTop = isAtPageTop ? 'page-top' : ''
-  const [classHeaderHovered, setClassHeaderHovered] = useState('')
-  const [classMenuActive, setClassMenuActive] = useState('')
+  const classHeaderHovered = headerHovered ? 'headerHovered' : ''
+  const classMenuActive = menuActive ? 'menu-active' : ''
 
   return (
     <ThemeProvider theme={headerThemes}>
@@ -110,9 +113,10 @@ const Header = ({ siteTitle, location, headerStyles, noPlaceholder }) => {
         {noPlaceholder ? '' : <HeaderPlaceholder className={classPageTop} />}
         <HeaderWrapper
           className={classPageTop}
-          onMouseOver={() => setClassHeaderHovered('headerHovered')}
-          onFocus={() => setClassHeaderHovered('headerHovered')}
-          onMouseLeave={() => setClassHeaderHovered('')}
+          onMouseEnter={() => setHeaderHovered(true)}
+          onMouseOver={() => setHeaderHovered(true)}
+          onFocus={() => setHeaderHovered(true)}
+          onMouseLeave={() => setHeaderHovered(false)}
         >
           <StyledLink to="/">
             <Logo
@@ -127,7 +131,8 @@ const Header = ({ siteTitle, location, headerStyles, noPlaceholder }) => {
           <Menu
             location={location}
             pageTop={isAtPageTop}
-            setClassMenuActive={setClassMenuActive}
+            setMenuActive={setMenuActive}
+            headerHovered={headerHovered}
           />
         </HeaderWrapper>
       </>

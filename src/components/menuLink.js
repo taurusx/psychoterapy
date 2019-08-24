@@ -11,6 +11,7 @@ const StyledListItem = styled.li`
   margin-bottom: 0;
   text-align: center;
   text-transform: uppercase;
+  white-space: nowrap;
 
   @media (max-width: ${props => props.theme.menuTreshold}) {
     margin: 0.5rem 1rem;

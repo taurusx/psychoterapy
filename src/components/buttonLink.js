@@ -42,7 +42,7 @@ const ButtonLink = ({
   lowercase,
   block,
   fullWidth,
-  changeSize,
+  overrideStyles,
   transparent,
   arrow,
   ...restProps
@@ -55,7 +55,7 @@ const ButtonLink = ({
     lowercase,
     block,
     fullWidth,
-    changeSize,
+    overrideStyles,
     transparent,
     arrow,
   }

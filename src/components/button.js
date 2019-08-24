@@ -30,7 +30,7 @@ const lightButtonTheme = {
 const grayButtonTheme = {
   fontColor: grayColor,
   fontColorHover: darkestColor,
-  backgroundColor: lightestColor,
+  backgroundColor: 'transparent',
   backgroundColorHover: lightColor,
   borderColor: grayColor,
   borderColorHover: darkestColor,
@@ -78,8 +78,8 @@ const StyledButton = styled.button`
   }
 
   @media (max-width: 480px) {
-    font-size: 1rem;
-    padding: 0.6em 1.2em;
+    font-size: 100%;
+    padding: ${props => !props.overrideStyles && '0.6em 1.2em'};
   }
 
   ${props =>
@@ -92,14 +92,25 @@ const StyledButton = styled.button`
       margin-left: 0;
     `}
 
-  ${props =>
-    props.changeSize &&
-    css`
-      font-size: ${props => props.changeSize.size || '120%'};
-      border-width: ${props => props.changeSize.borderWidth || '4px'};
-      padding: ${props => props.changeSize.paddingTopBottom || '0.6em'}
-        ${props => props.changeSize.paddingLeftRight || '1.5em'};
-    `}
+  ${({ overrideStyles }) => {
+    if (!overrideStyles) return null
+    const {
+      fontSize,
+      borderWidth,
+      minWidth,
+      verticalPadding,
+      horizontalPadding,
+    } = overrideStyles
+    return (
+      overrideStyles &&
+      css`
+        font-size: ${fontSize};
+        border-width: ${borderWidth};
+        min-width: ${minWidth};
+        padding: ${verticalPadding || '0.6em'} ${horizontalPadding || '1.5em'};
+      `
+    )
+  }}
 
   ${props =>
     props.transparent &&
