@@ -46,6 +46,8 @@
     "typography-theme-wordpress-2016": "^0.16.19"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
     "babel-eslint": "^10.0.2",
     "eslint": "^6.2.2",
     "eslint-config-airbnb": "^18.0.1",
@@ -54,6 +56,8 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
+    "husky": "^3.0.4",
+    "lint-staged": "^9.2.3",
     "npm-run-all": "4.1.5",
     "prettier": "^1.18.2"
   },
@@ -67,6 +71,23 @@
     "type": "git",
     "url": "git+https://github.com/taurusx/psychotherapy.git"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.@(js|jsx)": [
+      "eslint  --ignore-path .eslintignore --ext .js,.jsx",
+      "prettier --check"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "scripts": {
     "build": "gatsby build",
     "clean": "rm -fr node_modules package-lock.json",
@@ -78,6 +99,7 @@
     "lint": "npm-run-all --continue-on-error -p lint:code lint:style",
     "lint:code": "eslint  --ignore-path .eslintignore --ext .js,.jsx \"src/**\"",
     "lint:style": "prettier --check \"src/**\"",
+    "lint-staged": "lint-staged",
     "logos": "rm -fr src/components/logos && npx @svgr/cli --ext jsx --template src/templates/svgr/icons-template.js -d src/components/logos content/assets/logo",
     "start": "npm run develop",
     "serve": "gatsby serve",
