@@ -147,7 +147,7 @@ const StyledImage = styled.figure`
 
   @media (max-width: ${SINGLE_COLUMN_BREAKPOINT}) {
     margin-bottom: 1rem;
-    min-width: 80vw;
+    min-width: 80%;
 
     .gatsby-image-wrapper {
       max-width: 600px;

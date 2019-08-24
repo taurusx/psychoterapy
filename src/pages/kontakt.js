@@ -24,7 +24,7 @@ const GridWrapper = styled.div`
 
   @media (max-width: 960px) {
     grid-template-columns: 1fr;
-    grid-gap: 0;
+    grid-gap: 2rem;
   }
 `
 
