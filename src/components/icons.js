@@ -18,6 +18,7 @@ import Pulse from './icons/Pulse'
 import QuestionAnswer from './icons/QuestionAnswer'
 import RecordVoiceOver from './icons/RecordVoiceOver'
 import SettingsApplications from './icons/SettingsApplications'
+import SupervisedUser from './icons/SupervisedUser'
 import SwapHorizontalCircle from './icons/SwapHorizontalCircle'
 import Thermometer from './icons/Thermometer'
 import Update from './icons/Update'
@@ -44,6 +45,7 @@ export const iconsMap = {
   question_answer: QuestionAnswer,
   record_voice_over: RecordVoiceOver,
   settings_applications: SettingsApplications,
+  supervised_user: SupervisedUser,
   swap_horizontal_circle: SwapHorizontalCircle,
   thermometer: Thermometer,
   update: Update,
