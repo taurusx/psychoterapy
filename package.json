@@ -38,7 +38,6 @@
     "react-dom": "^16.9.0",
     "react-google-recaptcha": "^1.1.0",
     "react-helmet": "^5.2.1",
-    "react-intersection-observer": "^8.24.1",
     "react-slick": "^0.25.2",
     "react-typography": "^0.16.19",
     "styled-components": "^4.3.2",
@@ -101,6 +100,7 @@
     "lint:style": "prettier --check \"src/**\"",
     "lint-staged": "lint-staged",
     "logos": "rm -fr src/components/logos && npx @svgr/cli --ext jsx --template src/templates/svgr/icons-template.js -d src/components/logos content/assets/logo",
+    "reinstall": "npm run clean && npm i",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""

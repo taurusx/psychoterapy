@@ -4,15 +4,15 @@ import styled from 'styled-components'
 const ToggleWrapper = styled.div`
   display: none;
   position: absolute;
-  top: 0.8rem;
+  top: 1.3rem;
   right: calc(100% + 1rem);
   min-height: 36px;
   min-width: 36px;
   cursor: pointer;
   transition: all ${props => props.theme.menuTransitions};
 
-  &.page-top {
-    top: 1.3rem;
+  &.page-scrolled {
+    top: 0.8rem;
   }
 
   &:hover span {
@@ -72,7 +72,7 @@ const ToggleButton = ({ isOpen, pageTop, onClick }) => {
   return (
     <ToggleWrapper
       className={`toggle ${isOpen ? 'toggle--active' : ''} ${
-        pageTop ? 'page-top' : ''
+        pageTop ? '' : 'page-scrolled'
       }`}
       onClick={onClick}
     >

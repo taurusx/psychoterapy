@@ -5,6 +5,10 @@ import styled, { ThemeProvider } from 'styled-components'
 
 import Menu from './menu'
 import Logo from './logo'
+import useIntersect from '../hooks/useIntersect'
+
+export const HEADER_HEIGHT_PAGE_TOP = '80px'
+export const HEADER_HEIGHT = '64px'
 
 const headerTheme = {
   mobileTreshold: '480px',
@@ -30,7 +34,7 @@ const HeaderWrapper = styled.header`
       : '0px 3px 3px 0px rgba(0, 0, 0, 0.4)'};
   margin: 0 auto;
   padding: 0.6rem 1rem;
-  height: 64px;
+  height: ${HEADER_HEIGHT_PAGE_TOP};
   flex-shrink: 0;
   overflow: hidden;
   color: ${props => props.theme.fontColor};
@@ -39,9 +43,9 @@ const HeaderWrapper = styled.header`
   justify-content: space-between;
   align-items: center;
 
-  &.page-top {
-    height: 80px;
-    flex: 0 0 80px;
+  &.page-scrolled {
+    height: ${HEADER_HEIGHT};
+    flex: 0 0 ${HEADER_HEIGHT};
   }
 
   &:hover {
@@ -64,13 +68,13 @@ const HeaderWrapper = styled.header`
 const HeaderPlaceholder = styled.div`
   position: relative;
   width: 100%;
-  height: 64px;
-  flex: 0 0 64px;
+  height: ${HEADER_HEIGHT_PAGE_TOP};
+  flex: 0 0 ${HEADER_HEIGHT_PAGE_TOP};
   transition: all ${props => props.theme.menuTransitions};
 
-  &.page-top {
-    height: 80px;
-    flex: 0 0 80px;
+  &.page-scrolled {
+    height: ${HEADER_HEIGHT};
+    flex: 0 0 ${HEADER_HEIGHT};
   }
 `
 
@@ -85,34 +89,51 @@ const StyledLink = styled(Link)`
   }
 `
 
-const Header = ({ siteTitle, location, headerStyles, noPlaceholder }) => {
+const Header = ({
+  siteTitle,
+  location,
+  headerStyles,
+  isPageTop,
+  noPlaceholder,
+}) => {
   const headerThemes = { ...headerTheme, ...headerStyles }
 
-  const [windowY, setWindowY] = useState(0)
+  const [headerRef, headerEntry] = useIntersect({
+    rootMargin: `0px 0px ${HEADER_HEIGHT_PAGE_TOP} 0px`,
+  })
+
+  const [pageTop, setPageTop] = useState(true)
+
   useEffect(() => {
-    function handleScroll() {
-      setWindowY(Math.round(window.scrollY))
+    if (typeof isPageTop !== 'undefined') {
+      setPageTop(isPageTop)
+    } else if (headerEntry.constructor === IntersectionObserverEntry) {
+      setPageTop(headerEntry.isIntersecting)
+    } else {
+      setPageTop(true)
     }
-    if (window !== 'undefined') window.addEventListener('scroll', handleScroll)
+
     return () => {
-      if (window !== 'undefined')
-        window.removeEventListener('scroll', handleScroll)
+      setPageTop(true)
     }
-  }, [])
-  const isAtPageTop = windowY < 50
+  }, [isPageTop, headerEntry])
 
   const [headerHovered, setHeaderHovered] = useState(false)
   const [menuActive, setMenuActive] = useState(false)
-  const classPageTop = isAtPageTop ? 'page-top' : ''
+  const classPageScrolled = pageTop ? '' : 'page-scrolled'
   const classHeaderHovered = headerHovered ? 'headerHovered' : ''
   const classMenuActive = menuActive ? 'menu-active' : ''
 
   return (
     <ThemeProvider theme={headerThemes}>
       <>
-        {noPlaceholder ? '' : <HeaderPlaceholder className={classPageTop} />}
+        {noPlaceholder ? (
+          ''
+        ) : (
+          <HeaderPlaceholder ref={headerRef} className={classPageScrolled} />
+        )}
         <HeaderWrapper
-          className={classPageTop}
+          className={classPageScrolled}
           onMouseEnter={() => setHeaderHovered(true)}
           onMouseOver={() => setHeaderHovered(true)}
           onFocus={() => setHeaderHovered(true)}
@@ -122,7 +143,7 @@ const Header = ({ siteTitle, location, headerStyles, noPlaceholder }) => {
             <Logo
               siteTitle={siteTitle}
               className={[
-                classPageTop,
+                classPageScrolled,
                 classHeaderHovered,
                 classMenuActive,
               ].join(' ')}
@@ -130,7 +151,7 @@ const Header = ({ siteTitle, location, headerStyles, noPlaceholder }) => {
           </StyledLink>
           <Menu
             location={location}
-            pageTop={isAtPageTop}
+            pageTop={pageTop}
             setMenuActive={setMenuActive}
             headerHovered={headerHovered}
           />

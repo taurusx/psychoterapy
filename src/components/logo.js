@@ -26,25 +26,25 @@ const LogoWrapper = styled.div`
 `
 
 const LogoImage = styled.div`
-  height: 40px;
-  width: 180px;
+  height: 48px;
+  width: 200px;
   margin-right: 0.8rem;
   flex: 0 0 auto;
   background-size: contain;
   transition: all ${props => props.theme.menuTransitions};
 
-  ${LogoWrapper}.page-top & {
-    height: 48px;
-    width: 200px;
+  ${LogoWrapper}.page-scrolled & {
+    height: 40px;
+    width: 180px;
   }
 
   @media (max-width: ${props => props.theme.mobileTreshold}) {
-    height: 32px;
-    width: 160px;
+    height: 40px;
+    width: 180px;
 
-    ${LogoWrapper}.page-top & {
-      height: 40px;
-      width: 180px;
+    ${LogoWrapper}.page-scrolled & {
+      height: 32px;
+      width: 160px;
     }
   }
 `

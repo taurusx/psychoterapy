@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { InView } from 'react-intersection-observer'
 
-import Header from './header'
+import Header, { HEADER_HEIGHT_PAGE_TOP } from './header'
 import HeroSlider from './heroSlider'
+import useIntersect from '../hooks/useIntersect'
 
 const HeroLayout = styled.div`
   position: relative;
@@ -50,31 +50,45 @@ const HeroHeader = ({ siteTitle, location }) => {
     loadPolyfills()
   }, [])
 
+  const [heroRef, heroEntry] = useIntersect({
+    rootMargin: `${HEADER_HEIGHT_PAGE_TOP} 0px 0px 0px`,
+    threshold: 1,
+  })
+
+  const [pageTop, setPageTop] = useState(true)
+
+  useEffect(() => {
+    if (heroEntry.constructor === IntersectionObserverEntry) {
+      setPageTop(heroEntry.isIntersecting)
+    } else {
+      setPageTop(true)
+    }
+    return () => {
+      setPageTop(true)
+    }
+  }, [heroEntry])
+
   const [headerColor, setHeaderColor] = useState('transparent')
   const heroHeaderStyles = {
     headerColor: `${headerColor}`,
     fontColor: 'white',
   }
 
-  return (
-    <InView threshold={0.97} rootMargin="0px 0px 0px 0px">
-      {({ inView: heroInView, ref: heroRef }) => {
-        setHeaderColor(heroInView ? 'transparent' : 'rgba(0, 0, 0, 0.8)')
+  useEffect(() => {
+    setHeaderColor(pageTop ? 'transparent' : 'rgba(0, 0, 0, 0.85)')
+  }, [pageTop])
 
-        return (
-          <HeroLayout ref={heroRef}>
-            <HeroSlider />
-            <Header
-              siteTitle={siteTitle}
-              location={location}
-              headerStyles={heroHeaderStyles}
-              isHeroInView={heroInView}
-              noPlaceholder
-            />
-          </HeroLayout>
-        )
-      }}
-    </InView>
+  return (
+    <HeroLayout ref={heroRef}>
+      <HeroSlider />
+      <Header
+        siteTitle={siteTitle}
+        location={location}
+        headerStyles={heroHeaderStyles}
+        isPageTop={pageTop}
+        noPlaceholder
+      />
+    </HeroLayout>
   )
 }
 
