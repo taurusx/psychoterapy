@@ -52,6 +52,33 @@ const ContactPage = ({ data, location }) => {
         </GridWrapper>
       </Section>
       <GoogleMap id="google-map" />
+      <Section maxWidth={CONTENT_WIDTH}>
+        <h3>Ochrona danych osobowych</h3>
+        <p>
+          Zgodnie z <strong>Rozporządzeniem o Ochronie Danych Osobowych</strong>{' '}
+          (RODO) informujemy, że:
+          <ol>
+            <li>
+              Państwa dane osobowe są przetwarzane jedynie w celu realizacji
+              usług oferowanych przez firmę Psychoterapia - Agnieszka
+              Wojnar-Jadczyszyn, która jest administratorem danych.
+            </li>
+            <li>
+              Dane udostępnione przez Panią/Pana nie będą podlegały
+              udostępnieniu podmiotom trzecim. Odbiorcami danych będą tylko
+              instytucje upoważnione z mocy prawa.
+            </li>
+            <li>
+              Przysługuje Pani/Panu prawo dostępu do danych oraz ich
+              sprostowania, usunięcia lub ograniczenia przetwarzania, a także
+              prawo sprzeciwu, zażądania zaprzestania przetwarzania i
+              przenoszenia danych, jak również prawo do cofnięcia zgody w
+              dowolnym momencie oraz prawo do wniesienia skargi do organu
+              nadzorczego (tj.:Generalny Inspektor Ochrony Danych Osobowych).
+            </li>
+          </ol>
+        </p>
+      </Section>
     </Layout>
   )
 }

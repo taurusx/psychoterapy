@@ -98,7 +98,10 @@ const scrollToMap = e => {
 
 const Details = () => (
   <div>
-    <h3>Poradnia &quot;eMOCja&quot;</h3>
+    <h3>
+      Gabinet terapii poznawczo-behawioralnej i terapii schematu
+      &quot;eMOCja&quot;
+    </h3>
     <ImageContainer>
       <img
         src={emocjaLogo}
@@ -109,7 +112,6 @@ const Details = () => (
         `}
       />
     </ImageContainer>
-    <h3>Gabinet terapii poznawczo-behawioralnej i terapii schematu</h3>
     <ItemsContainer>
       <ContactItem>
         <IconContainer>
