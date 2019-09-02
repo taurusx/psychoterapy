@@ -12,6 +12,7 @@ import { pricingPropTypes } from './pricingPropTypes'
 const CardWrapper = styled(Card)`
   position: relative;
   min-height: 400px;
+  height: 100%;
   max-width: 400px;
   overflow: hidden;
   padding: ${rhythm(1.5)};
